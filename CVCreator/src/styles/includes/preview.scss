@@ -1,0 +1,13 @@
+$a-format-base: 25rem;
+
+$a4-width : $a-format-base;
+$a4-height: 297/210 * $a-format-base;
+
+#cv-preview {
+  width : $a4-width;
+  height: $a4-height;
+
+  background-color: ghostwhite;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px black;
+}

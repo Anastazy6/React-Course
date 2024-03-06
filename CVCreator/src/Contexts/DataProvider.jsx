@@ -15,9 +15,11 @@ function DataDispatchContext () {
 }
 
 
-export default function DataProvider ({ children }) {
+function DataProvider ({ children }) {
   const [data, dispatch] = useReducer(dataReducer, {});
 
+  console.log(data)
+  console.log(typeof dispatch)
   return (
     <>
       <DataContext.Provider value={ data }>
@@ -30,23 +32,38 @@ export default function DataProvider ({ children }) {
 }
 
 
-export function useData () {
+function useData () {
   return useContext(DataContext);
 }
 
-export function useDataDispatch () {
+function useDataDispatch () {
   return useContext(DataDispatchContext);
 }
 
 
-function dataReducer (state, action) {
+function dataReducer (data, action) {
   switch (action.type) {
+    case 'added_field': {
+      console.log('TODO');
+      return data;
+    }
     case 'updated_data': {
       console.log('Not yet implemented');
-      return state;
+      return data;
+    }
+    case 'deleted_field': {
+      console.log("TODO");
+      return data;
     }
     default: {
       throw new TypeError(`Invalid action type: ${action.type}`);
     }
   }
+}
+
+
+export default DataProvider;
+export {
+  useData,
+  useDataDispatch
 }

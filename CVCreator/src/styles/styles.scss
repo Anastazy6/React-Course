@@ -1,7 +1,1 @@
-$a4-width : 210mm;
-$a4-height: 297mm;
-
-#cv-previev {
-  width : $a4-width;
-  height: $a4-height;
-}
+@import './includes/preview';

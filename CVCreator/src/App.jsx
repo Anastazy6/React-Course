@@ -1,11 +1,16 @@
+import DataProvider from "./Contexts/DataProvider";
+import Preview      from "./Components/Preview/Preview";
+import CVForm       from "./Components/CVForm/CVForm";
 
-function App() {
+
+export default function App () {
 
   return (
     <>
-
+      <DataProvider>
+        <CVForm />
+        <Preview />
+      </DataProvider>
     </>
-  )
+  );
 }
-
-export default App
