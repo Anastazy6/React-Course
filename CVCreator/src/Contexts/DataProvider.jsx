@@ -5,29 +5,22 @@ import {
 } from 'react';
 
 
-function DataContext () {
-  return createContext(null);
-}
-
-
-function DataDispatchContext () {
-  return createContext(null);
-}
+const DataContext         = createContext(null);
+const DataDispatchContext = createContext(null);
 
 
 export default function DataProvider ({ children }) {
-  const [data, dispatch] = useReducer(dataReducer, {test: 'test'});
-
-  console.log(data)
-  console.log(typeof dispatch)
+  const [data, dispatch] = useReducer(
+    dataReducer,
+    {}
+  );
+  
   return (
-    
       <DataContext.Provider value={ data }>
         <DataDispatchContext.Provider value={ dispatch }>
           { children }
         </DataDispatchContext.Provider>
       </DataContext.Provider>
-    
   );
 }
 
