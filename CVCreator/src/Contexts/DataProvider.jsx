@@ -15,28 +15,28 @@ function DataDispatchContext () {
 }
 
 
-function DataProvider ({ children }) {
-  const [data, dispatch] = useReducer(dataReducer, {});
+export default function DataProvider ({ children }) {
+  const [data, dispatch] = useReducer(dataReducer, {test: 'test'});
 
   console.log(data)
   console.log(typeof dispatch)
   return (
-    <>
+    
       <DataContext.Provider value={ data }>
         <DataDispatchContext.Provider value={ dispatch }>
           { children }
         </DataDispatchContext.Provider>
       </DataContext.Provider>
-    </>
+    
   );
 }
 
 
-function useData () {
+export function useData () {
   return useContext(DataContext);
 }
 
-function useDataDispatch () {
+export function useDataDispatch () {
   return useContext(DataDispatchContext);
 }
 
@@ -61,9 +61,3 @@ function dataReducer (data, action) {
   }
 }
 
-
-export default DataProvider;
-export {
-  useData,
-  useDataDispatch
-}
