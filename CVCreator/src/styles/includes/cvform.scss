@@ -1,0 +1,17 @@
+#cv-form {
+  min-width: 25rem;
+  min-height: 35rem;
+
+  border: 1px solid black;
+}
+
+fieldset {
+  display: flex;
+  flex-flow: column;
+
+  label {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+  }
+}

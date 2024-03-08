@@ -8,11 +8,11 @@ import CVForm       from "./Components/CVForm/CVForm";
 export default function App () {
 
   return (
-    <>
-      <DataProvider>
+    <DataProvider>
+      <main>
         <CVForm />
         <Preview />
-      </DataProvider>
-    </>
+      </main>
+    </DataProvider>
   );
 }

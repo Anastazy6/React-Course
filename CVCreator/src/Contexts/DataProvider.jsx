@@ -33,16 +33,28 @@ export function useDataDispatch () {
   return useContext(DataDispatchContext);
 }
 
-
+/**
+ * 
+ * @param {*} data 
+ * @param {*} action: {
+ *    type : dispatch action type,
+ *    group: input group (a visually distinct part of the CV creator, like Top Panel or Side Panel)
+ *    name : input name (in-group input identifier)
+ *    value: new value (for 'updated_data' action type only)
+ * } 
+ * @returns 
+ */
 function dataReducer (data, action) {
+  const group = action.group;
+  const name  = action.name;
+  const value = action.value;
+
   switch (action.type) {
     case 'added_field': {
-      console.log('TODO');
-      return data;
+      return addNewField(data, group, name);
     }
     case 'updated_data': {
-      console.log('Not yet implemented');
-      return data;
+      return getUpdatedData(data, group, name, value);
     }
     case 'deleted_field': {
       console.log("TODO");
@@ -54,3 +66,26 @@ function dataReducer (data, action) {
   }
 }
 
+
+function getUpdatedData (data, group, name, value) {
+  const newData  = { ...data }
+  newData[group] = { ...data[group] };
+  newData[group][name] = value;
+
+  return newData;
+}
+
+
+function addNewField (data, group, name) {
+  const newData  = { ...data };
+
+  newData[group] = data[group] 
+  ? { ...data[group] } 
+  : {};
+  
+  newData[group][name] = data[group][name]
+  ? { ...data[group][name] } 
+  : '';
+
+  return newData;
+}

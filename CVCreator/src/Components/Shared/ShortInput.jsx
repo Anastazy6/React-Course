@@ -1,12 +1,47 @@
 import { useData, useDataDispatch } from "../../Contexts/DataProvider";
 
 
-export default function ShortInput ({ name, type, onChange }) {
+export default function ShortInput ({ name, type, group }) {
+  const data     = useData();
+  const dispatch = useDataDispatch();
 
-    return (
-        <input
-            
-        />
-    )
+  function getValue () {
+    if (!data[group]) return '';
+    if (!data[group][name]) return '';
 
+    return data[group[name]]
+  }
+
+
+  function handleAddField (e) {
+    if (!data[group] || !data[group][name]) {
+      dispatch({
+        type : 'added_field',
+        group: group,
+        name : name,
+      });
+    }
+  }
+
+  function handleChange (e) {
+    dispatch({
+      type : 'updated_data',
+      group: group,
+      name : name,
+      value: e.target.value
+    });
+  }
+
+  return (
+    <label>
+      { name }
+
+      <input
+        type     = { type }
+        name     = { name }
+        onChange = { handleChange }
+        value    = { getValue() }
+      />
+    </label>
+  );
 }
