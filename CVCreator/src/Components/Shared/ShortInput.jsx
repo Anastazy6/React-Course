@@ -6,22 +6,12 @@ export default function ShortInput ({ name, type, group }) {
   const dispatch = useDataDispatch();
 
   function getValue () {
-    if (!data[group]) return '';
+    if (!data[group])       return '';
     if (!data[group][name]) return '';
 
     return data[group[name]]
   }
 
-
-  function handleAddField (e) {
-    if (!data[group] || !data[group][name]) {
-      dispatch({
-        type : 'added_field',
-        group: group,
-        name : name,
-      });
-    }
-  }
 
   function handleChange (e) {
     dispatch({
