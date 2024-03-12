@@ -1,4 +1,6 @@
-import ShortInput from "../../Shared/ShortInput";
+import ShortInput from "../Shared/ShortInput";
+import FileInput  from "../Shared/FileInput";
+
 
 export default function TopPanel () {
 
@@ -9,14 +11,18 @@ export default function TopPanel () {
     ['Phone number', 'tel' ],
     ['Email',        'mail'],
     ['Address',      'text'],
-    ['Coutry',       'text']
+    ['Coutry',       'text'],
   ]
 
-  const inputs = formControls.map(fc => {
+  const fileControls = [
+    ['Photo', 'image/*']
+  ];
+
+  const dataInputs = formControls.map(fc => {
     const group = 'topPanel';
 
     return (
-      <ShortInput
+       <ShortInput
         name ={ fc[0] }
         type ={ fc[1] }
         group={ group }
@@ -25,13 +31,27 @@ export default function TopPanel () {
     );
   });
 
+
+  const fileInputs = fileControls.map(fc => {
+    return (
+      <FileInput
+        name  ={ fc[0] }
+        key   ={ fc[0] }
+        accept={ fc[1] }
+      />
+    );
+  });
+
+
   return (
     <fieldset>
       <legend>
         Top Panel
       </legend>
-      { inputs }
+      { dataInputs }
+      { fileInputs }
 
     </fieldset>
   )
 }
+

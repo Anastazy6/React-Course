@@ -1,4 +1,4 @@
-import { useData, useDataDispatch } from "../../Contexts/DataProvider";
+import { useData, useDataDispatch } from "../../../Contexts/DataProvider";
 
 
 export default function ShortInput ({ name, type, group }) {
@@ -9,7 +9,7 @@ export default function ShortInput ({ name, type, group }) {
     if (!data[group])       return '';
     if (!data[group][name]) return '';
 
-    return data[group[name]]
+    return data[group[name]];
   }
 
 

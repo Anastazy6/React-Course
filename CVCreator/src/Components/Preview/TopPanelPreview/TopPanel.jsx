@@ -2,9 +2,12 @@ import { useData } from "../../../Contexts/DataProvider";
 
 
 export default function TopPanel () {
-  const data = useData().topPanel || null;
-  let renderedElements = null;
+  const data     = useData().topPanel || null;
+  const portrait = getPortraitIfUploaded();
 
+  console.log(portrait);
+
+  let renderedElements = null;
   if (data) {
     renderedElements = Object.entries(data).map(([key, value]) => {
       console.log(key, value);
@@ -13,11 +16,21 @@ export default function TopPanel () {
     });
   }
 
+  let renderedPhoto = portrait 
+  ? <img 
+      src={ portrait } 
+      alt={ `${data['First name']} ${data['Last name']} photo` }   
+    />
+  : null;
+  
+
   return (
     <section
       id="top-panel-preview"
     >
       { renderedElements }
+      { renderedPhoto    }
+      
     </section>
   )
 }
@@ -44,4 +57,14 @@ function createTopPanelElement (key, value) {
       </div>
     </div>
   );
+}
+
+
+function getPortraitIfUploaded () {
+  const data  = useData();
+
+  if (!data.files) return null;
+  if (!data.files.Photo) return null;
+
+  return data.files.Photo;
 }

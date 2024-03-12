@@ -48,13 +48,18 @@ function dataReducer (data, action) {
   const group = action.group;
   const name  = action.name;
   const value = action.value;
+  const file  = action.file;
 
   switch (action.type) {
-    case 'added_field': {
-      return addNewField(data, group, name);
-    }
+    // Unused, so far 'updated_data' handles this as well
+    // case 'added_field': {
+    //   return addNewField(data, group, name);
+    // }
     case 'updated_data': {
       return getUpdatedData(data, group, name, value);
+    }
+    case 'uploaded_file': {
+      return saveUploadedFile(data, name, file);
     }
     case 'deleted_field': {
       console.log("TODO");
@@ -67,25 +72,36 @@ function dataReducer (data, action) {
 }
 
 
+function saveUploadedFile (data, name, file) {
+  const newData       = { ...data };
+  newData.files       = { ...data.files };
+  newData.files[name] = URL.createObjectURL(file);
+
+  return newData;
+}
+
+
 function getUpdatedData (data, group, name, value) {
-  const newData  = { ...data }
+  const newData  = { ...data };
   newData[group] = { ...data[group] };
   newData[group][name] = value;
 
   return newData;
 }
 
+// Unused, so far 'updated_data' handles this as well
+//   it will be either removed entirely or brought back in the future, depending
+//   on needs
+// function addNewField (data, group, name) {
+//   const newData  = { ...data };
 
-function addNewField (data, group, name) {
-  const newData  = { ...data };
-
-  newData[group] = data[group] 
-  ? { ...data[group] } 
-  : {};
+//   newData[group] = data[group] 
+//   ? { ...data[group] } 
+//   : {};
   
-  newData[group][name] = data[group][name]
-  ? { ...data[group][name] } 
-  : '';
+//   newData[group][name] = data[group][name]
+//   ? { ...data[group][name] } 
+//   : '';
 
-  return newData;
-}
+//   return newData;
+// }
