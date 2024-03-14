@@ -11,7 +11,7 @@ export default function TopPanel () {
     ['Phone number', 'tel' ],
     ['Email',        'mail'],
     ['Address',      'text'],
-    ['Coutry',       'text'],
+    ['Country',       'text'],
   ]
 
   const fileControls = [
