@@ -1,4 +1,5 @@
 import { useData } from "../../Contexts/DataProvider";
+import SidePanel from "./SidePanel/SidePanel";
 import TopPanel from "./TopPanel/TopPanel";
 
 
@@ -18,6 +19,7 @@ export default function CVForm () {
       onSubmit={ handleSubmit }
     >
       <TopPanel />
+      <SidePanel />
 
       <button
         role='submit'

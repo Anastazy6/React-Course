@@ -1,5 +1,5 @@
 import { useData } from "../../../Contexts/DataProvider";
-
+import { parseCSSSelector } from "../../../Util/Util";
 
 const iconsMap = {
   'Phone number': 'call',
@@ -41,8 +41,11 @@ export default function TopPanel () {
       id="top-panel-preview"
     >
       { renderedElements }
-      { renderedPhoto    }
-      
+      <div
+        id ='top-panel-preview-img'
+      >
+        { renderedPhoto    }
+      </div>
     </section>
   )
 }
@@ -56,7 +59,7 @@ function createTopPanelElement (key, value) {
     <div
       key      ={ key }
       className="top-panel-element"
-      id       ={ `top-panel-preview-$${ key }` }
+      id       ={ `top-panel-preview-${ parseCSSSelector(key) }` }
     >
       { label } 
       <span
