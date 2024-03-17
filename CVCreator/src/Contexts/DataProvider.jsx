@@ -13,7 +13,9 @@ const DataDispatchContext = createContext(null);
 export default function DataProvider ({ children }) {
   const [data, dispatch] = useReducer(
     dataReducer,
-    {}
+    {
+      sideSections: [],
+    }
   );
   
   return (
@@ -69,8 +71,21 @@ function dataReducer (data, action) {
     case 'loaded_data_from_local_storage': {
       return { ...action.data };
     }
+    case 'added_side_section': {
+      return addSideSectionForm(data, action.sectionForm);
+    }
+    case 'deleted_side_section': {
+      const newSideSections = data.sideSections.filter(
+        ss => ss.title !== action.title
+      );
+
+      return {
+        ...data,
+        sideSections: newSideSections
+      }
+    }
     default: {
-      throw new TypeError(`Invalid action type: ${action.type}`);
+      throw new TypeError(`Invalid action type: ${ action.type }`);
     }
   }
 }
@@ -89,6 +104,16 @@ function getUpdatedData (data, group, name, value) {
   const newData  = { ...data };
   newData[group] = { ...data[group] };
   newData[group][name] = value;
+
+  return newData;
+}
+
+// Prototype: no collision protection if a section with a given title already exists
+function addSideSectionForm (data, sectionForm) {
+  const newData = { ...data };
+  newData.sideSections = newData.sideSections
+  ? [ ...newData.sideSections, sectionForm]
+  : [sectionForm];
 
   return newData;
 }

@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useDataDispatch } from "../../../Contexts/DataProvider";
 
 
 const defaultNewSection = {
   title : '',
   type  : 'flat',
-  levels: 5
+  levels: 5,
+  items : []
 }
 
 
 export default function AddSidePanelSection () {
   const [newSection, setNewSection] = useState(defaultNewSection);
+  const dispatch = useDataDispatch();
 
   const sectionTypes = [
     'flat',         // no skill measurement
@@ -46,9 +49,12 @@ export default function AddSidePanelSection () {
   }
 
 
-  function handleAddSection () {
-    console.log(newSection);
-    // TODO
+  function handleAddSectionForm () {
+    dispatch({
+      type       : 'added_side_section',
+      sectionForm: newSection
+    });
+
     setNewSection(defaultNewSection);
   }
 
@@ -56,7 +62,10 @@ export default function AddSidePanelSection () {
 
   return (
     <fieldset>
-      Add Side Panel section
+      <legend>
+        Add Side Panel section
+      </legend>
+      
       
       <label>
         Title
@@ -84,7 +93,7 @@ export default function AddSidePanelSection () {
       
       <button 
         role='btn'
-        onClick={ handleAddSection }
+        onClick={ handleAddSectionForm }
       >
         Add Section
       </button>
