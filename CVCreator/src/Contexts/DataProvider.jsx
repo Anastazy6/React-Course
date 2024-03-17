@@ -4,6 +4,7 @@ import {
   useReducer
 } from 'react';
 
+import { loadData } from '../Storage/storage';
 
 const DataContext         = createContext(null);
 const DataDispatchContext = createContext(null);
@@ -64,6 +65,9 @@ function dataReducer (data, action) {
     case 'deleted_field': {
       console.log("TODO");
       return data;
+    }
+    case 'loaded_data_from_local_storage': {
+      return { ...action.data };
     }
     default: {
       throw new TypeError(`Invalid action type: ${action.type}`);
