@@ -54,10 +54,6 @@ function dataReducer (data, action) {
   const file  = action.file;
 
   switch (action.type) {
-    // Unused, so far 'updated_data' handles this as well
-    // case 'added_field': {
-    //   return addNewField(data, group, name);
-    // }
     case 'updated_data': {
       return getUpdatedData(data, group, name, value);
     }

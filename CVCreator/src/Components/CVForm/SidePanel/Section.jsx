@@ -96,7 +96,7 @@ function Title ({ state, onChange }) {
     <input
       name    ='title'
       type    ='text'
-      value   =''
+      value   ={ value }
       onChange={ onChange }
       required
     />
