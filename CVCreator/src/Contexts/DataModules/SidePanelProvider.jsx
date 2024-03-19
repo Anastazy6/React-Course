@@ -11,7 +11,7 @@ const SidePanelDispatchContext = createContext(null);
 
 export default function SidePanelProvider ({ children }) {
   const [sidePanel, dispatch] = useReducer(
-    sidePanelReducer, {}
+    sidePanelReducer, []
   );
 
   return (
@@ -34,5 +34,28 @@ export function useSidePanelDispatch () {
 
 
 function sidePanelReducer (data, action) {
-  
+  switch (action.type) {
+    case 'added_side_section': {
+      return addSideSectionForm(data, action.sectionForm);
+    }
+    case 'deleted_side_section': {
+     return data.filter(
+        ss => ss.title !== action.title
+      );
+    }
+    default: {
+      throw new TypeError(`Invalid action type: ${ action.type }`);
+    }
+  }
+}
+
+
+// Prototype: no collision protection if a section with a given title already exists
+function addSideSectionForm (data, sectionForm) {
+  const newData = { ...data };
+  newData.sideSections = newData.sideSections
+  ? [ ...newData.sideSections, sectionForm]
+  : [sectionForm];
+
+  return newData;
 }

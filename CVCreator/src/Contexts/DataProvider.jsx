@@ -5,6 +5,10 @@ import {
 } from 'react';
 
 import { loadData } from '../Storage/storage';
+import FileProvider from './DataModules/FilesProvider';
+import TopPanelProvider from './DataModules/TopPanelProvider';
+import SidePanelProvider from './DataModules/SidePanelProvider';
+import MainPanelProvider from './DataModules/MainPanelProvider';
 
 const DataContext         = createContext(null);
 const DataDispatchContext = createContext(null);
@@ -21,7 +25,9 @@ export default function DataProvider ({ children }) {
   return (
       <DataContext.Provider value={ data }>
         <DataDispatchContext.Provider value={ dispatch }>
-          { children }
+          <SubcontextsProvider>
+            { children }
+          </SubcontextsProvider>
         </DataDispatchContext.Provider>
       </DataContext.Provider>
   );
@@ -48,37 +54,9 @@ export function useDataDispatch () {
  * @returns 
  */
 function dataReducer (data, action) {
-  const group = action.group;
-  const name  = action.name;
-  const value = action.value;
-  const file  = action.file;
-
-  switch (action.type) {
-    case 'updated_data': {
-      return getUpdatedData(data, group, name, value);
-    }
-    case 'uploaded_file': {
-      return saveUploadedFile(data, name, file);
-    }
-    case 'deleted_field': {
-      console.log("TODO");
-      return data;
-    }
+  switch (action.type) { 
     case 'loaded_data_from_local_storage': {
       return { ...action.data };
-    }
-    case 'added_side_section': {
-      return addSideSectionForm(data, action.sectionForm);
-    }
-    case 'deleted_side_section': {
-      const newSideSections = data.sideSections.filter(
-        ss => ss.title !== action.title
-      );
-
-      return {
-        ...data,
-        sideSections: newSideSections
-      }
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);
@@ -87,46 +65,21 @@ function dataReducer (data, action) {
 }
 
 
-function saveUploadedFile (data, name, file) {
-  const newData       = { ...data };
-  newData.files       = { ...data.files };
-  newData.files[name] = URL.createObjectURL(file);
 
-  return newData;
+
+
+
+
+function SubcontextsProvider ({ children }) {
+  return (
+    <FileProvider>
+      <TopPanelProvider>
+        <SidePanelProvider>
+          <MainPanelProvider>
+            { children }
+          </MainPanelProvider>
+        </SidePanelProvider>
+      </TopPanelProvider>
+    </FileProvider>
+  );
 }
-
-
-function getUpdatedData (data, group, name, value) {
-  const newData  = { ...data };
-  newData[group] = { ...data[group] };
-  newData[group][name] = value;
-
-  return newData;
-}
-
-// Prototype: no collision protection if a section with a given title already exists
-function addSideSectionForm (data, sectionForm) {
-  const newData = { ...data };
-  newData.sideSections = newData.sideSections
-  ? [ ...newData.sideSections, sectionForm]
-  : [sectionForm];
-
-  return newData;
-}
-
-// Unused, so far 'updated_data' handles this as well
-//   it will be either removed entirely or brought back in the future, depending
-//   on needs
-// function addNewField (data, group, name) {
-//   const newData  = { ...data };
-
-//   newData[group] = data[group] 
-//   ? { ...data[group] } 
-//   : {};
-  
-//   newData[group][name] = data[group][name]
-//   ? { ...data[group][name] } 
-//   : '';
-
-//   return newData;
-// }

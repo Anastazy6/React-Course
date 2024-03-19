@@ -1,24 +1,24 @@
-import { useData } from "../../../Contexts/DataProvider";
+import { useSidePanel } from "../../../Contexts/DataModules/SidePanelProvider";
 import AddSidePanelSection from "./AddSection";
-import SideSection from "./Section";
+import Section from "./Section";
 
 export default function SidePanel () {
-  const data = useData();
+  const data = useSidePanel();
 
-  const sideSections = data.sideSections && data.sideSections.map(ss => (
-    <SideSection
+  const sections = data && data.map(ss => (
+    <Section
       title ={ ss.title  }
       type  ={ ss.type   }
       levels={ ss.levels }
     />
   ));
 
-  console.log(sideSections)
+  console.log(sections)
 
   return (
     <>
       <AddSidePanelSection />
-      { sideSections }
+      { sections }
     </>
   );
 } 

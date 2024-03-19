@@ -1,5 +1,5 @@
-import ShortInput from "../Shared/ShortInput";
-import FileInput  from "../Shared/FileInput";
+import ShortInput from "./ShortInput";
+import FileInput  from "./FileInput";
 
 
 export default function TopPanel () {

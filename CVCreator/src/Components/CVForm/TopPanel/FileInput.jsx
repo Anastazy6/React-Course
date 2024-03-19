@@ -1,17 +1,7 @@
-import { useData, useDataDispatch } from "../../../Contexts/DataProvider";
-
+import { useFilesDispatch } from "../../../Contexts/DataModules/FilesProvider";
 
 export default function FileInput ({ name, accept }) {
-  const data     = useData();
-  const dispatch = useDataDispatch();
-
-  // function getValue () {
-  //   if (!data.files)       return '';
-  //   if (!data.files[name]) return '';
-
-  //   return data.files[name].name;
-  // }
-
+  const dispatch = useFilesDispatch();
 
   function getUploadedFile (e) {
     if (!e.target.files) return '';
@@ -28,10 +18,6 @@ export default function FileInput ({ name, accept }) {
     });
   }
 
-  
-  
-
-
   return (
     <label>
       { name }
@@ -40,7 +26,6 @@ export default function FileInput ({ name, accept }) {
         type     = 'file'
         name     = { name }
         onChange = { handleChange }
-       // value    = { getValue() }
         accept   = { accept }
       />
     </label>

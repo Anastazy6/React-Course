@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDataDispatch } from "../../../Contexts/DataProvider";
+import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider";
 
 
 const defaultNewSection = {
@@ -12,7 +12,7 @@ const defaultNewSection = {
 
 export default function AddSidePanelSection () {
   const [newSection, setNewSection] = useState(defaultNewSection);
-  const dispatch = useDataDispatch();
+  const dispatch = useSidePanelDispatch();
 
   const sectionTypes = [
     'flat',         // no skill measurement

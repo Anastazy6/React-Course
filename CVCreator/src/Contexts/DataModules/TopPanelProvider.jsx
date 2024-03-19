@@ -20,5 +20,35 @@ export default function TopPanelProvider ({ children }) {
         { children }
       </TopPanelDispatchContext.Provider>
     </TopPanelContext.Provider>
-  )
+  );
 }
+
+
+export function useTopPanel () {
+  return useContext(TopPanelContext);
+}
+
+export function useTopPanelDispatch () {
+  return useContext(TopPanelDispatchContext);
+}
+
+
+function topPanelReducer (topPanel, action) {
+  const name  = action.name;
+  const value = action.value;
+  
+
+  switch (action.type) {
+    case 'updated_top_panel': {
+      const newTopPanel = { ...topPanel };
+      newTopPanel[name] = value;
+
+      return newTopPanel;
+    }
+    default: {
+      throw new TypeError(`Invalid action type: ${ action.type }`);
+    }
+  }
+}
+
+

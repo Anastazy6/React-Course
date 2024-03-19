@@ -1,21 +1,21 @@
-import { useData, useDataDispatch } from "../../../Contexts/DataProvider";
+import { useTopPanel, useTopPanelDispatch } from '../../../Contexts/DataModules/TopPanelProvider';
 
 
 export default function ShortInput ({ name, type, group }) {
-  const data     = useData();
-  const dispatch = useDataDispatch();
+  const data     = useTopPanel();
+  const dispatch = useTopPanelDispatch();
 
   function getValue () {
-    if (!data[group])       return '';
-    if (!data[group][name]) return '';
+    if (!data)       return '';
+    if (!data[name]) return '';
 
-    return data[group[name]];
+    return data[name];
   }
 
 
   function handleChange (e) {
     dispatch({
-      type : 'updated_data',
+      type : 'updated_top_panel',
       group: group,
       name : name,
       value: e.target.value
