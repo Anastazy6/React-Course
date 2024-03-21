@@ -60,7 +60,8 @@ export default function SideSection ({ title, type, levels }) {
 
       <Title 
         state   ={ sideItem }
-        onChange={ handleTitleChange } />
+        onChange={ handleTitleChange } 
+      />
       { levelPicker }
       
       <Button
@@ -109,7 +110,12 @@ function LangLevel ({ state, onChange }) {
   
   const levels  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const options = levels.map(l => (
-    <option value={ l }>{ l }</option>
+    <option 
+      key  ={ l }
+      value={ l }
+    >
+      { l }
+    </option>
   ));
 
   return (

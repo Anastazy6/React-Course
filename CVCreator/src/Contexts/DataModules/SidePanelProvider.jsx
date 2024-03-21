@@ -34,9 +34,15 @@ export function useSidePanelDispatch () {
 
 
 function sidePanelReducer (data, action) {
+
   switch (action.type) {
     case 'added_side_section': {
-      return addSideSectionForm(data, action.sectionForm);
+      if (data.some(sections => sections.title === action.title)) {
+        alert(`Side Panel section named ${action.title} exists already. Pick other name.`);
+        return data;
+      }
+      
+      return [...data, action.sectionForm];
     }
     case 'deleted_side_section': {
      return data.filter(
@@ -47,15 +53,4 @@ function sidePanelReducer (data, action) {
       throw new TypeError(`Invalid action type: ${ action.type }`);
     }
   }
-}
-
-
-// Prototype: no collision protection if a section with a given title already exists
-function addSideSectionForm (data, sectionForm) {
-  const newData = { ...data };
-  newData.sideSections = newData.sideSections
-  ? [ ...newData.sideSections, sectionForm]
-  : [sectionForm];
-
-  return newData;
 }
