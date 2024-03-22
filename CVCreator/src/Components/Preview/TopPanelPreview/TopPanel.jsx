@@ -1,5 +1,7 @@
-import { useData } from "../../../Contexts/DataProvider";
+import { useTopPanel } from "../../../Contexts/DataModules/TopPanelProvider";
+import { useFiles    } from "../../../Contexts/DataModules/FilesProvider";
 import { parseCSSSelector } from "../../../Util/Util";
+
 
 const iconsMap = {
   'Phone number': 'call',
@@ -17,7 +19,7 @@ const unlabelled = [
 
 
 export default function TopPanel () {
-  const data     = useData().topPanel || null;
+  const data     = useTopPanel();
   const portrait = getPortraitIfUploaded();
 
 
@@ -94,10 +96,8 @@ function createLabel (key) {
 
 
 function getPortraitIfUploaded () {
-  const data  = useData();
+  const files  = useFiles();  
+  if (!files.Photo) return null;
 
-  if (!data.files) return null;
-  if (!data.files.Photo) return null;
-
-  return data.files.Photo;
+  return files.Photo;
 }

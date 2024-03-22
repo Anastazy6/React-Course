@@ -33,13 +33,16 @@ export function useFilesDispatch () {
 }
 
 
-function filesReducer (data, action) {
-  const name  = action.name;
-  const file  = action.file;
+function filesReducer (files, action) {
+  const name     = action.name;
+  const newFile  = action.file;
 
   switch (action.type) {
     case 'uploaded_file': {
-      return saveUploadedFile(data, name, file);
+      return saveUploadedFile(files, name, newFile);
+    }
+    case 'loaded_data': {
+      return { ...action.data };
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);
@@ -47,10 +50,9 @@ function filesReducer (data, action) {
   }
 }
 
-function saveUploadedFile (data, name, file) {
-  const newData       = { ...data };
-  newData.files       = { ...data.files };
-  newData.files[name] = URL.createObjectURL(file);
+function saveUploadedFile (files, name, uploadedFile) {
+  const newFiles = { ...files };
+  newFiles[name] = URL.createObjectURL(uploadedFile);
 
-  return newData;
+  return newFiles;
 }

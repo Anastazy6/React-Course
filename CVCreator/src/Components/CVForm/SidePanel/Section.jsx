@@ -1,10 +1,10 @@
-import { useDataDispatch } from "../../../Contexts/DataProvider"
+import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider"
 import { useState } from "react";
 
 export default function SideSection ({ title, type, levels }) {
   const [sideItem, setSideItem] = useState({});
   
-  const dispatch = useDataDispatch();
+  const dispatch = useSidePanelDispatch();
 
   function handleDeleteSection () {
     dispatch({

@@ -45,6 +45,9 @@ function topPanelReducer (topPanel, action) {
 
       return newTopPanel;
     }
+    case 'loaded_data': {
+      return { ...action.data }
+    }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);
     }

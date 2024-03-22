@@ -34,5 +34,9 @@ export function useMainPanelDispatch () {
 
 
 function mainPanelReducer (data, action) {
-  
+  switch (action.type) {
+    case 'loaded_data': {
+      return { ...action.data }
+    }
+  } 
 }

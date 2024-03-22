@@ -4,7 +4,6 @@ import Section from "./Section";
 
 export default function SidePanel () {
   const data = useSidePanel();
-  console.log(typeof data);
 
   const sections = data && data.map(ss => (
     <Section
@@ -15,7 +14,6 @@ export default function SidePanel () {
     />
   ));
 
-  console.log(sections)
 
   return (
     <>

@@ -33,21 +33,30 @@ export function useSidePanelDispatch () {
 }
 
 
-function sidePanelReducer (data, action) {
-
+function sidePanelReducer (sidePanel, action) {
+  const newSection = action.sectionForm || null;
   switch (action.type) {
     case 'added_side_section': {
-      if (data.some(sections => sections.title === action.title)) {
-        alert(`Side Panel section named ${action.title} exists already. Pick other name.`);
-        return data;
+      if (sidePanel.some(section => {
+        console.log(action);
+        return section.title === newSection.title
+      })) {
+        console.log('Haha beniz :DDDDD');
+        alert(`Side Panel section named ${newSection.title} exists already. Pick other name.`);
+        return sidePanel;
+      } else {
+        console.log('No duplicates found');
       }
       
-      return [...data, action.sectionForm];
+      return [...sidePanel, action.sectionForm];
     }
     case 'deleted_side_section': {
-     return data.filter(
+     return sidePanel.filter(
         ss => ss.title !== action.title
       );
+    }
+    case 'loaded_data': {
+      return [ ...action.data ];
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);
