@@ -37,17 +37,10 @@ function sidePanelReducer (sidePanel, action) {
   const newSection = action.sectionForm || null;
   switch (action.type) {
     case 'added_side_section': {
-      if (sidePanel.some(section => {
-        console.log(action);
-        return section.title === newSection.title
-      })) {
-        console.log('Haha beniz :DDDDD');
+      if (sidePanel.some(section => section.title === newSection.title)) {
         alert(`Side Panel section named ${newSection.title} exists already. Pick other name.`);
         return sidePanel;
-      } else {
-        console.log('No duplicates found');
       }
-      
       return [...sidePanel, action.sectionForm];
     }
     case 'deleted_side_section': {
