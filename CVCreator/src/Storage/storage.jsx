@@ -1,5 +1,6 @@
 import { useFiles,     useFilesDispatch     } from "../Contexts/DataModules/FilesProvider";
 import { useTopPanel,  useTopPanelDispatch  } from "../Contexts/DataModules/TopPanelProvider";
+import { useSideItems, useSideItemsDispatch } from "../Contexts/DataModules/SideItemsProvider";
 import { useSidePanel, useSidePanelDispatch } from "../Contexts/DataModules/SidePanelProvider";
 import { useMainPanel, useMainPanelDispatch } from "../Contexts/DataModules/MainPanelProvider";
 
@@ -16,6 +17,7 @@ export function loadData () {
   const groups = [
     'files',
     'topPanel',
+    'sideItems',
     'sidePanel',
     'mainPanel'
   ];
@@ -48,6 +50,7 @@ export function SaveButton () {
   const contexts = [
     [useFiles(),     'files'    ],
     [useTopPanel(),  'topPanel' ],
+    [useSideItems(), 'sideItems'],
     [useSidePanel(), 'sidePanel'],
     [useMainPanel(), 'mainPanel']
   ];
@@ -76,6 +79,7 @@ export function LoadButton () {
   const dispatches = [
     [useFilesDispatch(),     'files'    ],
     [useTopPanelDispatch(),  'topPanel' ],
+    [useSideItemsDispatch(), 'sideItems'],
     [useSidePanelDispatch(), 'sidePanel'],
     [useMainPanelDispatch(), 'mainPanel']
   ];
