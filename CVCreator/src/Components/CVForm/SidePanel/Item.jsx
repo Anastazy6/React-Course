@@ -37,7 +37,7 @@ export default function Item ({ id, title, level, maxLevel, type }) {
     : <StandardLevel 
         state   ={ item }
         onChange={ handleLevelChange }
-        maxLevel={ levels }
+        maxLevel={ maxLevel }
       />;
 
   return (
@@ -72,8 +72,8 @@ function Title ({ state, onChange }) {
 function LangLevel ({ state, onChange }) {
   const value = state.level ? state.level : 'A1';
   
-  const levels  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const options = levels.map(l => (
+  const maxLevel  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  const options = maxLevel.map(l => (
     <option 
       key  ={ l }
       value={ l }

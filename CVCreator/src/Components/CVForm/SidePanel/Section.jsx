@@ -20,7 +20,8 @@ export default function Section ({ title, type, levels, itemsIDs }) {
   );
 
   const renderedItems = items.map(item => (
-    <Item 
+    <Item
+      id      ={ item.id    } 
       title   ={ item.title }
       level   ={ item.level }
       maxLevel={ levels     }
