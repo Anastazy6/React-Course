@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { useSideItemsDispatch } from "../../../Contexts/DataModules/SideItemsProvider";
 
 
 export default function Item ({ id, title, level, maxLevel, type }) {
   const dispatch = useSideItemsDispatch();
-  const [item, setItem] = useState({});
 
 
   function handleTitleChange (e) {
@@ -25,17 +23,24 @@ export default function Item ({ id, title, level, maxLevel, type }) {
     });
   }
 
+  // TODO: remove ID references to the deleted item from the side section it belonged to
+  function handleDelete (e) {
+    dispatch({
+      type: "deleted_item",
+      id  : id
+    });
+  }
 
   
   const levelPicker = type === 'flat'
   ? null
   : type === 'languages'
     ? <LangLevel     
-        state   ={ item }
+        value   ={ level }
         onChange={ handleLevelChange }
       />
     : <StandardLevel 
-        state   ={ item }
+        value   ={ level }
         onChange={ handleLevelChange }
         maxLevel={ maxLevel }
       />;
@@ -45,18 +50,17 @@ export default function Item ({ id, title, level, maxLevel, type }) {
       className='side-item-form'  
     >
       <Title 
-        state   ={ item }
+        value   ={ title }
         onChange={ handleTitleChange } 
       />
       { levelPicker }
+      <Delete onClick={ handleDelete } /> 
     </div>
   );
 }
 
 
-function Title ({ state, onChange }) {
-  const value = state.title ? state.title : '';
-
+function Title ({ value, onChange }) {
   return (
     <input
       name    ='title'
@@ -69,8 +73,7 @@ function Title ({ state, onChange }) {
 }
 
 
-function LangLevel ({ state, onChange }) {
-  const value = state.level ? state.level : 'A1';
+function LangLevel ({ value, onChange }) {
   
   const maxLevel  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
   const options = maxLevel.map(l => (
@@ -95,9 +98,7 @@ function LangLevel ({ state, onChange }) {
 }
 
 
-function StandardLevel ({ state, onChange, maxLevel }) {
-  const value = state.level ? state.level : 1;
-  
+function StandardLevel ({ value, onChange, maxLevel }) {
   return (
     <input
       name    ='level'
@@ -109,4 +110,16 @@ function StandardLevel ({ state, onChange, maxLevel }) {
       required
     />
   );
+}
+
+
+function Delete ({ onClick }) {
+  return (
+    <button
+      role   ='btn'
+      onClick={ onClick }
+    >
+      Delete
+    </button>
+  )
 }

@@ -3,10 +3,10 @@ import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelPro
 
 
 const defaultNewSection = {
-  title : '',
-  type  : 'flat',
-  levels: 5,
-  items : []
+  title   : '',
+  type    : 'flat',
+  levels  : 5,
+  itemsIDs: []
 }
 
 

@@ -15,19 +15,24 @@ export default function Section ({ title, type, levels, itemsIDs }) {
   const dispatchItems = useSideItemsDispatch();
   const sideItems     = useSideItems();
 
-  const items = sideItems.items.filter(
+  const items = sideItems.items
+  ? sideItems.items.filter(
     sideItem => itemsIDs.includes(sideItem.id)
-  );
+  )
+  : null;
 
-  const renderedItems = items.map(item => (
+  const renderedItems = items
+  ? items.map(item => (
     <Item
+      key     ={ item.id    }
       id      ={ item.id    } 
       title   ={ item.title }
       level   ={ item.level }
       maxLevel={ levels     }
       type    ={ type       }
     />
-  ));
+  ))
+  : null;
   
 
   function handleDeleteSection () {
@@ -47,7 +52,8 @@ export default function Section ({ title, type, levels, itemsIDs }) {
 
     dispatchPanel({
       type  : 'added_item_to_section',
-      itemId: nextItemId
+      title : title,
+      itemID: nextItemId
     });
   }
 

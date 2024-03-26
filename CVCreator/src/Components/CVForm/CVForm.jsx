@@ -14,18 +14,27 @@ export default function CVForm () {
 
 
   return (
-    <form
-      id="cv-form"
-      onSubmit={ handleSubmit }
+    <div
+      id="user-input-zone"
     >
-      <TopPanel />
-      <SidePanel />
+     <form
+        id="cv-form"
+        onSubmit={ handleSubmit }
+      >
+        <TopPanel />
+        <SidePanel />
 
-      <Submit />
-      <LogDataButton />
-      <SaveButton />
-      <LoadButton />
-    </form>
+        <Submit />
+
+      </form>
+      <div
+        id="local-storage-controls"
+      >
+        <LogDataButton />
+        <SaveButton />
+        <LoadButton />
+      </div>
+    </div>
   );
 }
 

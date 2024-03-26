@@ -58,7 +58,7 @@ function sideItemsReducer (sideItems, action) {
     }
 
     case 'updated_items': {
-      return sideItems.map(item => {
+      const newItems =  sideItems.items.map(item => {
         if (item.id === action.id) {
           return {
             ...item,
@@ -68,10 +68,24 @@ function sideItemsReducer (sideItems, action) {
         }
         return item;
       });
+
+      return {
+        ...sideItems,
+        items: newItems
+      }
+    }
+    
+    case 'deleted_item': {
+      const newItems = sideItems.items.filter(item => item.id !== action.id);
+
+      return {
+        ...sideItems,
+        items: newItems
+      }
     }
 
     case 'loaded_data': {
-      return [ ...action.data ];
+      return action.data;
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);

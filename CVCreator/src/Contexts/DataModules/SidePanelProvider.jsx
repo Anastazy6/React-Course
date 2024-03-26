@@ -59,12 +59,7 @@ function sidePanelReducer (sidePanel, action) {
         if (ss.title === action.title) {
           return { 
             ...ss,
-            items: [
-              ...ss.items, {
-                title: '',
-                level: ''
-              }
-            ]
+            itemsIDs: [ ...ss.itemsIDs, action.itemID]
           }
         }
       return ss;
@@ -91,7 +86,7 @@ function sidePanelReducer (sidePanel, action) {
     }
 
     case 'loaded_data': {
-      return [ ...action.data ];
+      return action.data;
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);
