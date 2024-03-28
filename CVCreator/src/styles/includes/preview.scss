@@ -3,7 +3,8 @@ $a-format-base: 35rem;
 $a4-width : $a-format-base;
 $a4-height: calc(297/210 * $a-format-base);
 
-$cv-theme-primary: #00c144;
+$cv-theme-primary: rgb(34, 36, 54);
+$cv-theme-primary-brighter: rgb(51, 54, 81);
 
 #cv-preview {
   width : $a4-width;
@@ -34,7 +35,7 @@ $cv-theme-primary: #00c144;
 #top-panel-preview {
   grid-area: top-panel;
 
-  background-color: rgb(34, 34, 62);
+  background-color: $cv-theme-primary;
   color: ghostwhite;
 
   display: grid;
@@ -62,9 +63,27 @@ $cv-theme-primary: #00c144;
 #side-panel-preview {
   grid-area: side-panel;
 
-  background-color: blue;
+  width: 10rem;
+
+  background-color: $cv-theme-primary-brighter;
+  color: ghostwhite
 }
 
 #main-preview {
   grid-area: main;
+}
+
+
+
+.side-item {
+  display: flex;
+}
+
+.side-item-level-bars {
+  display: inline-flex;
+}
+
+.side-item-level-stars {
+  display: inline-flex;
+
 }
