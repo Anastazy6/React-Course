@@ -40,7 +40,7 @@ $cv-theme-primary-brighter: rgb(51, 54, 81);
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 12rem   1fr 1fr;
   grid-template-rows   : 1fr 1fr 1fr 1fr;
   grid-template-areas  :
     'image   first   last   '
@@ -63,10 +63,15 @@ $cv-theme-primary-brighter: rgb(51, 54, 81);
 #side-panel-preview {
   grid-area: side-panel;
 
-  width: 10rem;
+  width: 11rem;
 
   background-color: $cv-theme-primary-brighter;
-  color: ghostwhite
+  color: ghostwhite;
+
+  h3 {
+    text-align : center;
+    font-weight: normal;
+  }
 }
 
 #main-preview {
@@ -76,14 +81,20 @@ $cv-theme-primary-brighter: rgb(51, 54, 81);
 
 
 .side-item {
-  display: flex;
+  align-items: center;
+  display    : flex;
+  flex-flow  : column;
+  font-size  : 0.85em;
+  padding    : 5px 10px;
+  width      : 100%;
 }
 
 .side-item-level-bars {
-  display: inline-flex;
+  display: flex;
 }
 
 .side-item-level-stars {
-  display: inline-flex;
-
+  display: flex;
+  font-size: 2rem;
+  justify-content: end;
 }

@@ -50,11 +50,11 @@ function Section ({ title, type, itemsIDs, maxLevel }) {
     <section
       className="side-panel-section"
     >
-      <div
+      <h3
         className="side-section-title"
       >
         { title }
-      </div>
+      </h3>
         { renderedItems }
     </section>
   );

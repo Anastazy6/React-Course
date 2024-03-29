@@ -1,3 +1,6 @@
+import { EmptyStar, FullStar } from "../../../assets/SVG/Stars";
+
+
 export default function Item ({ item, type, maxLevel }) {
   console.log(maxLevel);
   const level = pickLevelStyle(type, item.level, maxLevel);
@@ -54,16 +57,7 @@ function LangLevel ({ level }) {
 function StarLevel ({ level, maxLevel }) {
   const stars = [];
   for(let i = 0; i < maxLevel; i++) {
-
-    console.log(i, maxLevel);
-    const fill = i < level ? 'full' : 'empty';
-
-    const star = <div 
-      className={`material-symbols-outlined star-${ fill }`}
-    >
-      star
-    </div>;
-    stars.push(star);
+    stars.push(i < level ? <FullStar /> : <EmptyStar />);
   }
 
   return (
@@ -72,7 +66,7 @@ function StarLevel ({ level, maxLevel }) {
     >
       { stars }
     </div>
-  )
+  );
 }
 
 function CustomLevel ({ type, level, maxLevel }) {
