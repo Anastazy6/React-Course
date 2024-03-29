@@ -78,13 +78,34 @@ $cv-theme-primary-brighter: rgb(51, 54, 81);
   grid-area: main;
 }
 
+.side-section-title {
+  margin: auto;
+  padding: 0 5%;
+  justify-content: center;
+  flex-flow: row;
 
+  
+  h3 {
+    background: $cv-theme-primary-brighter;
+    font-size : 0.9rem;
+    margin    : auto;
+    padding   : 0 10px;
+    position  : relative;
+    width     : fit-content;
+    z-index   : 1;
+  }
+
+  hr {
+    position: relative;
+    top: 1.15rem;
+  }
+}
 
 .side-item {
   align-items: center;
   display    : flex;
   flex-flow  : column;
-  font-size  : 0.85em;
+  font-size  : 0.75rem;
   padding    : 5px 10px;
   width      : 100%;
 }

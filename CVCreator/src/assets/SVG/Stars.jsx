@@ -1,4 +1,4 @@
-export function EmptyStar ({ color='ghostwhite', size=18 }) {
+export function EmptyStar ({ color='ghostwhite', size=16 }) {
   return (
     <svg
       xmlns  ="http://www.w3.org/2000/svg"
@@ -15,7 +15,7 @@ export function EmptyStar ({ color='ghostwhite', size=18 }) {
 }
 
 
-export function FullStar ({ color='ghostwhite', size=18 }) {
+export function FullStar ({ color='ghostwhite', size=16 }) {
   return (
     <svg 
       xmlns  ="http://www.w3.org/2000/svg"
