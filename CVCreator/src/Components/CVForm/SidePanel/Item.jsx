@@ -1,48 +1,72 @@
 import { useSideItemsDispatch } from "../../../Contexts/DataModules/SideItemsProvider";
+import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider";
+import { arrayRange } from "../../../Util/Util";
 
 
-export default function Item ({ id, title, level, maxLevel, type }) {
-  const dispatch = useSideItemsDispatch();
+export default function Item ({ item, section }) {
+  const dispatchItems = useSideItemsDispatch();
+  const dispatchPanel = useSidePanelDispatch();
 
 
   function handleTitleChange (e) {
-    dispatch({
+    dispatchItems({
       type : "updated_items",
-      id   : id,
-      level: level,
+      id   : item.id,
+      level: item.level,
       title: e.target.value
     })
   }
 
   function handleLevelChange (e) {
-    dispatch({
+    dispatchItems({
       type : "updated_items",
-      id   : id,
+      id   : item.id,
       level: e.target.value,
-      title: title
+      title: item.title
     });
   }
 
   // TODO: remove ID references to the deleted item from the side section it belonged to
-  function handleDelete (e) {
-    dispatch({
+  function handleDelete () {
+    dispatchItems({
       type: "deleted_item",
-      id  : id
+      id  : item.id
+    });
+
+    dispatchPanel({
+      type  : 'deleted_item',
+      itemID: item.id
     });
   }
 
+  function handleMoveUp () {
+    dispatchPanel({
+      type   : "moved_item_up",
+      itemID : item.id,
+      section: section.title
+    });
+  }
+
+
+  function handleMoveDown () {
+    dispatchItems({
+      type   : "moved_item_down",
+      itemID : item.id,
+      section: section.title
+    });
+  }
   
-  const levelPicker = type === 'flat'
+  const levelPicker = section.type === 'flat'
   ? null
-  : type === 'languages'
+  : section.type === 'languages'
     ? <LangLevel     
-        value   ={ level }
+        value   ={ item.level }
         onChange={ handleLevelChange }
       />
     : <StandardLevel 
-        value   ={ level }
+        value   ={ item.level }
         onChange={ handleLevelChange }
-        maxLevel={ maxLevel }
+        maxLevel={ section.maxLevel }
       />;
 
   return (
@@ -50,11 +74,23 @@ export default function Item ({ id, title, level, maxLevel, type }) {
       className='side-item-form'  
     >
       <Title 
-        value   ={ title }
+        value   ={ item.title }
         onChange={ handleTitleChange } 
       />
       { levelPicker }
-      <Delete onClick={ handleDelete } /> 
+      <Button 
+        name   ="Move up"
+        onClick={ handleMoveUp }
+      />
+      <Button
+        name   ="Move down"
+        onClick={ handleMoveDown }
+      />
+      <Button
+        name   ="Delete"
+        onClick={ handleDelete }
+      />
+
     </div>
   );
 }
@@ -75,8 +111,8 @@ function Title ({ value, onChange }) {
 
 function LangLevel ({ value, onChange }) {
   
-  const maxLevel  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-  const options = maxLevel.map(l => (
+  const langLevels  = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'Native'];
+  const options = langLevels.map(l => (
     <option 
       key  ={ l }
       value={ l }
@@ -99,27 +135,37 @@ function LangLevel ({ value, onChange }) {
 
 
 function StandardLevel ({ value, onChange, maxLevel }) {
+  const levels  = arrayRange(1, maxLevel, 1); 
+  const options = levels.map(i => (
+    <option
+      key  ={ i }
+      value={ i }
+    >
+      { i }
+    </option>
+  ));
+
   return (
-    <input
+    <select
       name    ='level'
-      type    ='number'
       value   ={ value }
-      min     ='1'
-      max     ={ maxLevel }
       onChange={ onChange }
       required
-    />
+    >
+      { options }
+    </select>
   );
 }
 
 
-function Delete ({ onClick }) {
+function Button ({ name, onClick }) {
   return (
     <button
       role   ='btn'
       onClick={ onClick }
     >
-      Delete
+      { name }
     </button>
   )
 }
+

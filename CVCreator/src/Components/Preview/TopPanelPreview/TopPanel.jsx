@@ -1,13 +1,13 @@
 import { useTopPanel } from "../../../Contexts/DataModules/TopPanelProvider";
 import { useFiles    } from "../../../Contexts/DataModules/FilesProvider";
 import { parseCSSSelector } from "../../../Util/Util";
-
+import { Call, Flag, Home, Mail } from "../../../assets/SVG/TopPanelIcons";
 
 const iconsMap = {
-  'Phone number': 'call',
-  'Email'       : 'mail',
-  'Country'     : 'flag',
-  'Address'     : 'home',
+  'Phone number': <Call />,
+  'Email'       : <Mail />,
+  'Country'     : <Flag />,
+  'Address'     : <Home />,
 
 }
 
@@ -42,7 +42,12 @@ export default function TopPanel () {
     <section
       id="top-panel-preview"
     >
-      { renderedElements }
+      <div
+        id="top-panel-preview-text"
+      >
+        { renderedElements }
+      </div>
+
       <div
         id ='top-panel-preview-img'
       >
@@ -75,22 +80,16 @@ function createTopPanelElement (key, value) {
 
 
 function createLabel (key) {
-  if (iconsMap[key]) return (
-    <span 
-      className="material-symbols-outlined"
-    >
-      { iconsMap[key] }
-    </span>
-  );
+  if (iconsMap[key]) return iconsMap[key];
 
   if (unlabelled.includes(key)) return null;
 
   return (
-    <span
+    <div
       className="preview-element-label"
     >
       { key }
-    </span>
+    </div>
   );
 }
 

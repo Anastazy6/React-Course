@@ -65,25 +65,28 @@ function sidePanelReducer (sidePanel, action) {
       return ss;
       });
     }
-    
-    case 'modified_section_item': {
+   
+    case 'deleted_item': {
       return sidePanel.map(ss => {
-        if (ss.title === action.section) {
-          return {
-            ...ss,
-            items: ss.items.map(item => {
-              return item.title === action.item.title 
-                ? action.item
-                : ss.item
-            })
-          }
+        const newItemsIDs = ss.itemsIDs.filter(id => id !== action.itemID);
+
+        return { 
+          ...ss,
+          itemsIDs: newItemsIDs
         }
       });
     }
-    
-    case 'deleted_section_item': {
+
+    case "moved_item_up": {
 
     }
+
+    case "moved_item_down": {
+
+    }
+
+    
+ 
 
     case 'loaded_data': {
       return action.data;

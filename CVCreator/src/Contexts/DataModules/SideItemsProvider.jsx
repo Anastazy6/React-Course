@@ -40,13 +40,13 @@ function sideItemsReducer (sideItems, action) {
   
   
   switch (action.type) {
-    case 'created_side_item': {
+    case "created_side_item": {
       const newNextItemId = sideItems.nextItemId + 1;
       const newItems = [
         ...sideItems.items, 
         {
-          title: '',
-          level: '',
+          title: "",
+          level: "",
           id   : sideItems.nextItemId
         }];
         
@@ -57,7 +57,7 @@ function sideItemsReducer (sideItems, action) {
       }
     }
 
-    case 'updated_items': {
+    case "updated_items": {
       const newItems =  sideItems.items.map(item => {
         if (item.id === action.id) {
           return {
@@ -75,7 +75,7 @@ function sideItemsReducer (sideItems, action) {
       }
     }
     
-    case 'deleted_item': {
+    case "deleted_item": {
       const newItems = sideItems.items.filter(item => item.id !== action.id);
 
       return {
@@ -84,7 +84,8 @@ function sideItemsReducer (sideItems, action) {
       }
     }
 
-    case 'loaded_data': {
+
+    case "loaded_data": {
       return action.data;
     }
     default: {

@@ -10,10 +10,13 @@ import {
 
 
 
-export default function Section ({ title, type, levels, itemsIDs }) {
+export default function Section ({ title, type, maxLevel, itemsIDs }) {
   const dispatchPanel = useSidePanelDispatch();
   const dispatchItems = useSideItemsDispatch();
   const sideItems     = useSideItems();
+
+  const thisSection = { title, type, maxLevel };
+  console.log(thisSection);
 
   const items = sideItems.items
   ? sideItems.items.filter(
@@ -24,12 +27,9 @@ export default function Section ({ title, type, levels, itemsIDs }) {
   const renderedItems = items
   ? items.map(item => (
     <Item
-      key     ={ item.id    }
-      id      ={ item.id    } 
-      title   ={ item.title }
-      level   ={ item.level }
-      maxLevel={ levels     }
-      type    ={ type       }
+      key     ={ item.id     }
+      item    ={ item        }
+      section ={ thisSection }
     />
   ))
   : null;

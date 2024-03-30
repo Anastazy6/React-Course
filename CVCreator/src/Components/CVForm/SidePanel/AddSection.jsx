@@ -5,7 +5,7 @@ import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelPro
 const defaultNewSection = {
   title   : '',
   type    : 'flat',
-  levels  : 5,
+  maxLevel: 5,
   itemsIDs: []
 }
 
@@ -15,10 +15,11 @@ export default function AddSidePanelSection () {
   const dispatch = useSidePanelDispatch();
 
   const sectionTypes = [
-    'flat',         // no skill measurement
-    'languages',    // measures a skill on an A1 - C2 scale
-    'skills-bars',  // uses bars for skill measurement
-    'skills-stars' // uses stars for skill measuremenet
+    'flat',      // no skill measurement
+    'languages', // measures a skill on an A1 - C2 scale
+    'skills',    // uses stars for skill measuremenet
+    'links',     // has a title and link inputs
+    'object'     // for a title-description stuff 
   ].map(st => {
     return <option value={ st } key={ st }>{ st }</option>
   });
