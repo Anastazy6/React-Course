@@ -16,7 +16,6 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
   const sideItems     = useSideItems();
 
   const thisSection = { title, type, maxLevel };
-  console.log(thisSection);
 
   const items = sideItems.items
   ? sideItems.items.filter(
@@ -36,7 +35,8 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
   
 
   function handleDeleteSection () {
-    dispatchPanel({
+    const confirmed = confirm("Are you sure? This action cannot be undone.");
+    if (confirmed) dispatchPanel({
       type : 'deleted_side_section',
       title: title
     });

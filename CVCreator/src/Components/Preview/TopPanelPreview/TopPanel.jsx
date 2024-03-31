@@ -69,11 +69,11 @@ function createTopPanelElement (key, value) {
       id       ={ `top-panel-preview-${ parseCSSSelector(key) }` }
     >
       { label } 
-      <span
+      <div
         className="preview-element-value"
       >
         { value }
-      </span>
+      </div>
     </div>
   );
 }

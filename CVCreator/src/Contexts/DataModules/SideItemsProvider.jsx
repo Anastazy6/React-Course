@@ -45,9 +45,9 @@ function sideItemsReducer (sideItems, action) {
       const newItems = [
         ...sideItems.items, 
         {
-          title: "",
-          level: "",
-          id   : sideItems.nextItemId
+          title   : "",
+          secValue: "",
+          id      : sideItems.nextItemId
         }];
         
       return {
@@ -62,8 +62,8 @@ function sideItemsReducer (sideItems, action) {
         if (item.id === action.id) {
           return {
             ...item,
-            title: action.title,
-            level: action.level
+            title   : action.title,
+            secValue: action.secValue
           }
         }
         return item;

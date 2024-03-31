@@ -2,47 +2,81 @@ import { EmptyStar, FullStar } from "../../../assets/SVG/Stars";
 
 
 export default function Item ({ item, type, maxLevel }) {
-  console.log(maxLevel);
-  const level = pickLevelStyle(type, item.level, maxLevel);
+  const title          = pickTitleStyle(type, item.title, item.secValue);
+  const secondaryValue = pickSecondaryValueStyle(type, item.secValue, maxLevel);
 
   return  (
     <div
       className="side-item"
     >
-      <div className="side-item-title">
-        { item.title }
-      </div>
-      { level }
+      { title }
+      { secondaryValue }
     </div>
   )
 } 
 
 
-function pickLevelStyle (type, level, maxLevel) {
+function pickTitleStyle (type, title, secValue) {
+  if (type === 'links') {
+    return (
+      <Link
+        title={ title    }
+        href ={ secValue }
+      />
+    );
+  }
+
+  return (
+    <Title
+      title={ title }
+    />
+  )
+}
+
+
+function pickSecondaryValueStyle (type, secValue, maxLevel) {
   if (type === 'flat') return null;
 
   if (type === 'languages') return (
     <LangLevel 
-      level={ level }
+      level={ secValue }
     />
   );
 
-  if (type === 'skills-stars') return (
+  if (type === 'skills') return (
     <StarLevel
-      level   ={ level    }
+      level   ={ secValue }
       maxLevel={ maxLevel }
     />
   );
-
-  return (
-    <CustomLevel
-        type    ={ type     }
-        level   ={ level    }
-        maxLevel={ maxLevel }
+  
+  if (type === 'object') return (
+    <CustomValue
+      value   ={ secValue }
     />
   );
 }
 
+
+function Title ({ title }) {
+  return (
+    <div className="side-item-title">
+      { title }
+    </div>
+  );
+}
+
+function Link ({ title, href }) {
+  return (
+    <div className="side-item-title linked-title">
+      <a 
+        href={`http://${ href }`}
+      >
+        { title }
+      </a>
+    </div>
+  );
+}
 
 function LangLevel ({ level }) {
   return (
@@ -57,7 +91,10 @@ function LangLevel ({ level }) {
 function StarLevel ({ level, maxLevel }) {
   const stars = [];
   for(let i = 0; i < maxLevel; i++) {
-    stars.push(i < level ? <FullStar /> : <EmptyStar />);
+    stars.push(i < level 
+      ? <FullStar  key={ i } /> 
+      : <EmptyStar key={ i } />
+    );
   }
 
   return (
@@ -69,22 +106,14 @@ function StarLevel ({ level, maxLevel }) {
   );
 }
 
-function CustomLevel ({ type, level, maxLevel }) {
-  const levelItems = [];
-  for(let i = 0; i < maxLevel; i++) {
-    const fill = i < level ? 'full' : 'empty';
-
-    const levelItem = <div 
-      className={`level-item-${ type } level-item-${ fill }`}
-    />;
-    levelItems.push(levelItem);
-  }
-
+function CustomValue ({ value }) {
   return (
     <div
-      className={`side-item-level-${ type }`}
+      className={`side-item-custom-object`}
     >
-      { levelItems }
+      { value }
     </div>
   )
 }
+
+

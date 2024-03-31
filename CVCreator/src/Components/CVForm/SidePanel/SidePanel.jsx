@@ -10,7 +10,7 @@ export default function SidePanel () {
       key      ={ ss.title    }
       title    ={ ss.title    }
       type     ={ ss.type     }
-      levels   ={ ss.levels   }
+      maxLevel ={ ss.maxLevel }
       itemsIDs ={ ss.itemsIDs }
     />
   ));

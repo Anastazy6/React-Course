@@ -7,13 +7,12 @@ export default function SidePanelPreview () {
   const sidePanel = useSidePanel();
 
   const renderedSections = sidePanel.map(section => {
-    console.log(section);
     return <Section
       key     ={ section.title    }
       title   ={ section.title    }
       type    ={ section.type     }
       itemsIDs={ section.itemsIDs }
-      maxLevel={ section.levels   }
+      maxLevel={ section.maxLevel }
     />
   });
 

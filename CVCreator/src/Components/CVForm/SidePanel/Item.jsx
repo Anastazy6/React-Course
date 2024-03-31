@@ -10,19 +10,19 @@ export default function Item ({ item, section }) {
 
   function handleTitleChange (e) {
     dispatchItems({
-      type : "updated_items",
-      id   : item.id,
-      level: item.level,
-      title: e.target.value
+      type    : "updated_items",
+      id      : item.id,
+      secValue: item.secValue,
+      title   : e.target.value
     })
   }
 
-  function handleLevelChange (e) {
+  function handleSecondaryValueChange (e) {
     dispatchItems({
-      type : "updated_items",
-      id   : item.id,
-      level: e.target.value,
-      title: item.title
+      type    : "updated_items",
+      id      : item.id,
+      secValue: e.target.value,
+      title   : item.title
     });
   }
 
@@ -55,19 +55,8 @@ export default function Item ({ item, section }) {
       section: section.title
     });
   }
-  
-  const levelPicker = section.type === 'flat'
-  ? null
-  : section.type === 'languages'
-    ? <LangLevel     
-        value   ={ item.level }
-        onChange={ handleLevelChange }
-      />
-    : <StandardLevel 
-        value   ={ item.level }
-        onChange={ handleLevelChange }
-        maxLevel={ section.maxLevel }
-      />;
+
+  const secondaryInput = selectSecondaryInput(section, item, handleSecondaryValueChange);
 
   return (
     <div
@@ -77,7 +66,7 @@ export default function Item ({ item, section }) {
         value   ={ item.title }
         onChange={ handleTitleChange } 
       />
-      { levelPicker }
+      { secondaryInput }
       <Button 
         name   ="Move up"
         onClick={ handleMoveUp }
@@ -135,7 +124,7 @@ function LangLevel ({ value, onChange }) {
 
 
 function StandardLevel ({ value, onChange, maxLevel }) {
-  const levels  = arrayRange(1, maxLevel, 1); 
+  const levels  = arrayRange(0, maxLevel, 1); 
   const options = levels.map(i => (
     <option
       key  ={ i }
@@ -157,6 +146,17 @@ function StandardLevel ({ value, onChange, maxLevel }) {
   );
 }
 
+function Link ({ value, onChange }) {
+  return (
+    <input
+      name    ='link'
+      type    ='url'
+      value   ={ value }
+      onChange={ onChange }
+      required
+    />
+  )
+}
 
 function Button ({ name, onClick }) {
   return (
@@ -169,3 +169,39 @@ function Button ({ name, onClick }) {
   )
 }
 
+function selectSecondaryInput (section, item, onChange) {
+  switch (section.type) {
+    case 'languages': {
+      return (
+        <LangLevel     
+          value   ={ item.secValue }
+          onChange={ onChange      }
+        />
+      );
+    }
+    case 'skills': {
+      return (
+       <StandardLevel 
+          value   ={ item.secValue    }
+          onChange={ onChange         }
+          maxLevel={ section.maxLevel }
+        />
+      );
+    }
+    case 'object': {
+
+    }
+    case 'links': {
+      return (
+        <Link 
+          value   ={ item.secValue }
+          onChange={ onChange      }
+        />
+      );
+    }
+    default: {
+      console.warn(`No secondary input for Section Type: ${sectionType}.`);
+      return null;
+    }
+  }
+}

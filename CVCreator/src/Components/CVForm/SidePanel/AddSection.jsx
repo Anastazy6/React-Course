@@ -105,8 +105,7 @@ export default function AddSidePanelSection () {
 
 
 function createLevelsInput (newSection, onChange) {
-  if (['flat', 'languages'].includes(newSection.type))
-    return null;
+  if (!(newSection.type) === 'skills') return null;
   
     return (
     <label>
@@ -117,7 +116,7 @@ function createLevelsInput (newSection, onChange) {
         value   ={ newSection.levels }
         onChange={ onChange }
         min     = '2'
-        max     = '7'
+        max     = '10'
       />
     </label>
   );

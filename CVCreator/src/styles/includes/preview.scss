@@ -7,6 +7,7 @@ $cv-theme-primary: rgb(34, 36, 54);
 $cv-theme-primary-brighter: rgb(51, 54, 81);
 
 $moonlight-II-yellow: #ffc777;
+$moonlight-II-purple: #c4a2ff;
 
 #cv-preview {
   width : $a4-width;
@@ -53,7 +54,7 @@ $moonlight-II-yellow: #ffc777;
     width : 150px;
     height: 150px;
 
-    border: 1px solid $moonlight-II-yellow;
+    border: 2px solid $moonlight-II-yellow;
     border-radius: 100%;
     &.round {
       border-radius: 100%;
@@ -78,6 +79,22 @@ $moonlight-II-yellow: #ffc777;
     'title   title  '
     'email   phone  '
     'address country';
+}
+
+.top-panel-element {
+  display: flex;
+  align-items: center;
+  flex-wrap: no-wrap;
+  word-break: break-word;
+  gap: 5px;
+
+  svg {
+    flex-shrink: 0;
+
+    path {
+      flex-shrink: 0;
+    }
+  }
 }
 
 #top-panel-preview-job-title {
@@ -123,7 +140,7 @@ $moonlight-II-yellow: #ffc777;
 
   hr {
     position: relative;
-    top: 1.15rem;
+    top: 1.12rem;
     border: 1px solid $moonlight-II-yellow;
   }
 }
@@ -138,9 +155,18 @@ $moonlight-II-yellow: #ffc777;
 }
 
 
+.side-item-title {
+  text-align: center;
+}
 
 .side-item-level-stars {
   display: flex;
   font-size: 2rem;
   justify-content: end;
+}
+
+.linked-title a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $moonlight-II-purple;
 }
