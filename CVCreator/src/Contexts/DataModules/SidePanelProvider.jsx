@@ -89,8 +89,6 @@ function sidePanelReducer (sidePanel, action) {
         newOrder[itemIndex] = newOrder[itemIndex - 1];
         newOrder[itemIndex - 1] = temp;
 
-        console.log(ss.itemsIDs);
-        console.log(newOrder);
         return {
           ...ss,
           itemsIDs: newOrder
@@ -109,8 +107,6 @@ function sidePanelReducer (sidePanel, action) {
         let temp = newOrder[itemIndex];
         newOrder[itemIndex] = newOrder[itemIndex + 1];
         newOrder[itemIndex + 1] = temp;
-        console.log(ss.itemsIDs);
-        console.log(newOrder);
 
         return {
           ...ss,
