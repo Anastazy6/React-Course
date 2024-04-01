@@ -8,6 +8,7 @@ import {
   useSideItemsDispatch
 } from "../../../Contexts/DataModules/SideItemsProvider";
 
+import { findItemsByIds } from "../../../Util/Util";
 
 
 export default function Section ({ title, type, maxLevel, itemsIDs }) {
@@ -17,11 +18,8 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
 
   const thisSection = { title, type, maxLevel };
 
-  const items = sideItems.items
-  ? sideItems.items.filter(
-    sideItem => itemsIDs.includes(sideItem.id)
-  )
-  : null;
+
+  const items = findItemsByIds(itemsIDs, sideItems.items);
 
   const renderedItems = items
   ? items.map(item => (

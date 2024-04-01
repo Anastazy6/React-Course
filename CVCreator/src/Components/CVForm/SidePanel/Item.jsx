@@ -2,6 +2,8 @@ import { useSideItemsDispatch } from "../../../Contexts/DataModules/SideItemsPro
 import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider";
 import { arrayRange } from "../../../Util/Util";
 
+import { Delete, Up, Down } from "../../../assets/SVG/FormIcons";
+
 
 export default function Item ({ item, section }) {
   const dispatchItems = useSideItemsDispatch();
@@ -49,7 +51,7 @@ export default function Item ({ item, section }) {
 
 
   function handleMoveDown () {
-    dispatchItems({
+    dispatchPanel({
       type   : "moved_item_down",
       itemID : item.id,
       section: section.title
@@ -67,17 +69,17 @@ export default function Item ({ item, section }) {
         onChange={ handleTitleChange } 
       />
       { secondaryInput }
-      <Button 
-        name   ="Move up"
+      <Up 
         onClick={ handleMoveUp }
+        wrapper="simple-svg-wrapper"
       />
-      <Button
-        name   ="Move down"
+      <Down
         onClick={ handleMoveDown }
+        wrapper="simple-svg-wrapper"
       />
-      <Button
-        name   ="Delete"
+      <Delete
         onClick={ handleDelete }
+        wrapper="simple-svg-wrapper"
       />
 
     </div>

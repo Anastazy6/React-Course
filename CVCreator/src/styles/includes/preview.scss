@@ -170,3 +170,12 @@ $moonlight-II-purple: #c4a2ff;
   cursor: pointer;
   color: $moonlight-II-purple;
 }
+
+
+.simple-svg-wrapper {
+  display: inline-flex;
+  border: 1px solid $moonlight-II-yellow;
+  padding: 3px;
+  width: fit-content;
+  cursor: pointer;
+}

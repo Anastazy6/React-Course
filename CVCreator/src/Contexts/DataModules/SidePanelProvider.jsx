@@ -78,10 +78,45 @@ function sidePanelReducer (sidePanel, action) {
     }
 
     case "moved_item_up": {
+      return sidePanel.map(ss => {
+        if (ss.title !== action.section) return ss;
 
+        const itemIndex = ss.itemsIDs.indexOf(action.itemID);
+        if (itemIndex === 0) return ss; // Can't move the first element up
+
+        const newOrder = [...ss.itemsIDs];
+        let temp = newOrder[itemIndex];
+        newOrder[itemIndex] = newOrder[itemIndex - 1];
+        newOrder[itemIndex - 1] = temp;
+
+        console.log(ss.itemsIDs);
+        console.log(newOrder);
+        return {
+          ...ss,
+          itemsIDs: newOrder
+        }
+      });
     }
 
     case "moved_item_down": {
+      return sidePanel.map(ss => {
+        if (ss.title !== action.section) return ss;
+
+        const itemIndex = ss.itemsIDs.indexOf(action.itemID);
+        if (itemIndex === ss.itemsIDs.length - 1) return ss; // Can't move the last element down
+
+        const newOrder = [...ss.itemsIDs];
+        let temp = newOrder[itemIndex];
+        newOrder[itemIndex] = newOrder[itemIndex + 1];
+        newOrder[itemIndex + 1] = temp;
+        console.log(ss.itemsIDs);
+        console.log(newOrder);
+
+        return {
+          ...ss,
+          itemsIDs: newOrder
+        }
+      })
 
     }
 

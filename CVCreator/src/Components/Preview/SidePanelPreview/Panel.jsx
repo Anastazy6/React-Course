@@ -1,6 +1,8 @@
 import { useSideItems } from "../../../Contexts/DataModules/SideItemsProvider";
 import { useSidePanel } from "../../../Contexts/DataModules/SidePanelProvider";
 
+import { findItemsByIds } from "../../../Util/Util";
+
 import Item from "./Item";
 
 export default function SidePanelPreview () {
@@ -32,9 +34,9 @@ export default function SidePanelPreview () {
 
 
 function Section ({ title, type, itemsIDs, maxLevel }) {
-  const items = useSideItems().items.filter(
-    item => itemsIDs.includes(item.id)
-  );
+  const sideItems = useSideItems();
+
+  const items = findItemsByIds(itemsIDs, sideItems.items);
 
   const renderedItems = items.map(item => (
     <Item
