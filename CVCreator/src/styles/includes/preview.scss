@@ -13,7 +13,7 @@ $moonlight-II-purple: #c4a2ff;
   width : $a4-width;
   height: $a4-height;
 
-  background-color: ghostwhite;
+  background-color: $cv-theme-primary-brighter;
   border: 1px solid black;
   box-shadow: 5px 5px 10px black;
 
@@ -97,17 +97,33 @@ $moonlight-II-purple: #c4a2ff;
   }
 }
 
+#top-panel-preview-first-name,
+#top-panel-preview-last-name {
+  font-size: 1.1rem;
+}
+
 #top-panel-preview-job-title {
   font-size: 1.3rem;
   text-align: center;
 }
 
-#side-panel-preview {
+#side-panel-preview-wrapper {
   grid-area: side-panel;
 
   width: 11rem;
 
+  display: flex;
+  flex-flow: row;
   background-color: $cv-theme-primary-brighter;
+
+}
+  .panel-separator {
+    border: 2.5px solid $moonlight-II-yellow;
+    border-radius: 10px;
+  }
+
+#side-panel-preview {
+  flex-shrink: 0;
   color: ghostwhite;
 
   h3 {
@@ -142,6 +158,7 @@ $moonlight-II-purple: #c4a2ff;
     position: relative;
     top: 1.12rem;
     border: 1px solid $moonlight-II-yellow;
+    border-radius: 5px;
   }
 }
 
@@ -172,10 +189,3 @@ $moonlight-II-purple: #c4a2ff;
 }
 
 
-.simple-svg-wrapper {
-  display: inline-flex;
-  border: 1px solid $moonlight-II-yellow;
-  padding: 3px;
-  width: fit-content;
-  cursor: pointer;
-}

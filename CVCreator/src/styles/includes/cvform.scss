@@ -19,3 +19,12 @@ fieldset {
 input[name="level"] {
   width: 40px;
 }
+
+.simple-svg-wrapper {
+  display: inline-flex;
+  border: 1px solid $moonlight-II-purple;
+  padding: 3px;
+  width: fit-content;
+  cursor: pointer;
+  border-radius: 100%;
+}

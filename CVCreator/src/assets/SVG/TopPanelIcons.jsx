@@ -1,3 +1,5 @@
+// Source: https://fonts.google.com/icons
+
 export function Flag ({ size=16, fill="#ffc777" }) {
   return (
     <svg 

@@ -9,7 +9,10 @@ import {
 } from "../../../Contexts/DataModules/SideItemsProvider";
 
 import { findItemsByIds } from "../../../Util/Util";
+import { Add, Delete, Down, Up } from "../../../assets/SVG/FormIcons";
 
+
+const SVG_WRAPPER = 'simple-svg-wrapper';
 
 export default function Section ({ title, type, maxLevel, itemsIDs }) {
   const dispatchPanel = useSidePanelDispatch();
@@ -30,7 +33,22 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
     />
   ))
   : null;
+
   
+  function handleMoveUp () {
+    dispatchPanel({
+      type: 'moved_section_up',
+      section: title
+    });
+  }
+
+  function handleMoveDown () {
+    dispatchPanel({
+      type: 'moved_section_down',
+      section: title
+    });
+  }
+
 
   function handleDeleteSection () {
     const confirmed = confirm("Are you sure? This action cannot be undone.");
@@ -39,11 +57,12 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
       title: title
     });
   }
-
+  
 
   function handleAddItem () {
     const nextItemId = sideItems.nextItemId;
-    
+   
+    console.log(`Adding item with id ${ nextItemId }`);
     dispatchItems({
       type : 'created_side_item',
     });
@@ -61,30 +80,46 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
         { title }
        </legend>
       
-      <Button
-        handleClick={ handleAddItem }
-        text='Add Item'
-      />
-
+      <SectionManagemenent title={ title }>
+        <Add
+          onClick={ handleAddItem }
+          wrapper={ SVG_WRAPPER   }
+          title  ="Add item"
+        />
+        <Up
+          onClick={ handleMoveUp }
+          wrapper={ SVG_WRAPPER  }
+          title  ="Move section up"
+        />
+        <Down
+          onClick={ handleMoveDown }
+          wrapper={ SVG_WRAPPER    }
+          title  ="Move section down"
+        />
+        <Delete
+          onClick={ handleDeleteSection }
+          wrapper={ SVG_WRAPPER         }
+          title  ="Delete section"
+        />
+      </SectionManagemenent>
       { renderedItems }
 
-      <Button 
-        handleClick={ handleDeleteSection } 
-        text='Delete Section'
-      />
+
     </fieldset>
   );
 }
 
 
-function Button ({ handleClick, text }) {
+
+function SectionManagemenent ({ children, title }) {
+
   return (
-    <button
-      role="btn"
-      onClick={ handleClick }
+    <div
+      className="side-section-managemenent"
     >
-      { text }
-    </button>
+      <h4>Manage { title }</h4>
+      { children }
+    </div>
   )
 }
 

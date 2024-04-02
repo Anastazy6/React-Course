@@ -1,3 +1,5 @@
+// Source: https://fonts.google.com/icons
+
 export function EmptyStar ({ color='#ffc777', size=16 }) {
   return (
     <svg

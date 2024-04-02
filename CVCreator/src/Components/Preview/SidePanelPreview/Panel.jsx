@@ -20,14 +20,15 @@ export default function SidePanelPreview () {
 
 
   return (
-    // Wrapper
-      // List of sections
-        // Lists of items, with levels if leveled
     <article
-      id="side-panel-preview"
+      id="side-panel-preview-wrapper"
     >
-    { renderedSections }
-      
+      <div
+        id="side-panel-preview"
+      >
+        { renderedSections }
+      </div>
+      <hr className="panel-separator" />
     </article>
   );
 }
@@ -38,14 +39,16 @@ function Section ({ title, type, itemsIDs, maxLevel }) {
 
   const items = findItemsByIds(itemsIDs, sideItems.items);
 
-  const renderedItems = items.map(item => (
+  const renderedItems = items
+  ? items.map(item => (
     <Item
       key     ={ item.id  }
       item    ={ item     }
       type    ={ type     }
       maxLevel={ maxLevel }
     />
-  ));
+  ))
+  : null;
 
   return (
     <section

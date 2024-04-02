@@ -28,7 +28,6 @@ export default function Item ({ item, section }) {
     });
   }
 
-  // TODO: remove ID references to the deleted item from the side section it belonged to
   function handleDelete () {
     dispatchItems({
       type: "deleted_item",
@@ -72,14 +71,17 @@ export default function Item ({ item, section }) {
       <Up 
         onClick={ handleMoveUp }
         wrapper="simple-svg-wrapper"
+        title  ="Move item up"
       />
       <Down
         onClick={ handleMoveDown }
         wrapper="simple-svg-wrapper"
+        title  ="Move item down"
       />
       <Delete
         onClick={ handleDelete }
         wrapper="simple-svg-wrapper"
+        title  ="Delete item - without confirmation"
       />
 
     </div>
