@@ -4,6 +4,7 @@ import {
   useReducer
 } from "react";
 
+import MainItemsProvider from "./MainItemsProvider";
 
 const MainPanelContext         = createContext(null);
 const MainPanelDispatchContext = createContext(null);
@@ -15,11 +16,14 @@ export default function MainPanelProvider ({ children }) {
   );
 
   return (
-    <MainPanelContext.Provider value = { mainPanel }>
-      <MainPanelDispatchContext.Provider value = { dispatch }>
-        { children }
-      </MainPanelDispatchContext.Provider>
-    </MainPanelContext.Provider>
+    <MainItemsProvider>
+      <MainPanelContext.Provider value = { mainPanel }>
+        <MainPanelDispatchContext.Provider value = { dispatch }>
+          { children }
+        </MainPanelDispatchContext.Provider>
+      </MainPanelContext.Provider>
+    </MainItemsProvider>
+      
   );
 }
 
@@ -37,6 +41,9 @@ function mainPanelReducer (data, action) {
   switch (action.type) {
     case 'loaded_data': {
       return { ...action.data }
+    }
+    default: {
+      throw new TypeError(`Invalid action type: ${ action.type }`);
     }
   } 
 }
