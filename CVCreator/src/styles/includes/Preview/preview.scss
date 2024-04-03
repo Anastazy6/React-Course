@@ -1,0 +1,34 @@
+@import '../variables.scss';
+
+
+#cv-preview {
+  width : $a4-width;
+  height: $a4-height;
+
+  background-color: $cv-theme-primary-brighter;
+  border: 1px solid black;
+  box-shadow: 5px 5px 10px black;
+
+  display: grid;
+
+  grid-template-columns: 4fr 7fr;
+  grid-template-rows   : min-content 1fr;
+  grid-template-areas  :
+    'top-panel  top-panel'
+    'side-panel main     ' ;
+}
+
+
+
+.linked-title a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $moonlight-II-purple;
+}
+
+
+
+
+@import './main-panel';
+@import './side-panel';
+@import './top-panel';

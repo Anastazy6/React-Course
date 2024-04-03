@@ -1,5 +1,6 @@
 import SidePanel from "./SidePanelPreview/Panel";
 import TopPanel  from "./TopPanelPreview/TopPanel";
+import MainPanel from "./MainPreview/Panel";
 
 export default function Preview () {
   return (
@@ -8,7 +9,7 @@ export default function Preview () {
     >
       <TopPanel />
       <SidePanel />
-
+      <MainPanel />
     </article>
   )
 }

@@ -6,6 +6,7 @@ import {
   LoadButton,
   SaveButton
 } from '../../Storage/storage';
+import MainPanel from "./Main/Main";
 
 export default function CVForm () {
   function handleSubmit (e) {
@@ -23,8 +24,8 @@ export default function CVForm () {
       >
         <TopPanel />
         <SidePanel />
-
-        <Submit />
+        <MainPanel />
+        
 
       </form>
       <div

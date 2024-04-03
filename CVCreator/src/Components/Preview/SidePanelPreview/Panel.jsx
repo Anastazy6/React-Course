@@ -20,7 +20,7 @@ export default function SidePanelPreview () {
 
 
   return (
-    <article
+    <section
       id="side-panel-preview-wrapper"
     >
       <div
@@ -29,7 +29,7 @@ export default function SidePanelPreview () {
         { renderedSections }
       </div>
       <hr className="panel-separator" />
-    </article>
+    </section>
   );
 }
 

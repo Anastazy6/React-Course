@@ -1,0 +1,23 @@
+@import "../variables.scss";
+
+#main-panel-preview-wrapper {
+  grid-area      : main;
+  display        : flex;
+  flex-flow      : column;
+  min-height     : max-content;
+  justify-content: space-between;
+  padding        : 10px 5px;
+}
+
+#main-panel-preview {
+  flex-grow: 1;
+  color: inherit;
+}
+
+#gdpr-clause {
+  height: fit-content;
+  flex-grow: 0;
+  color: rgba(248, 248, 255, 0.5); // Ghostwhite with reduced
+  font-size: 0.55rem;
+  text-align: justify;
+}

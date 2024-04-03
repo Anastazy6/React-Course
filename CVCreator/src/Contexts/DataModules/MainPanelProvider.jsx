@@ -39,6 +39,12 @@ export function useMainPanelDispatch () {
 
 function mainPanelReducer (data, action) {
   switch (action.type) {
+    case 'updated_gdpr_clause': {
+      return {
+        ...data,
+        clause: action.value
+      }
+    }
     case 'loaded_data': {
       return { ...action.data }
     }

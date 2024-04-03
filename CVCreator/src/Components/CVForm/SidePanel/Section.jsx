@@ -62,7 +62,6 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
   function handleAddItem () {
     const nextItemId = sideItems.nextItemId;
    
-    console.log(`Adding item with id ${ nextItemId }`);
     dispatchItems({
       type : 'created_side_item',
     });
