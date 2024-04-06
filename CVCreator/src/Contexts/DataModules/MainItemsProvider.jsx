@@ -10,7 +10,11 @@ const MainItemsDispatchContext = createContext(null);
 
 
 export default function MainItemsProvider ({ children }) {
-  const [items, dispatch] = useReducer(mainItemsReducer, {});
+  const [items, dispatch] = useReducer(
+    mainItemsReducer, {
+      nextItemId: 0,
+      items: []
+    });
 
   return (
     <MainItemsContext.Provider value={ items }>
@@ -31,8 +35,44 @@ export function useMainItemsDispatch () {
 }
 
 
-function mainItemsReducer(items, action) {
+function mainItemsReducer(data, action) {
   switch (action.type) {
+    case 'created_item': {
+      const id = data.nextItemId;
+      const newItem = { id: id }
+
+      return {
+        ...data,
+        items: [...data.items, newItem],
+        nextItemId: id + 1
+      }
+    }
+
+    case 'updated_item': {
+      const newItems = data.items.map(i => {
+        if (i.id === action.item.id) {
+          return { ...action.item }
+        }
+        return i;
+      });
+
+      return {
+        ...data,
+        items: newItems
+      }
+    }
+
+    case 'deleted_item': {
+      const newItems = data.items.filter(
+        i => i.id !== action.itemID
+      );
+
+      return {
+        ...data,
+        items: newItems
+      }
+    }
+
     case 'loaded_data': {
       return action.data;
     }
