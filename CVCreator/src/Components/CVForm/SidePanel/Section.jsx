@@ -9,8 +9,8 @@ import {
 } from "../../../Contexts/DataModules/SideItemsProvider";
 
 import { findItemsByIds } from "../../../Util/Util";
-import { Add, Delete, Down, Up } from "../../../assets/SVG/FormIcons";
 
+import SectionManagemenent from "../Shared/SectionManagement";
 
 const SVG_WRAPPER = 'simple-svg-wrapper';
 
@@ -78,29 +78,15 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
        <legend>
         { title }
        </legend>
-      
-      <SectionManagemenent title={ title }>
-        <Add
-          onClick={ handleAddItem }
-          wrapper={ SVG_WRAPPER   }
-          title  ="Add item"
-        />
-        <Up
-          onClick={ handleMoveUp }
-          wrapper={ SVG_WRAPPER  }
-          title  ="Move section up"
-        />
-        <Down
-          onClick={ handleMoveDown }
-          wrapper={ SVG_WRAPPER    }
-          title  ="Move section down"
-        />
-        <Delete
-          onClick={ handleDeleteSection }
-          wrapper={ SVG_WRAPPER         }
-          title  ="Delete section"
-        />
-      </SectionManagemenent>
+
+      <SectionManagemenent 
+        title              ={ title               }
+        handleAddItem      ={ handleAddItem       }
+        handleMoveUp       ={ handleMoveUp        }
+        handleMoveDown     ={ handleMoveDown      }
+        handleDeleteSection={ handleDeleteSection }
+      /> 
+
       { renderedItems }
 
 
@@ -110,16 +96,6 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
 
 
 
-function SectionManagemenent ({ children, title }) {
 
-  return (
-    <div
-      className="side-section-managemenent"
-    >
-      <h4>Manage { title }</h4>
-      { children }
-    </div>
-  )
-}
 
 

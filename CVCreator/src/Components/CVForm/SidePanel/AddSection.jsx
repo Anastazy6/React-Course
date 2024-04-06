@@ -25,7 +25,7 @@ export default function AddSidePanelSection () {
   });
 
 
-  const levelsInput = createLevelsInput(newSection, handleLevelsChange);
+  const levelsInput = createLevelsInput(newSection, handleMaxLevelChange);
 
 
   function handleTitleChange (e) {
@@ -42,10 +42,10 @@ export default function AddSidePanelSection () {
     });
   }
 
-  function handleLevelsChange (e) {
+  function handleMaxLevelChange (e) {
     setNewSection({
       ...newSection,
-      levels: e.target.value
+      maxLevel: e.target.value
     });
   }
 

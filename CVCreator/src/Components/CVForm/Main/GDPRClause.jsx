@@ -11,6 +11,7 @@ export default function GDPRClause ({ }) {
 
   const value    = data.clause ? data.clause : '';
   
+
   
   function handleChange(e) {
     dispatch({

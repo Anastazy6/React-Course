@@ -21,7 +21,7 @@ function MainPanelPreview ({ }) {
     <div
       id="main-panel-preview"
     >
-      HAHA BENIZ :DDDDD
+    
     </div>
   )
 }
