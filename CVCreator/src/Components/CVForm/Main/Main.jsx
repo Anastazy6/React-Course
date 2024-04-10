@@ -1,5 +1,8 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
+import AddSection from "./AddSection";
 import GDPRClause from "./GDPRClause";
+
+import Section from "./Section";
 
 export default function MainPanel () {
   const sections = useMainPanel().sections;
@@ -7,7 +10,8 @@ export default function MainPanel () {
   const renderedSections = sections  
   ? sections.map(ms => (
     <Section
-      props={ ms }
+      props={ ms    }
+      key  ={ ms.id }
     />
   ))
   : null;
@@ -15,7 +19,8 @@ export default function MainPanel () {
   return (
     <>
       <GDPRClause />
-      {/* { sections }   */}
+      <AddSection />
+      { renderedSections }
     </>
   );
 }

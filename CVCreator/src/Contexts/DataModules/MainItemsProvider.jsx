@@ -38,12 +38,16 @@ export function useMainItemsDispatch () {
 function mainItemsReducer(data, action) {
   switch (action.type) {
     case 'created_item': {
-      const id = data.nextItemId;
+      const id = data.nextItemId || 0;
       const newItem = { id: id }
+
+      const newItems = data.items && data.items.length > 0
+      ? [...data.items, newItem]
+      : [newItem];
 
       return {
         ...data,
-        items: [...data.items, newItem],
+        items: newItems,
         nextItemId: id + 1
       }
     }

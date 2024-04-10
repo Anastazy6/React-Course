@@ -52,19 +52,26 @@ function mainPanelReducer (data, action) {
     }
 
     case 'created_section': {
-      const id = data.nextSectionId;
+      const id = data.nextSectionId || 0;
       const newSection = {
         id       : id,
         itemsIDs : [],
         title    : '',
+        location : '',
         startDate: '',
         endDate  : ''
       }
+
+      console.log(data.sections)
+
+      const newSections = data.sections && data.sections.length > 0
+      ? [...data.sections, newSection]
+      : [newSection];
       
       return {
         ...data,
         nextSectionId: id + 1,
-        sections: [ ...data.sections, newSection ]
+        sections: newSections
       }
     }
 

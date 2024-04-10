@@ -16,9 +16,9 @@ export function arrayRange (start, stop, step) {
 
 
 export function findItemsByIds (ids, items) {
-  return ids.length > 0
-  ? ids.map(
-    id => items.find(item => item.id === id) 
-  )
-  : null;
+  return (ids.length > 0 && items.length > 0)
+    ? ids.map(
+      id => items.find(item => item.id === id) 
+    )
+    : null;
 }

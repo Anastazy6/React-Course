@@ -12,7 +12,6 @@ import { findItemsByIds } from "../../../Util/Util";
 
 import SectionManagemenent from "../Shared/SectionManagement";
 
-const SVG_WRAPPER = 'simple-svg-wrapper';
 
 export default function Section ({ title, type, maxLevel, itemsIDs }) {
   const dispatchPanel = useSidePanelDispatch();
@@ -87,14 +86,13 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
         handleDeleteSection={ handleDeleteSection }
       /> 
 
+      
       { renderedItems }
 
 
     </fieldset>
   );
 }
-
-
 
 
 

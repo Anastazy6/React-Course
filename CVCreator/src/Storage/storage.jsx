@@ -3,6 +3,7 @@ import { useTopPanel,  useTopPanelDispatch  } from "../Contexts/DataModules/TopP
 import { useSideItems, useSideItemsDispatch } from "../Contexts/DataModules/SideItemsProvider";
 import { useSidePanel, useSidePanelDispatch } from "../Contexts/DataModules/SidePanelProvider";
 import { useMainPanel, useMainPanelDispatch } from "../Contexts/DataModules/MainPanelProvider";
+import { useMainItems, useMainItemsDispatch } from "../Contexts/DataModules/MainItemsProvider";
 
 
 
@@ -19,7 +20,8 @@ export function loadData () {
     'topPanel',
     'sideItems',
     'sidePanel',
-    'mainPanel'
+    'mainPanel',
+    'mainItems'
   ];
 
   const data = {}
@@ -52,7 +54,8 @@ export function SaveButton () {
     [useTopPanel(),  'topPanel' ],
     [useSideItems(), 'sideItems'],
     [useSidePanel(), 'sidePanel'],
-    [useMainPanel(), 'mainPanel']
+    [useMainPanel(), 'mainPanel'],
+    [useMainItems(), 'mainItems']
   ];
 
   function saveToLocalStorage () {
@@ -81,7 +84,8 @@ export function LoadButton () {
     [useTopPanelDispatch(),  'topPanel' ],
     [useSideItemsDispatch(), 'sideItems'],
     [useSidePanelDispatch(), 'sidePanel'],
-    [useMainPanelDispatch(), 'mainPanel']
+    [useMainPanelDispatch(), 'mainPanel'],
+    [useMainItemsDispatch(), 'mainItems']
   ];
 
   function loadFromLocalStorage () {
