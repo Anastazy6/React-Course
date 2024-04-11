@@ -16,8 +16,6 @@ export default function Section ({ props }) {
   const id    = props.id;
   const title = props.title;
 
-  console.log(props);
-
   const data      = useMainPanel();
   const mainItems = useMainItems() || { nextItemId: 0, items: [] };
   
@@ -42,9 +40,6 @@ export default function Section ({ props }) {
 
     const updatedSection = { ...props }
     updatedSection[property] = e.target.value;
-
-    console.log(property);
-    console.log(e.target.value);
 
     dispatchPanel({
       type   : 'updated_section',
@@ -128,9 +123,6 @@ export default function Section ({ props }) {
 
 
 function ShortText ({ name, value, onChange }) {
-  console.log(typeof onChange);
-  console.log(onChange);
-
   return (
     <input
       type    ='text'

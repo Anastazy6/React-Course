@@ -38,7 +38,8 @@ export function useMainItemsDispatch () {
 function mainItemsReducer(data, action) {
   switch (action.type) {
     case 'created_item': {
-      const id = data.nextItemId || 0;
+      console.log(data);
+      const id = data.nextItemId ? data.nextItemId : 0;
       const newItem = { id: id }
 
       const newItems = data.items && data.items.length > 0
@@ -78,7 +79,12 @@ function mainItemsReducer(data, action) {
     }
 
     case 'loaded_data': {
-      return action.data;
+      return action.data
+      ? action.data
+      : {
+          nextItemId: 0,
+          items: []
+        };
     }
     default: {
       throw new TypeError(`Invalid action type: ${ action.type }`);

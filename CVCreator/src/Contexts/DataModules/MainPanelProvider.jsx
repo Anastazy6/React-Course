@@ -77,6 +77,8 @@ function mainPanelReducer (data, action) {
 
 
     case 'updated_section': {
+      console.log(data);
+
       const updatedSections = data.sections.map(s => {
         if (s.id === action.section.id) {
           return { ...action.section }
@@ -105,7 +107,7 @@ function mainPanelReducer (data, action) {
     case 'added_item_to_section': {
       const newSections = data.sections.map(s => {
         if (s.id === action.sectionID) {
-          const newItemsIDs = [...s,itemsIDs, action.itemID]
+          const newItemsIDs = [...s.itemsIDs, action.itemID]
           const newSection = {
             ...s,
             itemsIDs: newItemsIDs
