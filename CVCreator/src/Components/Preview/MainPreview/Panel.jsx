@@ -1,4 +1,9 @@
+import { useMainItems   } from "../../../Contexts/DataModules/MainItemsProvider";
+import { useMainPanel   } from "../../../Contexts/DataModules/MainPanelProvider";
+import { findItemsByIds } from "../../../Util/Util";
+
 import GDPRClause from "./Clause";
+import Item       from "./Item";
 
 // Wraps the Main Panel Preview and GDPR clause preview in a single wrapper element,
 //   so that they're spatially related to each other
@@ -16,12 +21,51 @@ export default function MainPanelPreviewWrapper({ }) {
 
 
 function MainPanelPreview ({ }) {
+  const panel = useMainPanel();
+  
+  const sections = panel.sections 
+  ? panel.sections.map(section => (
+    <Section props={ section } />
+  ))
+  : null;
 
   return (
     <div
       id="main-panel-preview"
     >
-    
+      { sections }    
     </div>
+  )
+}
+
+
+function Section ({ props }) {
+  const mainItems = useMainItems().items;
+
+  //console.log(mainItems);
+
+  const sectionItems = findItemsByIds(props.itemsIDs, mainItems);
+
+ // console.log(sectionItems);
+  const renderedItems = sectionItems
+  ? sectionItems.map(item => <Item props={ item } />)
+  : null;
+
+  return (
+    <section
+      className="main-panel-section-preview"
+    >
+      <div
+        className="main-section-preview-title linethrough-header"
+      >
+        <hr />
+        <h3>
+          { props.title }
+        </h3>
+      </div>
+
+
+      { renderedItems }
+    </section>
   )
 }

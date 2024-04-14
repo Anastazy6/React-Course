@@ -27,9 +27,9 @@ export default function Section ({ props }) {
   const renderedItems = sectionItems
   ? sectionItems.map(item => (
     <Item
-      key    ={ item.id }
-      item   ={ item    }
-      section={ id      }
+      key        ={ item.id }
+      item       ={ item    }
+      sectionType={ props.type ?? undefined }
     />
   ))
   : null;
@@ -88,58 +88,69 @@ export default function Section ({ props }) {
       <legend>
         { title }
       </legend>
-      <SectionManagemenent 
-        title              ={ title               }
+      <Title 
+        value   ={ props.title  }
+        onChange={ handleChange }
+      />
+      <Type
+        value   ={ props.type ?? 'Employment' }
+        onChange={ handleChange }
+      />
+    
+      <SectionManagemenent
+        title              ={ title               } 
         handleAddItem      ={ handleAddItem       }
         handleMoveUp       ={ handleMoveUp        }
         handleMoveDown     ={ handleMoveDown      }
         handleDeleteSection={ handleDeleteSection }
       />
 
-      <ShortText
-        name    ='title'
-        value   ={ title        }
-        onChange={ handleChange }
-      />
-      <ShortText
-        name    ='location'
-        value   ={ props.location }
-        onChange={ handleChange   }
-      />
-      <Date
-        name    ='startDate'
-        value   ={ props.startDate }
-        onChange={ handleChange    }
-      />
-      <Date
-        name    ='endDate'
-        value   ={ props.endDate }
-        onChange={ handleChange  }
-      />
+
       { renderedItems } 
     </fieldset>
   )
 }
 
 
-function ShortText ({ name, value, onChange }) {
+function Title ({ value, onChange }) {
   return (
-    <input
-      type    ='text'
-      name    ={ name     }
-      value   ={ value    }
-      onChange={ onChange }
-    />
-  )
+    <label>
+      Section title
+      <input
+        name     ='title'
+        value   ={ value    }
+        onChange={ onChange }
+      />
+    </label>
+  );
 }
 
-function Date ({ name, value, onChange }) {
+
+function Type ({ value, onChange }) {
+  const options = [
+    'Employment',
+    'Education',
+    'Courses',
+    'General information',
+    'Other'
+  ].map(o => (
+    <option
+      key  ={ o }
+      value={ o }
+    >{ o }
+    </option>
+  ));
+  
   return (
-    <input
-      type    ='date'
-      name    ={ name     }
-      value   ={ value    }
-      onChange={ onChange }
-    />
-  )
+    <label>
+      Section type
+      <select
+        name    ='type'
+        value   ={ value    }
+        onChange={ onChange }
+      >
+        { options }
+      </select>
+    </label>
+  );
 }

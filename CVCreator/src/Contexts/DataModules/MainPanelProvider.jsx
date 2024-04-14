@@ -77,8 +77,6 @@ function mainPanelReducer (data, action) {
 
 
     case 'updated_section': {
-      console.log(data);
-
       const updatedSections = data.sections.map(s => {
         if (s.id === action.section.id) {
           return { ...action.section }

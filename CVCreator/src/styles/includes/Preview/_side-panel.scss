@@ -1,5 +1,7 @@
 @import "../variables.scss";
 
+$side-panel-h3-size: 0.9rem;
+
 #side-panel-preview-wrapper {
   grid-area: side-panel;
 
@@ -34,7 +36,7 @@
   
   h3 {
     background: $cv-theme-primary-brighter;
-    font-size : 0.9rem;
+    font-size : $side-panel-h3-size;
     margin    : auto;
     padding   : 0 10px;
     position  : relative;
@@ -44,7 +46,7 @@
 
   hr {
     position: relative;
-    top: 1.12rem;
+    top: $side-panel-h3-size * 1.2;
     border: 1px solid $moonlight-II-yellow;
     border-radius: 5px;
   }
