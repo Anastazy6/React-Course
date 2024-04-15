@@ -11,7 +11,8 @@
 
 #main-panel-preview {
   flex-grow: 1;
-  color: inherit;
+  color: ghostwhite;
+  font-size: 0.8rem;
 }
 
 #gdpr-clause {
@@ -31,6 +32,7 @@
   h3 {
     color: $moonlight-II-yellow;
     text-align: center;
+    font-size: 1.15rem;
   }
 }
 
@@ -48,5 +50,6 @@
 }
 
 .main-item-date-preview {
-
+  font-size: 0.65rem;
+  color: rgba(248, 248, 255, 0.8)
 }

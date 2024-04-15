@@ -1,13 +1,14 @@
 import { useMainItemsDispatch } from '../../../Contexts/DataModules/MainItemsProvider';
 
 import {
-  Education
+  Courses,
+  Education,
+  Employment,
+  GeneralInformation
 } from './Types';
 
 export default function Item ({ item, sectionType }) {
   const dispatch = useMainItemsDispatch();
-
-  console.log(sectionType);
 
   function handleChange (e) {
     const property    = e.target.name;
@@ -50,11 +51,35 @@ function inputPicker (type, item, onChange, onToggleMarkdown) {
       return "You need to pick section type in order to control its items"
     }
     case 'Employment': {
-      return "Employment: TODO..."
+      return (
+        <Employment
+          item            ={ item             }
+          onChange        ={ onChange         }
+          onToggleMarkdown={ onToggleMarkdown }
+        />
+      );
     }
     case 'Education': {
       return (
         <Education
+          item            ={ item             }
+          onChange        ={ onChange         }
+          onToggleMarkdown={ onToggleMarkdown }
+        />
+      );
+    }
+    case 'Courses': {
+      return (
+        <Courses
+          item            ={ item             }
+          onChange        ={ onChange         }
+          onToggleMarkdown={ onToggleMarkdown }
+        />
+      );
+    }
+    case 'General information': {
+      return (
+        <GeneralInformation
           item            ={ item             }
           onChange        ={ onChange         }
           onToggleMarkdown={ onToggleMarkdown }

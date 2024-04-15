@@ -1,60 +1,75 @@
 export function Education ({ item, onChange, onToggleMarkdown }) {
+  const labels = {
+    title      : 'Degree and field',
+    description: 'Additional information'
+  };
+
+  return (
+    <StandardItem
+      labels   ={ labels   }
+      item     ={ item     }
+      onChange ={ onChange }
+      onToggleMarkdown={ onToggleMarkdown }
+    />
+  );
+}
+
+export function Employment ({ item, onChange, onToggleMarkdown }) {
+  const labels = {
+    title      : 'Job title',
+    institution: 'Company',
+    description: 'Job description'
+  };
+
+  return (
+    <StandardItem
+      labels   ={ labels   }
+      item     ={ item     }
+      onChange ={ onChange }
+      onToggleMarkdown={ onToggleMarkdown }
+    />
+  );
+}
+
+
+export function Courses ({ item, onChange, onToggleMarkdown }) {
+  const labels = {
+    title      : 'Course name',
+    institution: 'Institution',
+    location   : 'Location or site',
+  };
+
+  return (
+    <StandardItem
+      labels  ={ labels   }
+      item    ={ item     }
+      onChange={ onChange }
+      onToggleMarkdown={ onToggleMarkdown }
+    />
+  );
+}
+
+
+export function GeneralInformation ({ item, onChange, onToggleMarkdown }) {
   return (
     <>
       <ShortText
         name    ='title'
         value   ={ item.title ?? '' }
         onChange={ onChange         }
-        label   ='Degree and field'
-      />
-      <ShortText
-        name    ='institution'
-        value   ={ item.institution ?? '' }
-        onChange={ onChange }
-        label   ="Institution"
-      />
-      <ShortText
-        name    ='location'
-        value   ={ item.location ?? '' }
-        onChange={ onChange }
-        label   ="Location"
-      />
-      <DateControls
-        item    ={ item     }
-        onChange={ onChange }
+        label   ="Title"
       />
       <MarkdownInput
         name    ='description'
-        label   ='Additional information'
-        onChange={ onChange }
         item    ={ item     }
+        onChange={ onChange }
+        label   ='Description'
         onToggleMarkdown={ onToggleMarkdown }
-      /> 
+      />
     </>
   )
 }
 
-function BaseControls ({ item, onChange, onToggleMarkdown }) {
-  return (
-    <> 
-      <ShortText
-        name    ='title'
-        value   ={ item.title ?? '' }
-        onChange={ onChange         }
-        label   ='Job title'
-      />
-      <LongText
-        name    ='description'
-        value   ={ item.description ?? '' }
-        onChange={ onChange               }
-      />
-      <SupportMarkdown
-        value   ={ item.markdown ?? true }
-        onChange={ onToggleMarkdown      }
-      />
-    </>
-  )
-}
 
 function DateControls ({ item, onChange }) {
   return (
@@ -62,14 +77,14 @@ function DateControls ({ item, onChange }) {
       <StartDate
         name    ='startDate'
         date    ={ item.startDate ?? '' }
-        onChange={ onChange         }
+        onChange={ onChange }
         label   ="Start date"
       />
       <EndDate
         name    ='endDate'
         date    ={ item.endDate ?? ''    }
         present ={ item.present ?? false }
-        onChange={ onChange          }
+        onChange={ onChange }
         label   ='End date'
       />
     </>
@@ -96,7 +111,7 @@ function StartDate ({ name, date, onChange, label }) {
     <label>
       { label }
       <input
-        type    ='date'
+        type    ='month'
         name    ={ name     }
         value   ={ date     }
         onChange={ onChange }
@@ -111,7 +126,7 @@ function EndDate ({ name, date, present, onChange, label }) {
       <label>
         { label }
         <input
-          type    ='date'
+          type    ='month'
           name    ={ name     }
           value   ={ date     }
           onChange={ onChange }
@@ -166,10 +181,10 @@ function MarkdownInput ({ name, item, onChange, onToggleMarkdown, label="Descrip
       className="markdown-input"
     >
       <LongText
-        name    ={ name            }
-        value   ={ item.name ?? '' }
-        onChange={ onChange        }
-        label   ={ label           }
+        name    ={ name             }
+        value   ={ item[name] ?? '' }
+        onChange={ onChange         }
+        label   ={ label            }
       />
       <SupportMarkdown
         value           ={ item.markdown    }
@@ -178,3 +193,40 @@ function MarkdownInput ({ name, item, onChange, onToggleMarkdown, label="Descrip
     </div> 
   )
 }
+
+function StandardItem({ labels, item, onChange, onToggleMarkdown }) {  
+  return (
+    <>
+      <ShortText
+        name    ='title'
+        value   ={ item.title ?? '' }
+        onChange={ onChange         }
+        label   ={ labels.title ?? 'Title' }
+      />
+      <ShortText
+        name    ='institution'
+        value   ={ item.institution ?? '' }
+        onChange={ onChange }
+        label   ={ labels.institution ?? 'Institution' }
+      />
+      <ShortText
+        name    ='location'
+        value   ={ item.location ?? '' }
+        onChange={ onChange }
+        label   ={ labels.location ?? "Location" }
+      />
+      <DateControls
+        item    ={ item     }
+        onChange={ onChange }
+      />
+      <MarkdownInput
+        name    ='description'
+        label   ={ labels.description ?? 'Description' }
+        onChange={ onChange }
+        item    ={ item     }
+        onToggleMarkdown={ onToggleMarkdown }
+      /> 
+    </>
+  );
+}
+
