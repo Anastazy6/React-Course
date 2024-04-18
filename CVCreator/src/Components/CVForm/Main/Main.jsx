@@ -1,6 +1,7 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
 import AddSection from "./AddSection";
 import GDPRClause from "./GDPRClause";
+import Locale from "./Locale";
 
 import Section from "./Section";
 
@@ -19,6 +20,7 @@ export default function MainPanel () {
   return (
     <>
       <GDPRClause />
+      <Locale     />
       <AddSection />
       { renderedSections }
     </>

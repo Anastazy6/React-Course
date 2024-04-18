@@ -15,7 +15,10 @@ export default function MainPanelProvider ({ children }) {
     mainPanelReducer, {
       nextSectionId: 0,
       sections: [],
-      clause: ''
+      clause: '',
+      locale: {
+        hasNoEndDate: 'present'
+      }
     }
   );
 
@@ -48,6 +51,16 @@ function mainPanelReducer (data, action) {
       return {
         ...data,
         clause: action.value
+      }
+    }
+
+    case 'updated_locale': {
+      const updatedLocale = data.locale ? { ...data.locale } : {};
+      updatedLocale[action.name] = action.value
+
+      return {
+        ...data,
+        locale: updatedLocale
       }
     }
 

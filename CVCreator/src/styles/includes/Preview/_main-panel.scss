@@ -6,7 +6,7 @@
   flex-flow      : column;
   min-height     : max-content;
   justify-content: space-between;
-  padding        : 10px 5px;
+  padding        : 0 10px 0 5px;
 }
 
 #main-panel-preview {
@@ -31,18 +31,22 @@
 .main-section-preview-title {
   h3 {
     color: $moonlight-II-yellow;
-    text-align: center;
     font-size: 1.15rem;
+    font-weight: normal;
   }
 }
 
 .main-panel-item-preview {
-
+  display: flex;
+  flex-flow: column;
+  margin-bottom: 1rem;
+  align-items: flex-start;
 }
 
 
 .main-item-title-preview {
-
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .main-item-location-preview {
@@ -52,4 +56,10 @@
 .main-item-date-preview {
   font-size: 0.65rem;
   color: rgba(248, 248, 255, 0.8)
+}
+
+.main-item-separator {
+  position: relative;
+  width: 30%;
+  margin-left: 0;
 }

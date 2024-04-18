@@ -55,10 +55,10 @@ function Section ({ title, type, itemsIDs, maxLevel }) {
       className="side-panel-section"
     >
       <div
-        className="side-section-title linethrough-header"
+        className="side-section-title"
       >
-        <hr />
         <h3
+          className="linethrough-header"
         >
           { title }
         </h3>

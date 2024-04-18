@@ -1,5 +1,20 @@
+import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
+
+
 export default function Item ({ props }) {
-//  console.log(props);
+  const data = useMainPanel();
+  const locale = data.locale ?? {};
+
+
+  console.log(props)
+  console.log(data);
+  const endDate = props.present
+    ? locale.hasNoEndDate ?? ''
+    : props.endDate ?? '';
+
+
+  console.log(props.title, endDate);
+
   return (
     <div
       className="main-panel-item-preview"
@@ -23,11 +38,12 @@ export default function Item ({ props }) {
           className="start-date-preview"
         >
           { props.startDate }
-        </span> - 
+        </span>
+        <span> - </span>
         <span
           className="end-date-preview"
         >
-          { props.endDate }
+          { endDate }
         </span>
       </div>
       <div
@@ -35,6 +51,8 @@ export default function Item ({ props }) {
       >
         { props.description }
       </div>
+
+      { /* <hr className="main-item-separator" /> */ }
     </div>
   )
 }

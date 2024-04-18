@@ -28,8 +28,30 @@
 
 
 .linethrough-header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  line-height: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid $moonlight-II-yellow;
+  }
+
+  &:not(:empty)::before {
+    margin-right: 0.55rem;
+  }
+
+  &:not(:empty)::after {
+    margin-left: 0.55rem;
+  }
 }
+
 
 
 @import './main-panel';

@@ -56,16 +56,18 @@ function Section ({ props }) {
       className="main-panel-section-preview"
     >
       <div
-        className="main-section-preview-title linethrough-header"
+        className="main-section-preview-title"
       >
-        <hr />
-        <h3>
+        <h3
+          className="linethrough-header"
+        >
           { props.title }
         </h3>
       </div>
 
 
       { renderedItems }
+
     </section>
   )
 }

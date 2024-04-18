@@ -35,20 +35,7 @@ $side-panel-h3-size: 0.9rem;
 
   
   h3 {
-    background: $cv-theme-primary-brighter;
     font-size : $side-panel-h3-size;
-    margin    : auto;
-    padding   : 0 10px;
-    position  : relative;
-    width     : fit-content;
-    z-index   : 1;
-  }
-
-  hr {
-    position: relative;
-    top: $side-panel-h3-size * 1.2;
-    border: 1px solid $moonlight-II-yellow;
-    border-radius: 5px;
   }
 }
 
