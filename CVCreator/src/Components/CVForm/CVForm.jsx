@@ -40,16 +40,3 @@ export default function CVForm () {
 }
 
 
-function Submit () {
-  return (
-    <button
-      role='submit'
-    >
-      Submit (does nothing)
-    </button>
-  )
-}
-
-
-
-

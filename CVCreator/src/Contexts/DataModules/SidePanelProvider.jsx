@@ -5,6 +5,7 @@ import {
 } from "react";
 
 import SideItemsProvider from "./SideItemsProvider";
+import { moveItem } from "../../Util/Util";
 
 const SidePanelContext         = createContext(null);
 const SidePanelDispatchContext = createContext(null);
@@ -77,48 +78,25 @@ function sidePanelReducer (sidePanel, action) {
       });
     }
 
-    case "moved_item_up": {
+    case "moved_item": {
       return sidePanel.map(ss => {
         if (ss.title !== action.section) return ss;
 
-        const itemIndex = ss.itemsIDs.indexOf(action.itemID);
-        if (itemIndex === 0) return ss; // Can't move the first element up
-
-        const newOrder = [...ss.itemsIDs];
-        let temp = newOrder[itemIndex];
-        newOrder[itemIndex] = newOrder[itemIndex - 1];
-        newOrder[itemIndex - 1] = temp;
+        const newItemOrder = moveItem(ss.itemsIDs, action.itemID, action.direction);
 
         return {
           ...ss,
-          itemsIDs: newOrder
+          itemsIDs: newItemOrder
         }
       });
     }
 
-    case "moved_item_down": {
-      return sidePanel.map(ss => {
-        if (ss.title !== action.section) return ss;
+    case "moved_section": {
+      const item = sidePanel.find(s => s.title === action.section);
 
-        const itemIndex = ss.itemsIDs.indexOf(action.itemID);
-        if (itemIndex === ss.itemsIDs.length - 1) return ss; // Can't move the last element down
-
-        const newOrder = [...ss.itemsIDs];
-        let temp = newOrder[itemIndex];
-        newOrder[itemIndex] = newOrder[itemIndex + 1];
-        newOrder[itemIndex + 1] = temp;
-
-        return {
-          ...ss,
-          itemsIDs: newOrder
-        }
-      })
-
+      return moveItem(sidePanel, item, action.direction);
     }
-
     
- 
-
     case 'loaded_data': {
       return action.data;
     }

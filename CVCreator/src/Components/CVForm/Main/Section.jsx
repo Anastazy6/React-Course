@@ -9,7 +9,7 @@ import {
 } from "../../../Contexts/DataModules/MainPanelProvider";
 import { findItemsByIds } from "../../../Util/Util";
 
-import SectionManagemenent from "../Shared/SectionManagement";
+import SectionManagemenent from "../Shared/Management";
 import Item from "./Item";
 
 export default function Section ({ props }) {
@@ -30,6 +30,7 @@ export default function Section ({ props }) {
       key        ={ item.id }
       item       ={ item    }
       sectionType={ props.type ?? undefined }
+      sectionID  ={ props.id }
     />
   ))
   : null;
@@ -64,15 +65,17 @@ export default function Section ({ props }) {
 
   function handleMoveUp (e) {
     dispatchPanel({
-      type     : "moved_section_up",
-      sectionID: id
+      type     : "moved_section",
+      id       : id,
+      direction: 'up'
     })
   }
 
   function handleMoveDown (e) {
     dispatchPanel({
-      type     : "moved_section_down",
-      sectionID: id
+      type     : "moved_section",
+      id       : id,
+      direction: 'down'
     });
   }
 

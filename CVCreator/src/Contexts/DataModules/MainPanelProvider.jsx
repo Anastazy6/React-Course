@@ -5,6 +5,7 @@ import {
 } from "react";
 
 import MainItemsProvider from "./MainItemsProvider";
+import { moveItem } from "../../Util/Util";
 
 const MainPanelContext         = createContext(null);
 const MainPanelDispatchContext = createContext(null);
@@ -136,14 +137,32 @@ function mainPanelReducer (data, action) {
       }
     }
 
-    case 'moved_section_up': {
-      console.warn("Moving sections up is not yet implemented");
-      return data;
+    case 'moved_section': {
+      const item = data.sections.find(s => action.id === s.id);
+      const newOrder = moveItem(data.sections, item, action.direction);
+
+      return {
+        ...data,
+        sections: newOrder
+      }
     }
 
-    case 'moved_section_down': {
-      console.warn("Moving sections down is not yet implemented as well");
-      return data;
+    case 'moved_item': {
+      const updatedSections = data.sections.map(s => {
+        if (s.id !== action.sectionID) return s;
+
+        const newItemOrder = moveItem(s.itemsIDs, action.itemID, action.direction);
+
+        return {
+          ...s,
+          itemsIDs: newItemOrder
+        };
+      });
+
+      return {
+        ...data,
+        sections: updatedSections
+      }
     }
 
     case 'loaded_data': {

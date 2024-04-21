@@ -10,7 +10,7 @@ import {
 
 import { findItemsByIds } from "../../../Util/Util";
 
-import SectionManagemenent from "../Shared/SectionManagement";
+import SectionManagemenent from "../Shared/Management";
 
 
 export default function Section ({ title, type, maxLevel, itemsIDs }) {
@@ -36,15 +36,17 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
   
   function handleMoveUp () {
     dispatchPanel({
-      type: 'moved_section_up',
-      section: title
+      type     : 'moved_section',
+      section  : title,
+      direction: 'up'
     });
   }
 
   function handleMoveDown () {
     dispatchPanel({
-      type: 'moved_section_down',
-      section: title
+      type     : 'moved_section',
+      section  : title,
+      direction: 'down'
     });
   }
 

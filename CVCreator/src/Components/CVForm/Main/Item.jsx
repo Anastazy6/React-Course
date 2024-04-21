@@ -1,4 +1,6 @@
+import { useMainPanelDispatch } from '../../../Contexts/DataModules/MainPanelProvider';
 import { useMainItemsDispatch } from '../../../Contexts/DataModules/MainItemsProvider';
+import { ItemManagement } from '../Shared/Management';
 
 import {
   Courses,
@@ -7,8 +9,9 @@ import {
   GeneralInformation
 } from './Types';
 
-export default function Item ({ item, sectionType }) {
-  const dispatch = useMainItemsDispatch();
+export default function Item ({ item, sectionType, sectionID }) {
+  const dispatch      = useMainItemsDispatch();
+  const dispatchPanel = useMainPanelDispatch();
 
   function handleChange (e) {
     const property    = e.target.name;
@@ -34,12 +37,41 @@ export default function Item ({ item, sectionType }) {
     });
   }
 
+
+  function handleDelete (e) {
+
+  }
+
+  function handleMoveUp (e) {
+    dispatchPanel({
+      type     : 'moved_item',
+      direction: 'up',
+      sectionID: sectionID,
+      itemID   : item.id
+    })
+  }
+
+  function handleMoveDown (e) {
+    dispatchPanel({
+      type     : 'moved_item',
+      direction: 'down',
+      sectionID: sectionID,
+      itemID   : item.id
+    })
+
+  }
+
+
   return (
     <div
       className='main-panel-item'
     >
-    { inputPicker(sectionType, item, handleChange, handleToggleMarkdown) }
-
+      { inputPicker(sectionType, item, handleChange, handleToggleMarkdown) }
+      <ItemManagement
+        handleMoveUp  ={ handleMoveUp   }
+        handleMoveDown={ handleMoveDown }
+        handleDelete  ={ handleDelete   }
+      />
     </div>
   );
 }

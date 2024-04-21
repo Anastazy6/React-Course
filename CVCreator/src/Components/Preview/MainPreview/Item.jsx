@@ -6,14 +6,11 @@ export default function Item ({ props }) {
   const locale = data.locale ?? {};
 
 
-  console.log(props)
-  console.log(data);
   const endDate = props.present
     ? locale.hasNoEndDate ?? ''
     : props.endDate ?? '';
 
 
-  console.log(props.title, endDate);
 
   return (
     <div

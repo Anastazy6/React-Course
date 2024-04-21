@@ -2,7 +2,7 @@ import { useSideItemsDispatch } from "../../../Contexts/DataModules/SideItemsPro
 import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider";
 import { arrayRange } from "../../../Util/Util";
 
-import { Delete, Up, Down } from "../../../assets/SVG/FormIcons";
+import { ItemManagement } from "../Shared/Management";
 
 
 export default function Item ({ item, section }) {
@@ -42,20 +42,23 @@ export default function Item ({ item, section }) {
 
   function handleMoveUp () {
     dispatchPanel({
-      type   : "moved_item_up",
-      itemID : item.id,
-      section: section.title
+      type     : "moved_item",
+      itemID   : item.id,
+      section  : section.title,
+      direction: 'up'
     });
   }
 
 
   function handleMoveDown () {
     dispatchPanel({
-      type   : "moved_item_down",
-      itemID : item.id,
-      section: section.title
+      type     : "moved_item",
+      itemID   : item.id,
+      section  : section.title,
+      direction: 'down'
     });
   }
+
 
   const secondaryInput = selectSecondaryInput(section, item, handleSecondaryValueChange);
 
@@ -68,22 +71,11 @@ export default function Item ({ item, section }) {
         onChange={ handleTitleChange } 
       />
       { secondaryInput }
-      <Up 
-        onClick={ handleMoveUp }
-        wrapper="simple-svg-wrapper"
-        title  ="Move item up"
+      <ItemManagement
+        handleMoveUp  ={ handleMoveUp   }
+        handleMoveDown={ handleMoveDown }
+        handleDelete  ={ handleDelete   }
       />
-      <Down
-        onClick={ handleMoveDown }
-        wrapper="simple-svg-wrapper"
-        title  ="Move item down"
-      />
-      <Delete
-        onClick={ handleDelete }
-        wrapper="simple-svg-wrapper"
-        title  ="Delete item - without confirmation"
-      />
-
     </div>
   );
 }

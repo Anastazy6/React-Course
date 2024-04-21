@@ -33,21 +33,58 @@ export default function StandardSectionManagemenent ({
         wrapper={ SVG_WRAPPER   }
         title  ="Add item"
       />
+      <BasicManagement
+        label="section"
+        handleMoveUp  ={ handleMoveUp        }
+        handleMoveDown={ handleMoveDown      }
+        handleDelete  ={ handleDeleteSection }
+      />
+
+    </SectionManagemenent>
+  );
+}
+
+
+export function ItemManagement ({
+  handleMoveDown,
+  handleMoveUp,
+  handleDelete
+}) {
+
+  return (
+    <BasicManagement
+      label         ="item"
+      handleMoveUp  ={ handleMoveUp   }
+      handleMoveDown={ handleMoveDown }
+      handleDelete  ={ handleDelete   }
+    />
+  );
+}
+
+
+function BasicManagement({
+  label,
+  handleMoveUp,
+  handleMoveDown,
+  handleDelete
+}) {
+  return (
+    <>
       <Up
         onClick={ handleMoveUp }
         wrapper={ SVG_WRAPPER  }
-        title  ="Move section up"
+        title  ={`Move ${ label } up` }
       />
       <Down
         onClick={ handleMoveDown }
         wrapper={ SVG_WRAPPER    }
-        title  ="Move section down"
+        title  ={`Move ${ label } down` }
       />
       <Delete
-        onClick={ handleDeleteSection }
-        wrapper={ SVG_WRAPPER         }
-        title  ="Delete section"
+        onClick={ handleDelete }
+        wrapper={ SVG_WRAPPER  }
+        title  ={`Delete ${ label }` }
       />
-    </SectionManagemenent>
-  );
+    </>
+  )
 }

@@ -121,6 +121,8 @@ function StartDate ({ name, date, onChange, label }) {
 }
 
 function EndDate ({ name, date, present, onChange, label }) {
+  present = present ==='false' ? false : present;
+
   return (
     <div>
       <label>

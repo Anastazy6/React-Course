@@ -16,6 +16,7 @@ export default function Locale ({ }) {
   const renderedLocalizations = Object.entries(localizations).map(([key, label]) => {
     return (
       <LocaleInput
+        key     ={ key                }
         onChange={ handleUpdateLocale }
         name    ={ key                }
         value   ={ locale[key] ?? ''  }

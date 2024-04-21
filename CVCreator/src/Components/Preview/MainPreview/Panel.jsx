@@ -25,7 +25,10 @@ function MainPanelPreview ({ }) {
   
   const sections = panel.sections 
   ? panel.sections.map(section => (
-    <Section props={ section } />
+    <Section 
+      props={ section }
+      key  ={ section.id }
+    />
   ))
   : null;
 
@@ -41,14 +44,10 @@ function MainPanelPreview ({ }) {
 
 function Section ({ props }) {
   const mainItems = useMainItems().items;
-
-  //console.log(mainItems);
-
   const sectionItems = findItemsByIds(props.itemsIDs, mainItems);
 
- // console.log(sectionItems);
   const renderedItems = sectionItems
-  ? sectionItems.map(item => <Item props={ item } />)
+  ? sectionItems.map(item => <Item props={ item } key={ item.id } />)
   : null;
 
   return (
