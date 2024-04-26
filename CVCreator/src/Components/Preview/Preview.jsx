@@ -5,11 +5,15 @@ import MainPanel from "./MainPreview/Panel";
 export default function Preview () {
   return (
     <article
-      id="cv-preview"
+      id="cv-preview-wrapper"
     >
-      <TopPanel />
-      <SidePanel />
-      <MainPanel />
+      <div
+        className="cv-preview"
+      >
+        <TopPanel />
+        <SidePanel />
+        <MainPanel />
+      </div>
     </article>
-  )
+  );
 }

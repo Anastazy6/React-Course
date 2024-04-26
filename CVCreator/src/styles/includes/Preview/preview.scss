@@ -1,7 +1,11 @@
 @import '../variables.scss';
 
+#cv-preview-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-#cv-preview {
+.cv-preview {
   width : $a4-width;
   height: $a4-height;
 
