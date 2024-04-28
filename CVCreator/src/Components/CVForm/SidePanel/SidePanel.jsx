@@ -5,9 +5,11 @@ import Section from "./Section";
 export default function SidePanel () {
   const data = useSidePanel();
 
-  const sections = data && data.map(ss => (
+  console.log(data);
+  const sections = data.sections && data.sections.map(ss => (
     <Section
-      key      ={ ss.title    }
+      key      ={ ss.id       }
+      id       ={ ss.id       }
       title    ={ ss.title    }
       type     ={ ss.type     }
       maxLevel ={ ss.maxLevel }

@@ -13,12 +13,22 @@ import { findItemsByIds } from "../../../Util/Util";
 import SectionManagemenent from "../Shared/Management";
 
 
-export default function Section ({ title, type, maxLevel, itemsIDs }) {
+export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
   const dispatchPanel = useSidePanelDispatch();
   const dispatchItems = useSideItemsDispatch();
   const sideItems     = useSideItems();
 
   const thisSection = { title, type, maxLevel };
+  
+  const sectionTypes = [
+    'flat',      // no skill measurement
+    'languages', // measures a skill on an A1 - C2 scale
+    'skills',    // uses stars for skill measuremenet
+    'links',     // has a title and link inputs
+    'object'     // for a title-description stuff 
+  ].map(st => {
+    return <option value={ st } key={ st }>{ st }</option>
+  });
 
 
   const items = findItemsByIds(itemsIDs, sideItems.items);
@@ -33,6 +43,17 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
   ))
   : null;
 
+
+  function handleChangeSectionProperty (e) {
+    const property = e.target.name;
+    const value    = e.target.value;
+
+    dispatchPanel({
+      type    : 'updated_side_section',
+      property: property,
+      value   : value
+    });
+  }
   
   function handleMoveUp () {
     dispatchPanel({
@@ -88,7 +109,33 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
         handleDeleteSection={ handleDeleteSection }
       /> 
 
+      <label>
+        Title
+        <input
+          type    ='text'
+          name    ='title'
+          value   ={ title }
+          onChange={ handleChangeSectionProperty }
+        />
+      </label>
       
+      <label>
+        Type
+        <select
+          name    ='type'
+          value   ={ type }
+          onChange={ handleChangeSectionProperty }
+        >
+          { sectionTypes }
+        </select>
+      </label>
+
+      <LevelsInput
+        type    ={ type          }
+        maxLevel={ maxLevel ?? 7 }
+        onChange={ handleChangeSectionProperty }
+      />
+
       { renderedItems }
 
 
@@ -99,3 +146,20 @@ export default function Section ({ title, type, maxLevel, itemsIDs }) {
 
 
 
+function LevelsInput (type, maxLevel, onChange) {
+  if (!(type) === 'skills') return null;
+  
+    return (
+    <label>
+      Levels
+      <input
+        type    ='number'
+        name    ='maxLevel'
+        value   ={ maxLevel }
+        onChange={ onChange }
+        min     = '2'
+        max     = '10'
+      />
+    </label>
+  );
+}
