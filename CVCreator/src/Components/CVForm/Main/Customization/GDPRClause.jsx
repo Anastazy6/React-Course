@@ -1,7 +1,7 @@
 import {
   useMainPanel,
   useMainPanelDispatch
-} from "../../../Contexts/DataModules/MainPanelProvider";
+} from "../../../../Contexts/DataModules/MainPanelProvider";
 
 
 

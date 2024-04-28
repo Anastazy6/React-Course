@@ -1,9 +1,9 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
-import AddSection from "./AddSection";
-import GDPRClause from "./GDPRClause";
-import Locale from "./Locale";
+import AddSection from "./Section/AddSection";
+import GDPRClause from "./Customization/GDPRClause";
+import Locale from "./Customization/Locale";
 
-import Section from "./Section";
+import Section from "./Section/Section";
 
 export default function MainPanel () {
   const sections = useMainPanel().sections;

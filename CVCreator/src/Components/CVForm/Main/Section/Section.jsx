@@ -1,16 +1,16 @@
 import {
   useMainItems,
   useMainItemsDispatch
-} from "../../../Contexts/DataModules/MainItemsProvider";
+} from "../../../../Contexts/DataModules/MainItemsProvider";
 
 import {
   useMainPanel,
   useMainPanelDispatch
-} from "../../../Contexts/DataModules/MainPanelProvider";
-import { findItemsByIds } from "../../../Util/Util";
+} from "../../../../Contexts/DataModules/MainPanelProvider";
+import { findItemsByIds } from "../../../../Util/Util";
 
-import SectionManagemenent from "../Shared/Management";
-import Item from "./Item";
+import SectionManagemenent from "../../Shared/Management";
+import Item from "../Item/Item";
 
 export default function Section ({ props }) {
   const id    = props.id;

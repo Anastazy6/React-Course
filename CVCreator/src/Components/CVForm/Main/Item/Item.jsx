@@ -1,6 +1,6 @@
-import { useMainPanelDispatch } from '../../../Contexts/DataModules/MainPanelProvider';
-import { useMainItemsDispatch } from '../../../Contexts/DataModules/MainItemsProvider';
-import { ItemManagement } from '../Shared/Management';
+import { useMainPanelDispatch } from '../../../../Contexts/DataModules/MainPanelProvider';
+import { useMainItemsDispatch } from '../../../../Contexts/DataModules/MainItemsProvider';
+import { ItemManagement } from '../../Shared/Management';
 
 import {
   Courses,
