@@ -196,7 +196,7 @@ function selectSecondaryInput (section, item, onChange) {
       );
     }
     default: {
-      console.warn(`No secondary input for Section Type: ${sectionType}.`);
+      console.warn(`No secondary input for Section Type: ${section.type}.`);
       return null;
     }
   }

@@ -30,6 +30,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
     return <option value={ st } key={ st }>{ st }</option>
   });
 
+  console.log("penis " + maxLevel);
 
   const items = findItemsByIds(itemsIDs, sideItems.items);
 
@@ -48,17 +49,19 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
     const property = e.target.name;
     const value    = e.target.value;
 
+    console.log(property);
     dispatchPanel({
       type    : 'updated_side_section',
       property: property,
-      value   : value
+      value   : value,
+      id      : id
     });
   }
   
   function handleMoveUp () {
     dispatchPanel({
       type     : 'moved_section',
-      section  : title,
+      id       : id,
       direction: 'up'
     });
   }
@@ -66,7 +69,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
   function handleMoveDown () {
     dispatchPanel({
       type     : 'moved_section',
-      section  : title,
+      section  : id,
       direction: 'down'
     });
   }
@@ -75,8 +78,8 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
   function handleDeleteSection () {
     const confirmed = confirm("Are you sure? This action cannot be undone.");
     if (confirmed) dispatchPanel({
-      type : 'deleted_side_section',
-      title: title
+      type: 'deleted_side_section',
+      id  : id
     });
   }
   
@@ -90,7 +93,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
 
     dispatchPanel({
       type  : 'added_item_to_section',
-      title : title,
+      id    : id,
       itemID: nextItemId
     });
   }
@@ -146,16 +149,18 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
 
 
 
-function LevelsInput (type, maxLevel, onChange) {
+function LevelsInput ({ type, maxLevel, onChange }) {
   if (!(type) === 'skills') return null;
-  
+ 
+    console.log("kutas " + maxLevel);
+
     return (
     <label>
-      Levels
+      Max level
       <input
         type    ='number'
         name    ='maxLevel'
-        value   ={ maxLevel }
+        value   ={ maxLevel ?? 7 }
         onChange={ onChange }
         min     = '2'
         max     = '10'

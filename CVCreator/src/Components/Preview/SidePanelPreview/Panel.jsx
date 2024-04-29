@@ -8,9 +8,9 @@ import Item from "./Item";
 export default function SidePanelPreview () {
   const sidePanel = useSidePanel();
 
-  const renderedSections = sidePanel.sections.map(section => {
+  const renderedSections = sidePanel.sections && sidePanel.sections.map(section => {
     return <Section
-      key     ={ section.title    }
+      key     ={ section.id       }
       title   ={ section.title    }
       type    ={ section.type     }
       itemsIDs={ section.itemsIDs }

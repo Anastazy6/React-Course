@@ -5,7 +5,7 @@ export default function AddSidePanelSection () {
 
   function handleAddSectionForm () {
     dispatch({
-      type       : 'added_side_section',
+      type: 'added_side_section',
     });
   }
 

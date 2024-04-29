@@ -10,6 +10,8 @@ import { moveItem } from "../../Util/Util";
 const SidePanelContext         = createContext(null);
 const SidePanelDispatchContext = createContext(null);
 
+const DEFAULT_SECTION_TYPE      = 'flat';
+const DEFAULT_SECTION_MAX_LEVEL = 7;
 
 export default function SidePanelProvider ({ children }) {
   const [sidePanel, dispatch] = useReducer(
@@ -44,8 +46,12 @@ function sidePanelReducer (sidePanel, action) {
   switch (action.type) {
     case 'added_side_section': {
       const newSection = {
-        id: sidePanel.nextSectionID,
-        itemsIDs: []
+        id      : sidePanel.nextSectionID,
+        title   : '',
+        secValue: '',
+        itemsIDs: [],
+        type    : DEFAULT_SECTION_TYPE,
+        maxLevel: DEFAULT_SECTION_MAX_LEVEL 
       };
 
       return {

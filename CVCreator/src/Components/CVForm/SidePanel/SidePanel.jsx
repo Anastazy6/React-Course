@@ -8,12 +8,12 @@ export default function SidePanel () {
   console.log(data);
   const sections = data.sections && data.sections.map(ss => (
     <Section
-      key      ={ ss.id       }
-      id       ={ ss.id       }
-      title    ={ ss.title    }
-      type     ={ ss.type     }
-      maxLevel ={ ss.maxLevel }
-      itemsIDs ={ ss.itemsIDs }
+      key      ={ ss.id                 }
+      id       ={ ss.id                 }
+      title    ={ ss.title    ?? ''     }
+      type     ={ ss.type     ?? 'flat' }
+      maxLevel ={ ss.maxLevel ?? 7      }
+      itemsIDs ={ ss.itemsIDs ?? []     }
     />
   ));
 
