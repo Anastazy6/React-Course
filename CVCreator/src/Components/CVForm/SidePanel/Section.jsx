@@ -150,10 +150,8 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
 
 
 function LevelsInput ({ type, maxLevel, onChange }) {
-  if (!(type) === 'skills') return null;
+  if (!(type === 'skills')) return null;
  
-    console.log("kutas " + maxLevel);
-
     return (
     <label>
       Max level
