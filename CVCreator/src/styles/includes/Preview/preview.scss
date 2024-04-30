@@ -14,8 +14,9 @@
   box-shadow: 5px 5px 10px black;
 
   display: grid;
+  gap    : 0 10px;
 
-  grid-template-columns: 4fr 7fr;
+  grid-template-columns: 7fr 15fr;
   grid-template-rows   : min-content 1fr;
   grid-template-areas  :
     'top-panel  top-panel'
