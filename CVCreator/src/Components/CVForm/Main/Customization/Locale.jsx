@@ -10,7 +10,8 @@ export default function Locale ({ }) {
   const dispatch = useMainPanelDispatch();
 
   const localizations = {
-    hasNoEndDate: 'An activity is still present'
+    hasNoEndDate          : 'An activity is still present',
+    institutionPreposition: 'Preposistion used to indicate at which institution you have worked'
   }
 
   const renderedLocalizations = Object.entries(localizations).map(([key, label]) => {
@@ -51,7 +52,9 @@ export default function Locale ({ }) {
 
 function LocaleInput ({ name, value, onChange, label }) {
   return (
-    <label>
+    <label
+      className="break-line-label"
+    >
       { label }
       <input
         type  ="text"

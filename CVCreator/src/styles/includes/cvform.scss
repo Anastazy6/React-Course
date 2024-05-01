@@ -38,3 +38,11 @@ legend {
   width: 100%;
   text-align: center;
 }
+
+.break-line-label {
+  white-space: pre-wrap;
+  max-width: 30rem;
+  display: flex;
+
+  align-items: end;
+}

@@ -47,7 +47,14 @@ function Section ({ props }) {
   const sectionItems = findItemsByIds(props.itemsIDs, mainItems);
 
   const renderedItems = sectionItems
-  ? sectionItems.map(item => <Item props={ item } key={ item.id } />)
+  ? sectionItems.map(item => {
+    const itemProps = { ...item, type: props.type };
+    
+    return <Item
+      props={ itemProps }
+      key  ={ item.id }
+    />
+  })
   : null;
 
   return (

@@ -1,36 +1,116 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
 
 
+
+function isStandardType (type) {
+  const standardTypes = [
+    'Education',
+    'Employment',
+    'Courses'
+  ];
+
+  //console.log(standardTypes, type)
+
+  return standardTypes.includes(type);
+}
+
+
 export default function Item ({ props }) {
-  const data = useMainPanel();
+  const data   = useMainPanel();
   const locale = data.locale ?? {};
-
-
-  const endDate = props.present
-    ? locale.hasNoEndDate ?? ''
-    : props.endDate ?? '';
-
-
 
   return (
     <div
       className="main-panel-item-preview"
     >
-      <div
-        className="main-item-title-preview"
-      >
-        { props.title }
-      </div>
-     
-      <div
-        className="main-item-location-preview"
-      >
-        { props.location }
-      </div>
+      <Title        props={ props } />
+      <FullLocation props={ props } locale={ locale } />
+      <Date         props={ props } locale={ locale } />
+      <Description  props={ props } />
+    </div>
+  );
+}
 
-      <div
-        className="main-item-date-preview"
-      >
+
+function MainPanelSubItem ({ name, children }) {
+  return (
+    <div
+      className={ `main-item-${name}-preview` }
+    >
+      { children }
+    </div>
+  );
+}
+
+
+function Title ({ props }) {
+  // Legal Item types: all. Any item can have a title.
+  if (!props.title) return null;
+
+  return (
+    <MainPanelSubItem
+      name='title'
+    >
+      { props.title }
+    </MainPanelSubItem>
+  )
+}
+
+function Institution ({ props }) {
+   if (!isStandardType(props.type)) return null;
+   if (!props.institution) return null;
+
+   return (
+    <MainPanelSubItem
+      name='institution'
+    >
+      { props.institution }
+    </MainPanelSubItem>
+   );
+}
+
+
+function Location ({ props }) {
+  if (!isStandardType(props.type)) return null;
+  if (!props.location) return null;
+
+  return (
+    <MainPanelSubItem
+      name='location'
+    >
+      { props.location }
+    </MainPanelSubItem>
+  );
+}
+
+function FullLocation ({ props, locale }) {
+  if (!isStandardType(props.type)) return null;
+
+  console.log(locale);
+  const preposition = locale.institutionPreposition ?? '';
+
+  return (
+    <div
+      className="main-panel-full-location-preview"
+    >
+      { preposition } <Institution props={ props }/>,&nbsp;<Location props={ props } />
+    </div>
+  )
+}
+
+
+function Date ({ props, locale }) {
+  if (!isStandardType(props.type)) return null;
+  if (!(props.startDate)) return null;
+
+  const endDate = props.present
+    ? locale.hasNoEndDate ?? ''
+    : props.endDate ?? '';
+
+  return (
+    <MainPanelSubItem
+      name='location'
+    >
         <span
           className="start-date-preview"
         >
@@ -42,14 +122,20 @@ export default function Item ({ props }) {
         >
           { endDate }
         </span>
-      </div>
-      <div
-        className="main-item-description-preview"
-      >
-        { props.description }
-      </div>
+    </MainPanelSubItem>
+  );
+}
 
-      { /* <hr className="main-item-separator" /> */ }
-    </div>
-  )
+
+function Description ({ props }) {
+  // Legal for all item types
+  if (!props.description) return null;
+
+  return (
+    <MainPanelSubItem
+      name='description'
+    >
+      { props.description }
+    </MainPanelSubItem>
+  );
 }
