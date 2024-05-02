@@ -86,14 +86,13 @@ function Location ({ props }) {
 function FullLocation ({ props, locale }) {
   if (!isStandardType(props.type)) return null;
 
-  console.log(locale);
   const preposition = locale.institutionPreposition ?? '';
 
   return (
     <div
-      className="main-panel-full-location-preview"
+      className="main-item-full-location-preview"
     >
-      { preposition } <Institution props={ props }/>,&nbsp;<Location props={ props } />
+      { preposition }&nbsp;<Institution props={ props }/>,&nbsp;<Location props={ props } />
     </div>
   )
 }
@@ -109,7 +108,7 @@ function Date ({ props, locale }) {
 
   return (
     <MainPanelSubItem
-      name='location'
+      name='date'
     >
         <span
           className="start-date-preview"
