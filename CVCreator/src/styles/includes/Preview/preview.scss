@@ -3,11 +3,13 @@
 #cv-preview-wrapper {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .cv-preview {
   width : $a4-width;
-  height: $a4-height;
+  min-height: $a4-height;
+  padding-bottom: 20px;
 
   background-color: $cv-theme-primary-brighter;
   border: 1px solid black;
