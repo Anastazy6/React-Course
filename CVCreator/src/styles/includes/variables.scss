@@ -1,7 +1,7 @@
 $a-format-base: 35rem;
 
 $a4-width : $a-format-base;
-$a4-height: calc(297/210 * $a-format-base);
+$a4-height: 792px; // calc(297/210 * $a-format-base);
 
 $cv-theme-primary: rgb(34, 36, 54);
 $cv-theme-primary-brighter: rgb(51, 54, 81);
