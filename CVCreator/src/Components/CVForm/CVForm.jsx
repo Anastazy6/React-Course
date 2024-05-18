@@ -43,20 +43,21 @@ export default function CVForm () {
     </div>
   );
 }
-function PrintHeightAdjuster () {
 
-  const PRINT_PAGE_HEIGHT = 792; // px, tested for up to 10 pages
+
+function PrintHeightAdjuster () {
 
   function setHeightForPrint () {
     const stuffToPrint = document.querySelector(".print-content");
-    console.log(stuffToPrint);
-
+    const PRINT_PAGE_HEIGHT = parseInt(getComputedStyle(stuffToPrint).minHeight);
+    console.log(PRINT_PAGE_HEIGHT);
     const currentHeight = parseInt(getComputedStyle(stuffToPrint).height);
+    console.log(currentHeight);
+    stuffToPrint.style.height = PRINT_PAGE_HEIGHT // reset current height
     const pages = Math.floor(currentHeight / PRINT_PAGE_HEIGHT) + 1;
+    console.log("Pages: " + pages);
 
-    console.log(currentHeight, pages)
-
-    stuffToPrint.style.minHeight = `${ pages * PRINT_PAGE_HEIGHT }px`;
+    stuffToPrint.style.height = `${ pages * PRINT_PAGE_HEIGHT }px`;
   }
 
 

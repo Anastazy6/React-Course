@@ -1,0 +1,46 @@
+@import './variables';
+
+@media print {
+  html, body {
+    background-color: $cv-theme-primary-brighter;
+
+  //  min-height:100%;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    margin: auto;
+    margin-top: 0px !important;
+  }
+  #user-input-zone {
+    display: none;
+  }
+
+  .cv-preview-wrapper button {
+    display: none;
+  }
+
+
+  @page {
+    margin-top: 200px;
+  }
+
+  .print-content {
+    width  : 210mm;
+    min-height: 297mm;
+    display: grid  !important;
+
+    print-color-adjust        : exact !important;
+    -webkit-print-color-adjust: exact !important;
+    -o-print-color-adjust     : exact !important;
+  }
+
+  .main-panel-item-preview,
+  .side-panel-section {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  footer {
+    page-break-after: avoid;
+  }
+}

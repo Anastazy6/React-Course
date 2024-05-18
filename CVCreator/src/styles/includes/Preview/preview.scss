@@ -1,22 +1,36 @@
 @import '../variables.scss';
 
+
 #cv-preview-wrapper {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 }
 
+@media screen and (min-resolution: 72dpi) {
+  .cv-preview {
+    width : 595px;
+    min-height: 842px;
+  }
+}
+
+@media screen and (min-resolution: 96dpi) {
+  .cv-preview {
+    width : 794px;
+    min-height: 1123px;
+  }    
+}
+
+
 .cv-preview {
-  width : $a4-width;
-  min-height: $a4-height;
   padding-bottom: 20px;
+  overflow-block: paged;
 
   background-color: $cv-theme-primary-brighter;
   border: 1px solid black;
   box-shadow: 5px 5px 10px black;
 
   display: grid;
-  gap    : 0 10px;
 
   grid-template-columns: 7fr 15fr;
   grid-template-rows   : min-content 1fr;

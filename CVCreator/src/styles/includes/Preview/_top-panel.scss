@@ -11,21 +11,23 @@
 #top-panel-preview {
   grid-area: top-panel;
 
-  font-size: 0.75rem;
+  font-size: 1rem;
 
   background-color: $cv-theme-primary;
   color: ghostwhite;
 
   display: grid;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
 
-  grid-template-columns: 12rem 1fr ;
+  grid-template-columns: 7fr 15fr ;
   grid-template-rows   : 1fr;
   grid-template-areas  : 'image text' ;
 
   img {
-    width : 150px;
-    height: 150px;
+    width : 100%;
+    height: auto;
+
+    aspect-ratio: 1;
 
     border: 2px solid $moonlight-II-yellow;
     border-radius: 100%;
@@ -36,7 +38,7 @@
 }
 
 #top-panel-preview-img {
-  padding: 15px;
+  padding: $default-horizontal-padding;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,14 +70,16 @@
       flex-shrink: 0;
     }
   }
+
+  font-size: 1.0rem;
 }
 
 #top-panel-preview-first-name,
 #top-panel-preview-last-name {
-  font-size: 1.1rem;
+  font-size: 1.7rem;
 }
 
 #top-panel-preview-job-title {
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   text-align: center;
 }

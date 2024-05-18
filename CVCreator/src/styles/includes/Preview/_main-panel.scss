@@ -6,33 +6,37 @@
   flex-flow      : column;
   min-height     : max-content;
   justify-content: space-between;
-  padding        : 0 10px 0 5px;
 }
 
 #main-panel-preview {
   flex-grow: 1;
   color: ghostwhite;
-  font-size: 0.8rem;
+  font-size: 1rem;
+}
+
+#main-panel-preview-wrapper > * {
+  padding: 0 $default-horizontal-padding;
+  padding-bottom: $default-vertical-padding;
 }
 
 #gdpr-clause {
   height: fit-content;
   flex-grow: 0;
   color: rgba(248, 248, 255, 0.5); // Ghostwhite with reduced
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   text-align: justify;
-}
-
-.main-panel-section-preview {
 
 }
 
+.main-panel-section-preview > * {
+  padding-bottom: $default-vertical-padding;
+}
 
 .main-section-preview-title {
   h3 {
     color: $moonlight-II-yellow;
-    font-size: 1.15rem;
-    font-weight: normal;
+    font-size: 1.6rem;
+    font-weight: bold;
   }
 }
 
@@ -45,7 +49,7 @@
 
 
 .main-item-title-preview {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
@@ -54,7 +58,7 @@
 }
 
 .main-item-date-preview {
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   color: rgba(248, 248, 255, 0.8)
 }
 
@@ -68,9 +72,7 @@
   font-style: italic;
 }
 
-.main-item-date-preview {
-  font-size: 0.6rem;
-}
+
 
 .main-item-full-location-preview {
   display: inline-flex;

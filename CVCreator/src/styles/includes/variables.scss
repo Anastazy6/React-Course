@@ -1,7 +1,5 @@
-$a-format-base: 35rem;
-
-$a4-width : $a-format-base;
-$a4-height: 792px; // calc(297/210 * $a-format-base);
+$default-vertical-padding  : 0.8rem;
+$default-horizontal-padding: 1.5rem;
 
 $cv-theme-primary: rgb(34, 36, 54);
 $cv-theme-primary-brighter: rgb(51, 54, 81);
