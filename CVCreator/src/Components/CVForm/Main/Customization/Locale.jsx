@@ -11,7 +11,8 @@ export default function Locale ({ }) {
 
   const localizations = {
     hasNoEndDate          : 'An activity is still present',
-    institutionPreposition: 'Preposistion used to indicate at which institution you have worked'
+    institutionPreposition: 'Preposistion used to indicate at which institution you have worked',
+    nativeLanguage        : 'Adjective used to describe a language as your native'
   }
 
   const renderedLocalizations = Object.entries(localizations).map(([key, label]) => {

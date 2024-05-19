@@ -1,5 +1,5 @@
 import { EmptyStar, FullStar } from "../../../assets/SVG/Stars";
-
+import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
 
 export default function Item ({ item, type, maxLevel }) {
   const title          = pickTitleStyle(type, item.title, item.secValue);
@@ -35,13 +35,21 @@ function pickTitleStyle (type, title, secValue) {
 
 
 function pickSecondaryValueStyle (type, secValue, maxLevel) {
+  const locale = useMainPanel().locale ?? null;
+  const nativeLanguage = locale && locale.nativeLanguage || 'Native';
+
+
   if (type === 'flat') return null;
 
-  if (type === 'languages') return (
-    <LangLevel 
-      level={ secValue }
-    />
-  );
+  if (type === 'languages') {
+    const languageLevel = secValue === 'Native' ? nativeLanguage : secValue;
+    return (
+      <LangLevel 
+        level={ languageLevel }
+      />
+    );
+  }
+
 
   if (type === 'skills') return (
     <StarLevel

@@ -30,8 +30,6 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
     return <option value={ st } key={ st }>{ st }</option>
   });
 
-  console.log("penis " + maxLevel);
-
   const items = findItemsByIds(itemsIDs, sideItems.items);
 
   const renderedItems = items
@@ -49,7 +47,6 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
     const property = e.target.name;
     const value    = e.target.value;
 
-    console.log(property);
     dispatchPanel({
       type    : 'updated_side_section',
       property: property,

@@ -1,6 +1,6 @@
 @import "../variables.scss";
 
-$side-panel-h3-size: 1.2rem;
+$side-panel-h3-size: 1.4rem;
 
 #side-panel-preview-wrapper {
   grid-area: side-panel;
@@ -24,7 +24,7 @@ $side-panel-h3-size: 1.2rem;
 
   h3 {
     text-align : center;
-    font-weight: normal;
+    font-weight: bold;
   }
 }
 

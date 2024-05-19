@@ -18,7 +18,9 @@ export default function MainPanelProvider ({ children }) {
       sections: [],
       clause: '',
       locale: {
-        hasNoEndDate: 'present'
+        hasNoEndDate          : 'present',
+        institutionPreposition: 'at',
+        nativeLanguage        : 'Native'
       }
     }
   );

@@ -5,7 +5,6 @@ import Section from "./Section";
 export default function SidePanel () {
   const data = useSidePanel();
 
-  console.log(data);
   const sections = data.sections && data.sections.map(ss => (
     <Section
       key      ={ ss.id                 }
