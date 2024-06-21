@@ -14,21 +14,15 @@ const iconsMap = {
 const unlabelled = [
   'First name',
   'Last name',
-  'Job title'
+  'Job title',
+  'Full name'
 ]
 
 
 export default function TopPanel () {
-  const data     = useTopPanel();
+  const data = useTopPanel();
   const portrait = getPortraitIfUploaded();
-
-
-  let renderedElements = data
-  ? Object.entries(data).map(([key, value]) => {   
-      return createTopPanelElement(key, value);
-    })
-  : null;
-  
+  const renderedElements = renderData(data);
 
   let renderedPhoto = portrait 
   ? <img 
@@ -57,6 +51,25 @@ export default function TopPanel () {
   )
 }
 
+
+function renderData (data) {
+
+  if (data) {
+    let renderedElements = Object.entries(data).map(([key, value]) => {
+      if (['First name', 'Last name'].includes(key)) return;
+
+      return createTopPanelElement(key, value);
+    });
+    const renderedName = createTopPanelElement('Full name', `${data['First name']} ${data['Last name']}`)
+    renderedElements = [ 
+      ...renderedElements,
+      renderedName
+    ]
+
+    return renderedElements;
+  }  
+  return null;
+}
 
 
 function createTopPanelElement (key, value) {

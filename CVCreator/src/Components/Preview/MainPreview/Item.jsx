@@ -83,16 +83,19 @@ function Location ({ props }) {
   );
 }
 
+
+
 function FullLocation ({ props, locale }) {
   if (!isStandardType(props.type)) return null;
 
   const preposition = locale.institutionPreposition ?? '';
+  const separator = props.institution && props.location ? <span>,&nbsp;</span> : null;
 
   return (
     <div
       className="main-item-full-location-preview"
     >
-      { preposition }&nbsp;<Institution props={ props }/>,&nbsp;<Location props={ props } />
+      { preposition }&nbsp;<Institution props={ props }/>{ separator }<Location props={ props } />
     </div>
   )
 }

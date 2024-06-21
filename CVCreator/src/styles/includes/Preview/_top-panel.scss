@@ -1,12 +1,11 @@
-#top-panel-preview-img        { grid-area: image;   }
-#top-panel-preview-text       { grid-area: text;    }
-#top-panel-preview-first-name { grid-area: first;   }
-#top-panel-preview-last-name  { grid-area: last;    }
-#top-panel-preview-job-title  { grid-area: title;   }
-#top-panel-preview-email      { grid-area: email;   }
-#top-panel-preview-phone      { grid-area: phone;   }
-#top-panel-preview-address    { grid-area: address; }
-#top-panel-preview-country    { grid-area: country; }
+#top-panel-preview-img       { grid-area: image;   }
+#top-panel-preview-text      { grid-area: text;    }
+#top-panel-preview-full-name { grid-area: name;    }
+#top-panel-preview-job-title { grid-area: title;   }
+#top-panel-preview-email     { grid-area: email;   }
+#top-panel-preview-phone     { grid-area: phone;   }
+#top-panel-preview-address   { grid-area: address; }
+#top-panel-preview-country   { grid-area: country; }
 
 #top-panel-preview {
   grid-area: top-panel;
@@ -48,12 +47,16 @@
   display: grid;
   padding: 15px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows   : 1fr 1fr 1fr 1fr;
+  grid-template-rows   : 
+    clamp(3rem, fit-content, 5rem) 
+    clamp(3rem, fit-content, 5rem) 
+    clamp(2rem, fit-content, 3rem)
+    clamp(2rem, fit-content, 3rem);
   grid-template-areas  :
-    'first   last   '
+    'name    name   '
     'title   title  '
-    'email   phone  '
-    'address country';
+    'email   address'
+    'phone   country';
 }
 
 .top-panel-element {
@@ -74,12 +77,10 @@
   font-size: 1.0rem;
 }
 
-#top-panel-preview-first-name,
-#top-panel-preview-last-name {
-  font-size: 1.7rem;
-}
-
+#top-panel-preview-full-name,
 #top-panel-preview-job-title {
   font-size: 1.7rem;
-  text-align: center;
+  justify-content: center;
+  position: relative;
+  right: 1rem;
 }
