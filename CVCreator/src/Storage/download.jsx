@@ -7,7 +7,7 @@ const PDF_CONVERSION_CONTENT = document.getElementById('side-panel-preview-wrapp
 
 export default function DownloadButton ({ }) {
   function handleClick (e) {
-    alert("Not yet implemented!");
+    alert("Use right 'click->print' or 'ctrl+p' and then pick 'save as pdf' in the target device");
   }
 
   
