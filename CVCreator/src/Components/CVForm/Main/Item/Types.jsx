@@ -49,6 +49,23 @@ export function Courses ({ item, onChange, onToggleMarkdown }) {
   );
 }
 
+export function Projects ({ item, onChange, onToggleMarkdown }) {
+  return (
+    <>
+      <GeneralInformation
+        item    ={ item     }
+        onChange={ onChange }
+        onToggleMarkdown={ onToggleMarkdown }
+      />
+      <StandaloneHyperLink
+        url  ={ item.linkUrl  ?? '' }
+        title={ item.linkName ?? '' }
+        onChange={ onChange }
+      />
+    </>
+  );
+}
+
 
 export function GeneralInformation ({ item, onChange, onToggleMarkdown }) {
   return (
@@ -166,10 +183,12 @@ function LongText ({ name="description", value, onChange, label="Description" })
 function SupportMarkdown ({ value, onChange }) {
   return (
     <label>
-      Use markdown for descripion
+      <span style={{opacity: 0.5}}>Use markdown for descripion (not yet implemented)</span>
       <input
         type    ='checkbox'
         name    ='markdown'
+        disabled
+        title   ='Attention: this is a placeholder for an unimplemented feature'
         checked ={ value    }
         onChange={ onChange }
       />
@@ -232,3 +251,26 @@ function StandardItem({ labels, item, onChange, onToggleMarkdown }) {
   );
 }
 
+
+function StandaloneHyperLink ({url, title, onChange }) {
+  return (
+    <>
+      <label>
+        Link url
+        <input
+          type    ='url'
+          name    ='linkUrl'
+          onChange={ onChange }
+          value   ={ url ?? '' }
+        />
+      </label>
+
+      <ShortText
+        name    ='linkName'
+        label   ="Link name"
+        value   ={ title ?? '' }
+        onChange={ onChange }
+      />
+    </>
+  )
+}

@@ -6,7 +6,8 @@ import {
   Courses,
   Education,
   Employment,
-  GeneralInformation
+  GeneralInformation,
+  Projects
 } from './Types';
 
 export default function Item ({ item, sectionType, sectionID }) {
@@ -103,6 +104,15 @@ function inputPicker (type, item, onChange, onToggleMarkdown) {
     case 'Courses': {
       return (
         <Courses
+          item            ={ item             }
+          onChange        ={ onChange         }
+          onToggleMarkdown={ onToggleMarkdown }
+        />
+      );
+    }
+    case 'Projects': {
+      return (
+        <Projects
           item            ={ item             }
           onChange        ={ onChange         }
           onToggleMarkdown={ onToggleMarkdown }

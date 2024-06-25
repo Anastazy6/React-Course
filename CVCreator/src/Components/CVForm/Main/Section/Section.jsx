@@ -135,6 +135,7 @@ function Type ({ value, onChange }) {
     'Education',
     'Courses',
     'General information',
+    'Projects',
     'Other'
   ].map(o => (
     <option

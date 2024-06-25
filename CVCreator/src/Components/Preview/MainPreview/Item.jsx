@@ -27,6 +27,7 @@ export default function Item ({ props }) {
       <FullLocation props={ props } locale={ locale } />
       <Date         props={ props } locale={ locale } />
       <Description  props={ props } />
+      <HyperLink    props={ props } />
     </div>
   );
 }
@@ -98,6 +99,19 @@ function FullLocation ({ props, locale }) {
       { preposition }&nbsp;<Institution props={ props }/>{ separator }<Location props={ props } />
     </div>
   )
+}
+
+
+function HyperLink ({ props }) {
+  if (!(props.linkName)) return null;
+
+  return (
+    <div
+      className="main-item-link"
+    >
+      <a href={ props.linkUrl }>{ props.linkName }</a>
+    </div>
+  );
 }
 
 
