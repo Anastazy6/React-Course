@@ -67,3 +67,11 @@ function moveDown (itemContainer, itemIndex) {
 
    return itemContainer;
 }
+/**
+ * Replaces white space following a single-letter word with non-breaking white space
+ *   so that single-letter words are moved into next line instead of hanging at the end.
+ * @param {String} text 
+ */
+export function enforceCleanLineBreak (text) {
+  return text.replace(/ ([a-zA-z]) /g, ' $1' + '\u00A0');
+}

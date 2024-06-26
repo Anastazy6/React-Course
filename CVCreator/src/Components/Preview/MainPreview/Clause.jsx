@@ -1,4 +1,5 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
+import { enforceCleanLineBreak } from "../../../Util/Util";
 
 
 export default function GDPRClause ({ }) {
@@ -9,7 +10,7 @@ export default function GDPRClause ({ }) {
   ? <footer
     id="gdpr-clause"
     >
-      { clause }
+      { enforceCleanLineBreak(clause) }
     </footer>
   : null;
 

@@ -1,5 +1,5 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
-
+import { enforceCleanLineBreak } from "../../../Util/Util";
 
 
 function isStandardType (type) {
@@ -151,7 +151,7 @@ function Description ({ props }) {
     <MainPanelSubItem
       name='description'
     >
-      { props.description }
+      { enforceCleanLineBreak(props.description) }
     </MainPanelSubItem>
   );
 }
