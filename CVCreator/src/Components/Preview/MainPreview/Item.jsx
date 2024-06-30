@@ -90,13 +90,13 @@ function FullLocation ({ props, locale }) {
   if (!isStandardType(props.type)) return null;
 
   const preposition = locale.institutionPreposition ?? '';
-  const separator = props.institution && props.location ? <span>,&nbsp;</span> : null;
+  const separator = props.institution && props.location ? <span>, </span> : null;
 
   return (
     <div
       className="main-item-full-location-preview"
     >
-      { preposition }&nbsp;<Institution props={ props }/>{ separator }<Location props={ props } />
+      { preposition } <Institution props={ props }/>{ separator }<Location props={ props } />
     </div>
   )
 }

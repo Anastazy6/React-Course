@@ -41,6 +41,9 @@ function filesReducer (files, action) {
     case 'uploaded_file': {
       return saveUploadedFile(files, name, newFile);
     }
+    case 'removed_file': {
+      return Object.keys(files).filter(fileName => fileName !== action.name);
+    }
     case 'loaded_data': {
       return { ...action.data };
     }

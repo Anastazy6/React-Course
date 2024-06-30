@@ -18,6 +18,13 @@ export default function FileInput ({ name, accept }) {
     });
   }
 
+  function handleClearFile (e) {
+    dispatch({
+      type: 'removed_file',
+      name: name
+    });
+  }
+
   return (
     <label>
       { name }
@@ -28,6 +35,10 @@ export default function FileInput ({ name, accept }) {
         onChange = { handleChange }
         accept   = { accept }
       />
+      <button
+        role='button'
+        onClick={ handleClearFile }
+      >Clear</button>
     </label>
   );
 }

@@ -21,7 +21,15 @@
 
 
   @page {
-    margin-top: 200px;
+    size: A4;
+    margin: 0;
+    padding: 1cm 0 1cm 0;
+    html {
+      background: $cv-theme-primary-brighter;
+    };
+  }
+  @page:first {
+    margin-top: 0;
   }
 
   .print-content {

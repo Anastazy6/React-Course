@@ -25,10 +25,14 @@ export default function TopPanel () {
   const renderedElements = renderData(data);
 
   let renderedPhoto = portrait 
-  ? <img 
-      src={ portrait } 
-      alt={ `${data['First name']} ${data['Last name']} photo` }   
-    />
+  ? <div
+      id ='top-panel-preview-img'
+    >
+      <img 
+        src={ portrait } 
+        alt={ `${data['First name']} ${data['Last name']} photo` }   
+      />
+    </div>
   : null;
   
 
@@ -42,11 +46,7 @@ export default function TopPanel () {
         { renderedElements }
       </div>
 
-      <div
-        id ='top-panel-preview-img'
-      >
         { renderedPhoto    }
-      </div>
     </section>
   )
 }
