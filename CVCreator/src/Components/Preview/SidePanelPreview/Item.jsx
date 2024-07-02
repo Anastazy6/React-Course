@@ -1,5 +1,6 @@
 import { EmptyStar, FullStar } from "../../../assets/SVG/Stars";
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
+import { isHttpLink } from "../../../Util/Util";
 
 export default function Item ({ item, type, maxLevel }) {
   const title          = pickTitleStyle(type, item.title, item.secValue);
@@ -75,10 +76,15 @@ function Title ({ title }) {
 }
 
 function Link ({ title, href }) {
+  const httpLink = isHttpLink(href)
+    ? href
+    : `http://${ href }`;
+
+
   return (
     <div className="side-item-title linked-title">
       <a 
-        href={`http://${ href }`}
+        href={ httpLink }
       >
         { title }
       </a>

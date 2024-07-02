@@ -22,7 +22,6 @@ const unlabelled = [
 export default function TopPanel () {
   const data = useTopPanel();
   const portrait = getPortraitIfUploaded();
-  const renderedElements = renderData(data);
 
   let renderedPhoto = portrait 
   ? <div
@@ -43,7 +42,9 @@ export default function TopPanel () {
       <div
         id="top-panel-preview-text"
       >
-        { renderedElements }
+        <PrimaryData   data={ data } />
+        <SecondaryData data={ data } />
+
       </div>
 
         { renderedPhoto    }
@@ -52,23 +53,53 @@ export default function TopPanel () {
 }
 
 
-function renderData (data) {
-
+function SecondaryData ({ data }) {
+  const primaryDataKeys = [
+    'First name',
+    'Last name',
+    'Job title'
+  ];
+  
   if (data) {
-    let renderedElements = Object.entries(data).map(([key, value]) => {
-      if (['First name', 'Last name'].includes(key)) return;
-
-      return createTopPanelElement(key, value);
+    const secondaryData = Object.entries(data).filter(([key, value]) => {
+      return !(primaryDataKeys.includes(key));
     });
-    const renderedName = createTopPanelElement('Full name', `${data['First name']} ${data['Last name']}`)
-    renderedElements = [ 
-      ...renderedElements,
-      renderedName
-    ]
+     
+    console.log(secondaryData);
 
-    return renderedElements;
+    const renderedElements = Object.values(secondaryData).map(pair => {
+      
+      return createTopPanelElement(pair[0], pair[1]);
+    })
+
+    return (
+      <div
+        id="top-panel-secondary-data"
+      >
+        { renderedElements }
+      </div>
+    );
   }  
   return null;
+}
+
+
+function PrimaryData ({ data }) {
+  if (data) {
+    const firstName = data['First name'] || '';
+    const lastName  = data['Last name']  || '';
+    const fullName = createTopPanelElement('Full name', `${ firstName } ${ lastName }`)
+    const jobTitle = createTopPanelElement('Job title', data['Job title']);
+
+    return (
+      <div
+        id="top-panel-primary-data"
+      >
+        { fullName }
+        { jobTitle }
+      </div>
+    )
+  }
 }
 
 

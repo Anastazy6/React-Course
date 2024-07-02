@@ -75,3 +75,8 @@ function moveDown (itemContainer, itemIndex) {
 export function enforceCleanLineBreak (text) {
   return text.replace(/ ([a-zA-z]) /g, ' $1' + '\u00A0');
 }
+
+
+export function isHttpLink (url) {
+  return url.startsWith('http://') || url.startsWith('https://');
+}

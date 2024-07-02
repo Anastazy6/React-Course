@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 #top-panel-preview-img       { grid-area: image;   }
 #top-panel-preview-text      { grid-area: text;    }
 #top-panel-preview-full-name { grid-area: name;    }
@@ -15,13 +17,16 @@
   background-color: $cv-theme-primary;
   color: ghostwhite;
 
-  display: grid;
   margin-bottom: 1rem;
-  min-height: 200px;
+  min-height: 220px;
 
-  grid-template-columns: 7fr 15fr ;
-  grid-template-rows   : 1fr;
-  grid-template-areas  : 'image text' ;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  // display: grid;
+  // grid-template-columns: 7fr 15fr ;
+  // grid-template-rows   : 1fr;
+  // grid-template-areas  : 'image text' ;
 
   img {
     width : 100%;
@@ -42,22 +47,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  flex: 33%;
+  order: 0;
 }
 
 #top-panel-preview-text {
-  display: grid;
+  max-width: $top-panel-text-width;
+  display: flex;
   padding: 15px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows   : 
-    clamp(3rem, fit-content, 5rem) 
-    clamp(3rem, fit-content, 5rem) 
-    clamp(2rem, fit-content, 3rem)
-    clamp(2rem, fit-content, 3rem);
-  grid-template-areas  :
-    'name    name   '
-    'title   title  '
-    'email   address'
-    'phone   country';
+  flex-direction: column;
+  justify-content: center;
+
+  order: 1;
+}
+
+#top-panel-primary-data {
+  flex-grow: 0.3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#top-panel-secondary-data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 0.3;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-around;
+
+  div {
+    flex: 50%;
+  }
 }
 
 .top-panel-element {
