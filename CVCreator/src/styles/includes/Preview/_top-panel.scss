@@ -75,12 +75,16 @@
   flex-direction: row;
   flex-wrap: wrap;
   flex-grow: 0.3;
+  column-gap: 10px;
   align-content: stretch;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
 
-  div {
-    flex: 50%;
+  .top-panel-element {
+    flex: 48%;
+    border-bottom: 1px solid $moonlight-II-yellow;
+    align-items: flex-end;
+    padding-bottom: 5px;
   }
 }
 
@@ -92,6 +96,8 @@
   gap: 5px;
 
   svg {
+    position: relative;
+    bottom: 3px;
     flex-shrink: 0;
 
     path {

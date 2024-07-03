@@ -77,6 +77,16 @@ export function SaveButton () {
   )
 }
 
+export function DownloadDataButton () {
+  return (
+    <button
+      role='btn'
+      onClick={ downloadLocalStorageData }
+    >
+      Download data
+    </button>
+  )
+}
 
 export function LoadButton () {
   const dispatches = [
@@ -107,4 +117,23 @@ export function LoadButton () {
       Load data from local storage
     </button>
   )
+}
+
+
+function downloadLocalStorageData () {
+  const data = Object.keys(localStorage).reduce((obj, k) => (
+    { ...obj,
+      [k]: JSON.parse(localStorage.getItem(k))
+    }), {}
+  );
+
+  const stringifiedData = JSON.stringify(data, null, 2);
+  const fakeAnchor = document.createElement('a');
+  const dataType = 'data:application/JSON';
+  const encodedURIComponent = encodeURIComponent(stringifiedData)
+
+  return Object.assign(fakeAnchor, {
+    href: `${ dataType }, ${ encodedURIComponent }`,
+    download: "localStorageData"
+  }).click();
 }

@@ -40,12 +40,24 @@ export function Courses ({ item, onChange, onToggleMarkdown }) {
   };
 
   return (
+    <>
+    <label>
+      Course URL
+      <input
+        type    ='url'
+        name    ='itemUrl'
+        onChange={ onChange }
+        value   ={ item.itemUrl ?? ''}
+      />
+    </label>
     <StandardItem
       labels  ={ labels   }
       item    ={ item     }
       onChange={ onChange }
       onToggleMarkdown={ onToggleMarkdown }
     />
+
+  </>
   );
 }
 

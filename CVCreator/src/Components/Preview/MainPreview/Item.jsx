@@ -1,5 +1,5 @@
 import { useMainPanel } from "../../../Contexts/DataModules/MainPanelProvider";
-import { enforceCleanLineBreak } from "../../../Util/Util";
+import { enforceCleanLineBreak, isHttpLink } from "../../../Util/Util";
 
 
 function isStandardType (type) {
@@ -52,7 +52,10 @@ function Title ({ props }) {
     <MainPanelSubItem
       name='title'
     >
-      { props.title }
+      <EmbeddedItemUrl
+        text={ props.title   ?? ''   }
+        url ={ props.itemUrl ?? null }
+      />
     </MainPanelSubItem>
   )
 }
@@ -89,7 +92,7 @@ function Location ({ props }) {
 function FullLocation ({ props, locale }) {
   if (!isStandardType(props.type)) return null;
 
-  const preposition = locale.institutionPreposition ?? '';
+  const preposition = (props.type !== 'Courses' && locale.institutionPreposition) ?? '';
   const separator = props.institution && props.location ? <span>, </span> : null;
 
   return (
@@ -153,5 +156,17 @@ function Description ({ props }) {
     >
       { enforceCleanLineBreak(props.description) }
     </MainPanelSubItem>
+  );
+}
+
+function EmbeddedItemUrl ({ text, url }) {
+  if (!url) return text;
+
+  const httpUrl = isHttpLink(url)
+  ? url
+  : `http://${ url }`;
+
+  return (
+    <a href={ httpUrl }>{ text }</a>
   );
 }

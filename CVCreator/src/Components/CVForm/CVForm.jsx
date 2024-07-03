@@ -4,7 +4,8 @@ import TopPanel  from "./TopPanel/TopPanel";
 import { 
   LogDataButton,
   LoadButton,
-  SaveButton
+  SaveButton,
+  DownloadDataButton
 } from '../../Storage/storage';
 import MainPanel from "./Main/Main";
 import DownloadButton from "../../Storage/download";
@@ -39,6 +40,7 @@ export default function CVForm () {
         <SaveButton />
         <LoadButton />
         <DownloadButton />
+        <DownloadDataButton />
       </div>
     </div>
   );
