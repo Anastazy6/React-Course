@@ -36,11 +36,15 @@ export default function CVForm () {
       <div
         id="local-storage-controls"
       >
-        <LogDataButton />
-        <SaveButton />
-        <LoadButton />
-        <DownloadButton />
-        <DownloadDataButton />
+        <div
+          id='storage-buttons'
+        >
+          <LogDataButton />
+          <SaveButton />
+          <LoadButton />
+          <DownloadButton />
+          <DownloadDataButton />
+        </div>
       </div>
     </div>
   );

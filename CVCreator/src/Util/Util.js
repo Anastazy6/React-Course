@@ -76,7 +76,17 @@ export function enforceCleanLineBreak (text) {
   return text.replace(/ ([a-zA-z]) /g, ' $1' + '\u00A0');
 }
 
-
+/**
+ * Attention: this funcion does NOT validate whether a url is a valid url at all,
+ *   it just checks if it starts with http(s) protocol. Possible TODO: full validation
+ * @param {valid url} url 
+ * @returns whether the url uses http or https protocol
+ */
 export function isHttpLink (url) {
   return url.startsWith('http://') || url.startsWith('https://');
+}
+
+
+export function enforceHttpProtocol (url) {
+  return isHttpLink(url) ? url : `http://${ url }`;
 }
