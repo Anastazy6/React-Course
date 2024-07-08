@@ -1,11 +1,4 @@
-import { useFiles,     useFilesDispatch     } from "../Contexts/DataModules/FilesProvider";
-import { useTopPanel,  useTopPanelDispatch  } from "../Contexts/DataModules/TopPanelProvider";
-import { useSideItems, useSideItemsDispatch } from "../Contexts/DataModules/SideItemsProvider";
-import { useSidePanel, useSidePanelDispatch } from "../Contexts/DataModules/SidePanelProvider";
-import { useMainPanel, useMainPanelDispatch } from "../Contexts/DataModules/MainPanelProvider";
-import { useMainItems, useMainItemsDispatch } from "../Contexts/DataModules/MainItemsProvider";
-
-
+import ContextsGrouper from "../Contexts/ContextsGrouper";
 
 export function saveData (data, name) {
   const serializedData = JSON.stringify(data);
@@ -15,14 +8,7 @@ export function saveData (data, name) {
 
 
 export function loadData () {
-  const groups = [
-    'files',
-    'topPanel',
-    'sideItems',
-    'sidePanel',
-    'mainPanel',
-    'mainItems'
-  ];
+  const groups = ContextsGrouper.contexts.map(context => context.group);
 
   const data = {}
   
@@ -71,14 +57,9 @@ export function ClearDataButton () {
 
 
 export function SaveButton () {
-  const contexts = [
-    [useFiles(),     'files'    ],
-    [useTopPanel(),  'topPanel' ],
-    [useSideItems(), 'sideItems'],
-    [useSidePanel(), 'sidePanel'],
-    [useMainPanel(), 'mainPanel'],
-    [useMainItems(), 'mainItems']
-  ];
+  const contexts = ContextsGrouper.contexts.map(
+    context =>  [context.context(), context.group]
+  );
 
   function saveToLocalStorage () {
     contexts.forEach(context => {
@@ -111,14 +92,9 @@ export function DownloadDataButton () {
 }
 
 export function LoadButton () {
-  const dispatches = [
-    [useFilesDispatch(),     'files'    ],
-    [useTopPanelDispatch(),  'topPanel' ],
-    [useSideItemsDispatch(), 'sideItems'],
-    [useSidePanelDispatch(), 'sidePanel'],
-    [useMainPanelDispatch(), 'mainPanel'],
-    [useMainItemsDispatch(), 'mainItems']
-  ];
+  const dispatches = ContextsGrouper.contexts.map(
+    context => [context.dispatch(), context.group]
+  );
 
   function loadStateFromLocalStorage () {
     const data = loadData();
@@ -155,6 +131,9 @@ export function LoadButton () {
     </button>
   )
 }
+
+
+
 
 
 function downloadLocalStorageData () {
@@ -231,4 +210,14 @@ function saveUploadedData (data) {
 function loadDataFromLocalStorage () {
   const loadButton = document.getElementById('load-from-local-storage-button');
   loadButton.click();
+}
+
+function serialize (cvData) {
+  const data = Object.keys(localStorage).reduce((obj, k) => (
+    { ...obj,
+      [k]: JSON.parse(localStorage.getItem(k))
+    }), {}
+  );
+
+  const stringifiedData = JSON.stringify(data, null, 2);
 }

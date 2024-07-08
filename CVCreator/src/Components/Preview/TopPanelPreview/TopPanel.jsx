@@ -65,8 +65,6 @@ function SecondaryData ({ data }) {
       return !(primaryDataKeys.includes(key));
     });
      
-    console.log(secondaryData);
-
     const renderedElements = Object.values(secondaryData).map(pair => {
       
       return createTopPanelElement(pair[0], pair[1]);
