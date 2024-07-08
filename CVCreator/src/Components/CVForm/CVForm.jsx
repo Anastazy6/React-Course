@@ -1,17 +1,9 @@
 import SidePanel from "./SidePanel/SidePanel";
 import TopPanel  from "./TopPanel/TopPanel";
 
-import { 
-  LogDataButton,
-  LoadButton,
-  SaveButton,
-  DownloadDataButton,
-  UploadButton,
-  uploadData,
-  ClearDataButton
-} from '../../Storage/storage';
+import * as Storage from '../../Storage/buttons';
 import MainPanel from "./Main/Main";
-import DownloadButton from "../../Storage/download";
+import { uploadData } from "../../Storage/helpers";
 
 
 export default function CVForm () {
@@ -49,13 +41,12 @@ export default function CVForm () {
         <div
           id='storage-buttons'
         >
-          <LogDataButton />
-          <SaveButton />
-          <LoadButton />
-          <DownloadButton />
-          <DownloadDataButton />
-          <UploadButton />
-          <ClearDataButton />
+          <Storage.LogDataButton />
+          <Storage.SaveButton />
+          <Storage.LoadButton />
+          <Storage.DownloadDataButton />
+          <Storage.UploadButton />
+          <Storage.ClearDataButton />
         </div>
       </div>
     </div>
