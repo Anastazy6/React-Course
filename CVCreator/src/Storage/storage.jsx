@@ -48,6 +48,28 @@ export function LogDataButton () {
 }
 
 
+export function ClearDataButton () {
+  function handleClick () {
+    const confirmed = confirm("Are you sure? This operation is about to clear all your CV data.");
+    if (confirmed) { 
+      localStorage.clear();
+      alert("CV data cleared!")
+    } else {
+      alert("Operation aborted, CV data remains intact.");
+    }
+  }
+
+  return (
+    <button
+      role='btn'
+      onClick={ handleClick }
+    >
+      Clear CV data
+    </button>
+  );
+}
+
+
 export function SaveButton () {
   const contexts = [
     [useFiles(),     'files'    ],
@@ -98,21 +120,36 @@ export function LoadButton () {
     [useMainItemsDispatch(), 'mainItems']
   ];
 
-  function loadFromLocalStorage () {
+  function loadStateFromLocalStorage () {
     const data = loadData();
-
-    dispatches.forEach(([dispatch, group]) => {
-      dispatch({
-        type: 'loaded_data',
-        data: data[group]
+    let errorCounter = 0;
+    try {
+      dispatches.forEach(([dispatch, group]) => {
+        if (data[group]) {
+          dispatch({
+            type: 'loaded_data',
+            data: data[group]
+          });
+        } else {
+          errorCounter++;
+          console.warn(`Couldn't find data for ${ group } in localStorage`);
+        }
       });
-    });
+    } catch (e) {
+      alert("Couldn't load data from local storage");
+      console.error(e);
+    } finally {
+      if (errorCounter > 0) {
+        alert(`Couldn't load data for ${ errorCounter } of ${ dispatches.length } data groups`);
+      }
+    }
   }
  
   return (
     <button
       role='btn'
-      onClick={ loadFromLocalStorage }
+      id  ='load-from-local-storage-button'
+      onClick={ loadStateFromLocalStorage }
     >
       Load data from local storage
     </button>
@@ -136,4 +173,62 @@ function downloadLocalStorageData () {
     href: `${ dataType }, ${ encodedURIComponent }`,
     download: "localStorageData"
   }).click();
+}
+
+export function UploadButton () {
+  function openDialogMenu () {
+    const fileInput = document.getElementById('local-storage-upload');
+    fileInput.click();
+  }
+  
+  return (
+    <button
+      role='btn'
+      onClick={ openDialogMenu }
+    >
+      Upload data
+    </button>
+  );
+}
+
+
+
+export function uploadData () {  
+  const fileInput  = document.getElementById('local-storage-upload');
+  const uploadedFile = fileInput.files[0]
+
+  const reader = new FileReader;
+  reader.onload = e => {
+    saveUploadedData(e.target.result);
+    loadDataFromLocalStorage();
+  }
+
+  reader.readAsText(uploadedFile);
+}
+
+
+
+
+function saveUploadedData (data) {
+   try {
+      try {
+        JSON.parse(data);
+        localStorage.clear();
+      } catch {
+        console.warn('Aborting before clearing local storage');
+      }
+      Object.entries(JSON.parse(data)).map(([key, value]) => {
+        const stringifiedValue = JSON.stringify(value);
+        localStorage.setItem(key, stringifiedValue);
+      });
+    } catch {
+      console.warn('An error occured during uploading data to localStorage.')
+      console.log(localStorage);
+    }
+}
+
+
+function loadDataFromLocalStorage () {
+  const loadButton = document.getElementById('load-from-local-storage-button');
+  loadButton.click();
 }

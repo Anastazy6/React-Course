@@ -5,7 +5,10 @@ import {
   LogDataButton,
   LoadButton,
   SaveButton,
-  DownloadDataButton
+  DownloadDataButton,
+  UploadButton,
+  uploadData,
+  ClearDataButton
 } from '../../Storage/storage';
 import MainPanel from "./Main/Main";
 import DownloadButton from "../../Storage/download";
@@ -26,7 +29,14 @@ export default function CVForm () {
         id="cv-form"
         onSubmit={ handleSubmit }
       >
-        
+        <input
+          id="local-storage-upload"
+          type="file"
+          accept=".json"
+          onChange={ uploadData }
+          hidden
+        />
+
         <TopPanel />
         <SidePanel />
         <MainPanel />
@@ -44,6 +54,8 @@ export default function CVForm () {
           <LoadButton />
           <DownloadButton />
           <DownloadDataButton />
+          <UploadButton />
+          <ClearDataButton />
         </div>
       </div>
     </div>
