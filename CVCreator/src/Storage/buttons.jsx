@@ -17,6 +17,7 @@ export function LogDataButton () {
   )
 }
 
+
 export function ClearDataButton () {
   function handleClick () {
     const confirmed = confirm("Are you sure? This operation is about to clear all your CV data.");
@@ -38,6 +39,7 @@ export function ClearDataButton () {
   );
 }
 
+
 export function SaveButton () {
   const contexts = ContextsGrouper.contexts.map(
     context =>  [context.context(), context.group]
@@ -57,6 +59,7 @@ export function SaveButton () {
   )
 }
 
+
 export function DownloadDataButton () {
   function handleClick () {
     storage.downloadLocalStorageData()
@@ -71,6 +74,7 @@ export function DownloadDataButton () {
     </button>
   )
 }
+
 
 export function LoadButton () {
   const dispatches = ContextsGrouper.contexts.map(
@@ -91,6 +95,7 @@ export function LoadButton () {
     </button>
   )
 }
+
 
 export function UploadButton () {
   function openDialogMenu () {

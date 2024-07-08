@@ -1,17 +1,21 @@
 import ContextsGrouper from "../Contexts/ContextsGrouper";
 
+
 export function saveData (data, name) {
   const serializedData = JSON.stringify(data);
 
   localStorage.setItem(name, serializedData);
 }
 
-export function loadData () {
-  const groups = ContextsGrouper.contexts.map(context => context.group);
 
-  const data = {}
-  
-  groups.forEach(group => data[group] = JSON.parse(localStorage.getItem(group)));
+export function loadData () {
+  const groups = ContextsGrouper.contexts.map(
+    context => context.group
+  );
+  const data = {};
+  groups.forEach(group => 
+    data[group] = JSON.parse(localStorage.getItem(group))
+  );
   
   return data;
 }
@@ -25,6 +29,7 @@ export function saveToLocalStorage (contexts) {
     saveData(data, group);
   });
 }
+
 
 export function loadStateFromLocalStorage (dispatches) {
   const data = loadData();
@@ -50,6 +55,7 @@ export function loadStateFromLocalStorage (dispatches) {
     }
   }
 }
+
 
 export function downloadLocalStorageData () {
   const data = Object.keys(localStorage).reduce((obj, k) => (
