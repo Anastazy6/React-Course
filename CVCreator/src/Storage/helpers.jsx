@@ -36,15 +36,15 @@ export function loadStateFromLocalStorage (dispatches) {
   let errorCounter = 0;
   try {
     dispatches.forEach(([dispatch, group]) => {
-      if (data[group]) {
-        dispatch({
-          type: 'loaded_data',
-          data: data[group]
-        });
-      } else {
+      if (!data[group]) {
         errorCounter++;
         console.warn(`Couldn't find data for ${ group } in localStorage`);
+        return;
       }
+      dispatch({
+        type: 'loaded_data',
+        data: data[group]
+      });
     });
   } catch (e) {
     alert("Couldn't load data from local storage");
@@ -58,16 +58,11 @@ export function loadStateFromLocalStorage (dispatches) {
 
 
 export function downloadLocalStorageData () {
-  const data = Object.keys(localStorage).reduce((obj, k) => (
-    { ...obj,
-      [k]: JSON.parse(localStorage.getItem(k))
-    }), {}
-  );
+  const data = readLocalStorage();
 
-  const stringifiedData = JSON.stringify(data, null, 2);
   const fakeAnchor = document.createElement('a');
   const dataType = 'data:application/JSON';
-  const encodedURIComponent = encodeURIComponent(stringifiedData)
+  const encodedURIComponent = encodeURIComponent(data);
 
   return Object.assign(fakeAnchor, {
     href: `${ dataType }, ${ encodedURIComponent }`,
@@ -78,34 +73,25 @@ export function downloadLocalStorageData () {
 
 export function uploadData () {  
   const fileInput  = document.getElementById('local-storage-upload');
-  const uploadedFile = fileInput.files[0]
+  const uploadedFile = fileInput.files[0];
 
-  const reader = new FileReader;
-  reader.onload = e => {
-    saveUploadedData(e.target.result);
-    loadDataFromLocalStorage();
-  }
-
-  reader.readAsText(uploadedFile);
+  readFile(uploadedFile, saveFromFile);
 }
 
-
+/**
+ * Overwrites localStorage with data uploaded from a JSON file containing stored
+ *   CV data. Restores localStorage to it's state from before calling this function
+ *   in case of any error.
+ * @param {*} data 
+ */
 export function saveUploadedData (data) {
-   try {
-      try {
-        JSON.parse(data);
-        localStorage.clear();
-      } catch {
-        console.warn('Aborting before clearing local storage');
-      }
-      Object.entries(JSON.parse(data)).map(([key, value]) => {
-        const stringifiedValue = JSON.stringify(value);
-        localStorage.setItem(key, stringifiedValue);
-      });
-    } catch {
-      console.warn('An error occured during uploading data to localStorage.')
-      console.log(localStorage);
-    }
+  const currentData = readLocalStorage();
+  try {  
+    overwriteLocalStorage(data);
+  } catch {
+    alert('An error occured during uploading data to localStorage. Restored old data.');
+    overwriteLocalStorage(currentData);
+  }
 }
 
 
@@ -113,6 +99,44 @@ export function loadDataFromLocalStorage () {
   const loadButton = document.getElementById('load-from-local-storage-button');
   loadButton.click();
 }
+
+
+function readLocalStorage () {
+  const localStorageData = Object.keys(localStorage).reduce((obj, k) => (
+    { ...obj,
+      [k]: JSON.parse(localStorage.getItem(k))
+    }), {}
+  );
+
+  const stringifiedData = JSON.stringify(localStorageData, null, 2);
+
+  return stringifiedData;
+}
+
+
+function overwriteLocalStorage (data) {
+  localStorage.clear();
+
+  if (data) Object.entries(JSON.parse(data)).map(([key, value]) => {
+    const stringifiedValue = JSON.stringify(value);
+    localStorage.setItem(key, stringifiedValue);
+  });
+}
+
+
+function readFile (file, next) {
+  const reader = new FileReader;
+  reader.onload = e => next(e);
+
+  reader.readAsText(file);
+}
+
+
+function saveFromFile (e) {
+  saveUploadedData(e.target.result);
+  loadDataFromLocalStorage() 
+}
+
 
 // // temporary, this is going to be changed or removed
 // export function serialize (cvData) {

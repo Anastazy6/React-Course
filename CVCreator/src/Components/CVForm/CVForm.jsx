@@ -69,13 +69,17 @@ function PrintHeightAdjuster () {
     stuffToPrint.style.height = `${ pages * PRINT_PAGE_HEIGHT }px`;
   }
 
+  function handleClick () {
+    setHeightForPrint();
+    print();
+  }
 
   return (
     <button
-      onClick={ setHeightForPrint }
+      onClick={ handleClick }
       role   ='btn'
     >
-      Set height for print
+      Download as PDF or print
     </button>
   )
 }

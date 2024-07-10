@@ -78,8 +78,6 @@ function mainPanelReducer (data, action) {
         endDate  : ''
       }
 
-      console.log(data.sections)
-
       const newSections = data.sections && data.sections.length > 0
       ? [...data.sections, newSection]
       : [newSection];
@@ -96,9 +94,8 @@ function mainPanelReducer (data, action) {
       const updatedSections = data.sections.map(s => {
         if (s.id === action.section.id) {
           return { ...action.section }
-        } else {
-          return s;
-        }
+        } 
+        return s;
       });
 
       return {
@@ -128,9 +125,7 @@ function mainPanelReducer (data, action) {
           }
           return newSection;
         }
-        else {
-          return s;
-        }
+        return s;
       });
 
       return {
