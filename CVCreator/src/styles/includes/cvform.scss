@@ -2,15 +2,24 @@
 
 #cv-form {
   min-width: 25rem;
-  min-height: 35rem;
 
-  border: 1px solid black;
+  //border: 1px solid $lleuad-lawn;
+}
+
+#user-input-zone {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 fieldset {
   display: flex;
   flex-flow: column;
-
+  background-color: $lleuad-20p;
+  border: 2px solid $lleuad-lawn;
+  border-radius: 21.37px;
+  margin-top: 2rem;
   label {
     display: flex;
     flex-flow: row;
@@ -34,9 +43,45 @@ input[name="level"] {
 
 legend {
   display: block;
-  background-color: ghostwhite;
+  background-color: $lleuad-newydd;
+  border-radius: 100px;
+  border: 2px solid $lleuad;
   width: 100%;
   text-align: center;
+  padding: 5px 10px;
+  margin-top: 1rem;
+}
+
+.toggleable-fieldset {
+  legend {
+    cursor: pointer;
+
+    &::after {
+      content: '   ▲'
+    }
+  }
+  transition: 300ms ease-in-out;
+}
+
+/* hides the fieldset except its legend */
+.closed-fieldset {
+  display: contents;
+
+  * {
+    display: none;
+  }
+
+  legend {
+    display: block;
+
+    &::after {
+      content: '   ▼'
+    }
+  };
+
+  .break-line-label {
+    display: none;
+  }
 }
 
 .break-line-label {
@@ -50,4 +95,33 @@ legend {
 #storage-buttons {
   display: flex;
   flex-direction: column;
+}
+
+button {
+  border: 2px solid $lleuad-lawn;
+  background: $lleuad-newydd;
+  color: $lleuad-lawn;
+  transition: 300ms ease-in-out;
+  width: fit-content;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 100px;
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  &:hover {
+    background: $lleuad-lawn;
+    color: $lleuad-newydd;
+  }
+}
+
+#storage-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 }

@@ -10,6 +10,7 @@ import {
 import { findItemsByIds } from "../../../../Util/Util";
 
 import SectionManagemenent from "../../Shared/Management";
+import ToggleableFieldset from "../../ToggleableFieldset";
 import Item from "../Item/Item";
 
 export default function Section ({ props }) {
@@ -87,10 +88,9 @@ export default function Section ({ props }) {
   }
 
   return (
-    <fieldset>
-      <legend>
-        { title }
-      </legend>
+    <ToggleableFieldset
+      legend={ title }
+    >
       <Title 
         value   ={ props.title  }
         onChange={ handleChange }
@@ -110,7 +110,7 @@ export default function Section ({ props }) {
 
 
       { renderedItems } 
-    </fieldset>
+    </ToggleableFieldset>
   )
 }
 

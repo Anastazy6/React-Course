@@ -1,5 +1,6 @@
 import ShortInput from "./ShortInput";
 import FileInput  from "./FileInput";
+import ToggleableFieldset from "../ToggleableFieldset";
 
 
 export default function TopPanel () {
@@ -44,14 +45,13 @@ export default function TopPanel () {
 
 
   return (
-    <fieldset>
-      <legend>
-        Top Panel
-      </legend>
+    <ToggleableFieldset
+      legend="Top Panel"
+    >
       { dataInputs }
       { fileInputs }
 
-    </fieldset>
+    </ToggleableFieldset>
   )
 }
 

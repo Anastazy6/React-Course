@@ -5,7 +5,17 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
+
 }
+
+@media screen {
+  .cv-preview {
+    box-shadow: 
+      0 0 5px 5px ghostwhite,
+      0 0 9px 5px black;
+  }
+}
+
 
 @media screen and (min-resolution: 72dpi) {
   .cv-preview {
@@ -28,7 +38,7 @@
 
   background-color: $cv-theme-primary-brighter;
   border: 1px solid black;
-  box-shadow: 5px 5px 10px black;
+  //box-shadow: 5px 5px 10px black;
 
   display: grid;
 

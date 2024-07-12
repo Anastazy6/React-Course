@@ -11,6 +11,7 @@ import {
 import { findItemsByIds } from "../../../Util/Util";
 
 import SectionManagemenent from "../Shared/Management";
+import ToggleableFieldset from "../ToggleableFieldset";
 
 
 export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
@@ -96,11 +97,9 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
   }
 
   return (
-    <fieldset>
-       <legend>
-        { title }
-       </legend>
-
+    <ToggleableFieldset
+      legend={ title }
+    >
       <SectionManagemenent 
         title              ={ title               }
         handleAddItem      ={ handleAddItem       }
@@ -139,7 +138,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
       { renderedItems }
 
 
-    </fieldset>
+    </ToggleableFieldset>
   );
 }
 

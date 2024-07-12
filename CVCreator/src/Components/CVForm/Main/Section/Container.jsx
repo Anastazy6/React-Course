@@ -1,7 +1,8 @@
 import { useMainPanelDispatch } from "../../../../Contexts/DataModules/MainPanelProvider";
+import ToggleableFieldset from "../../ToggleableFieldset";
 
 
-export default function AddSection ({ }) {
+export default function MainPanelContainer ({ }) {
   const dispatch = useMainPanelDispatch();
   
   function handleCreateSection (e) {
@@ -12,16 +13,15 @@ export default function AddSection ({ }) {
 
   // SVG button for creating a section
   return (
-    <fieldset>
-      <legend>
-        Create main panel section
-      </legend>
+    <ToggleableFieldset
+      legend="Main Panel"
+    >  
       <button
         onClick={ handleCreateSection }   
       >
         Create main panel section
       </button>
       
-    </fieldset>
+    </ToggleableFieldset>
   );
 }

@@ -1,6 +1,7 @@
 import { useSidePanelDispatch } from "../../../Contexts/DataModules/SidePanelProvider";
+import ToggleableFieldset from "../ToggleableFieldset";
 
-export default function AddSidePanelSection () {
+export default function SidePanelContainer () {
   const dispatch = useSidePanelDispatch();
 
   function handleAddSectionForm () {
@@ -10,18 +11,16 @@ export default function AddSidePanelSection () {
   }
 
   return (
-    <fieldset>
-      <legend>
-        Add Side Panel section
-      </legend>
-      
-      <button 
+    <ToggleableFieldset
+      legend='Side Panel'
+    >
+       <button 
         role='btn'
         onClick={ handleAddSectionForm }
       >
         Add Section
       </button>
 
-    </fieldset>
+    </ToggleableFieldset>
   )
 }

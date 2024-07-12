@@ -2,6 +2,7 @@ import {
   useMainPanel,
   useMainPanelDispatch
 } from "../../../../Contexts/DataModules/MainPanelProvider";
+import ToggleableFieldset from "../../ToggleableFieldset";
 
 
 
@@ -21,19 +22,15 @@ export default function GDPRClause ({ }) {
   }
 
   return (
-    <fieldset>
-      <legend>
-        GDPR Clause
-      </legend>
-
+    <ToggleableFieldset
+        legend='GDPR Clause'
+    >
       <textarea
         onChange={ handleChange }
         value   ={ value }
         name    ='GDPR-clause-input'
 
-      />
-
-      
-    </fieldset>
+      />      
+    </ToggleableFieldset>
   )
 }

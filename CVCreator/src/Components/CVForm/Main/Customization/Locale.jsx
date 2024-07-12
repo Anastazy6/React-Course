@@ -2,6 +2,7 @@ import {
   useMainPanel,
   useMainPanelDispatch
 } from "../../../../Contexts/DataModules/MainPanelProvider";
+import ToggleableFieldset from "../../ToggleableFieldset";
 
 export default function Locale ({ }) {
   const data = useMainPanel();
@@ -38,12 +39,11 @@ export default function Locale ({ }) {
 
   
   return (
-    <fieldset>
-      <legend>
-        Locale
-      </legend>
+    <ToggleableFieldset
+      legend="Locale"
+    >
       { renderedLocalizations }
-    </fieldset>
+    </ToggleableFieldset>
   );
 }
 

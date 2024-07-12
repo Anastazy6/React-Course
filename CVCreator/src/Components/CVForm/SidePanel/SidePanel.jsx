@@ -1,5 +1,5 @@
 import { useSidePanel } from "../../../Contexts/DataModules/SidePanelProvider";
-import AddSidePanelSection from "./AddSection";
+import SidePanelContainer from "./Container";
 import Section from "./Section";
 
 export default function SidePanel () {
@@ -19,7 +19,7 @@ export default function SidePanel () {
 
   return (
     <>
-      <AddSidePanelSection />
+      <SidePanelContainer />
       { sections }
     </>
   );
