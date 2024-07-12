@@ -33,11 +33,11 @@ export function saveToLocalStorage (contexts) {
 
 export function loadStateFromLocalStorage (dispatches) {
   const data = loadData();
-  let errorCounter = 0;
+  let missingCounter = 0;
   try {
     dispatches.forEach(([dispatch, group]) => {
       if (!data[group]) {
-        errorCounter++;
+        missingCounter++;
         console.warn(`Couldn't find data for ${ group } in localStorage`);
         return;
       }
@@ -50,8 +50,8 @@ export function loadStateFromLocalStorage (dispatches) {
     alert("Couldn't load data from local storage");
     console.error(e);
   } finally {
-    if (errorCounter > 0) {
-      alert(`Couldn't load data for ${ errorCounter } of ${ dispatches.length } data groups`);
+    if (missingCounter > 0) {
+      alert(`Couldn't load data for ${ missingCounter } of ${ dispatches.length } data groups`);
     }
   }
 }
@@ -86,6 +86,7 @@ export function uploadData () {
  */
 export function saveUploadedData (data) {
   const currentData = readLocalStorage();
+
   try {  
     overwriteLocalStorage(data);
   } catch {
@@ -133,8 +134,20 @@ function readFile (file, next) {
 
 
 function saveFromFile (e) {
-  saveUploadedData(e.target.result);
-  loadDataFromLocalStorage() 
+  const oldData = readLocalStorage();
+  try {
+    saveUploadedData(e.target.result);
+    loadDataFromLocalStorage()    ;
+  } catch (err) {
+    restoreOldData(err, oldData);
+  }
+}
+
+function restoreOldData (err, oldData) {
+  console.error(err);
+  alert('An error occured while working with localStorage data. Trying to restore old data...');
+  overwriteLocalStorage(oldData);
+  loadDataFromLocalStorage();  
 }
 
 
