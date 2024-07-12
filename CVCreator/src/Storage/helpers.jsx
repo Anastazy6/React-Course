@@ -51,7 +51,8 @@ export function loadStateFromLocalStorage (dispatches) {
     console.error(e);
   } finally {
     if (missingCounter > 0) {
-      alert(`Couldn't load data for ${ missingCounter } of ${ dispatches.length } data groups`);
+      alert(`Couldn't load data for ${ missingCounter } of ${ dispatches.length } data groups. 
+        The data might be missing or corrupt.`);
     }
   }
 }
