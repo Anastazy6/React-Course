@@ -1,4 +1,4 @@
-export default function ToggleableFieldset ({ legend, children }) {
+export default function ToggleableFieldset ({ children, legend, id=null }) {
   function toggleFieldset (e) {
     e.stopPropagation();
     console.log(e.target);
@@ -8,6 +8,7 @@ export default function ToggleableFieldset ({ legend, children }) {
   return (
     <fieldset
       className="toggleable-fieldset"
+      id={ id }
     >
       <legend
         onClick={ toggleFieldset } 

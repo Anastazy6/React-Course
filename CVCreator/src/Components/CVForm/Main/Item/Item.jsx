@@ -73,6 +73,7 @@ export default function Item ({ item, sectionType, sectionID }) {
         handleMoveDown={ handleMoveDown }
         handleDelete  ={ handleDelete   }
       />
+
     </div>
   );
 }

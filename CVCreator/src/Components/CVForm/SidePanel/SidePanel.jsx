@@ -1,10 +1,17 @@
-import { useSidePanel } from "../../../Contexts/DataModules/SidePanelProvider";
-import SidePanelContainer from "./Container";
+import { 
+  useSidePanel,
+  useSidePanelDispatch
+} from "../../../Contexts/DataModules/SidePanelProvider";
+
 import Section from "./Section";
+import ToggleableFieldset from "../ToggleableFieldset";
+
 
 export default function SidePanel () {
-  const data = useSidePanel();
+  const data = useSidePanel();  
+  const dispatch = useSidePanelDispatch();
 
+  
   const sections = data.sections && data.sections.map(ss => (
     <Section
       key      ={ ss.id                 }
@@ -15,12 +22,27 @@ export default function SidePanel () {
       itemsIDs ={ ss.itemsIDs ?? []     }
     />
   ));
+  
+
+  function handleAddSectionForm () {
+    dispatch({
+      type: 'added_side_section',
+    });
+  }
 
 
   return (
-    <>
-      <SidePanelContainer />
+    <ToggleableFieldset
+      legend='Side Panel'
+    >
+       <button 
+        role='btn'
+        onClick={ handleAddSectionForm }
+      >
+        Add Section
+      </button>
+
       { sections }
-    </>
+    </ToggleableFieldset>
   );
 } 

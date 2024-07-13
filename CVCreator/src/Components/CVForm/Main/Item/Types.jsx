@@ -180,7 +180,9 @@ function EndDate ({ name, date, present, onChange, label }) {
 
 function LongText ({ name="description", value, onChange, label="Description" }) {
   return (
-    <label>
+    <label
+      className="textarea-label"
+    >
       { label }
       <textarea
         name      ={ name     }

@@ -20,6 +20,10 @@ fieldset {
   border: 2px solid $lleuad-lawn;
   border-radius: 21.37px;
   margin-top: 2rem;
+  button {
+    align-items: center;
+  }
+
   label {
     display: flex;
     flex-flow: row;
@@ -53,6 +57,7 @@ legend {
 }
 
 .toggleable-fieldset {
+
   legend {
     cursor: pointer;
 
@@ -119,9 +124,47 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   button {
     width: 100%;
     margin-top: 0.5rem;
+  }
+}
+
+label {
+  margin-top: 0.5rem;
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $lleuad;
+  color: ghostwhite;
+  width: 65%;
+  &:invalid {
+    border-color: red;
+  }
+
+  &:hover, &:focus, &:active {
+    border-color: $lleuad-lawn;
+  }
+}
+
+.main-panel-item {
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid $lleuad-lawn;
+}
+
+.textarea-label {
+  display: flex;
+  flex-direction: column;
+  textarea {
+    color: ghostwhite;
+    background-color: transparent;
+    height: max-content;
+    resize: none;
+    overflow: hidden;
   }
 }

@@ -1,9 +1,22 @@
-import { useMainPanelDispatch } from "../../../../Contexts/DataModules/MainPanelProvider";
+import { 
+  useMainPanelDispatch,
+  useMainPanel
+} from "../../../../Contexts/DataModules/MainPanelProvider";
 import ToggleableFieldset from "../../ToggleableFieldset";
-
+import Section from "./Section";
 
 export default function MainPanelContainer ({ }) {
   const dispatch = useMainPanelDispatch();
+  const sections = useMainPanel().sections;
+
+  const renderedSections = sections  
+  ? sections.map(ms => (
+    <Section
+      props={ ms    }
+      key  ={ ms.id }
+    />
+  ))
+  : null;
   
   function handleCreateSection (e) {
     dispatch({
@@ -21,7 +34,8 @@ export default function MainPanelContainer ({ }) {
       >
         Create main panel section
       </button>
-      
+
+    { renderedSections }     
     </ToggleableFieldset>
   );
 }

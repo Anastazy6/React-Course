@@ -1,7 +1,7 @@
 // Source: https://fonts.google.com/icons
 
 
-export function Delete ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick }) {
+export function Delete ({ size= 20, fill= "#b7d1da", wrapper='', title='', onClick }) {
   const svg = ( 
     <svg
       xmlns  ="http://www.w3.org/2000/svg"
@@ -28,7 +28,7 @@ export function Delete ({ size= 20, fill= "#ffc777", wrapper='', title='', onCli
 }
 
 
-export function Up ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick }) {
+export function Up ({ size= 20, fill= "#b7d1da", wrapper='', title='', onClick }) {
   const svg = (
     <svg
         xmlns  ="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ export function Up ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick }
 }
 
 
-export function Down ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick }) {
+export function Down ({ size= 20, fill= "#b7d1da", wrapper='', title='', onClick }) {
     const svg = (
     <svg
       xmlns  ="http://www.w3.org/2000/svg"
@@ -82,7 +82,7 @@ export function Down ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick
 }
 
 
-export function Add ({ size= 20, fill= "#ffc777", wrapper='', title='', onClick }) {
+export function Add ({ size= 20, fill= "#b7d1da", wrapper='', title='', onClick }) {
   const svg = (
     <svg
       xmlns  ="http://www.w3.org/2000/svg"

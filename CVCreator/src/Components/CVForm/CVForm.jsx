@@ -1,9 +1,9 @@
 import SidePanel from "./SidePanel/SidePanel";
 import TopPanel  from "./TopPanel/TopPanel";
 
-import * as Storage from '../../Storage/buttons';
 import MainPanel from "./Main/Main";
 import { uploadData } from "../../Storage/helpers";
+import StorageControls from "../../Storage/Controls";
 
 
 export default function CVForm () {
@@ -32,7 +32,7 @@ export default function CVForm () {
         <TopPanel />
         <SidePanel />
         <MainPanel />
-        
+        <StorageControls /> 
 
       </form>
       <div
@@ -41,12 +41,7 @@ export default function CVForm () {
         <div
           id='storage-buttons'
         >
-          <Storage.LogDataButton />
-          <Storage.SaveButton />
-          <Storage.LoadButton />
-          <Storage.DownloadDataButton />
-          <Storage.UploadButton />
-          <Storage.ClearDataButton />
+
         </div>
       </div>
     </div>
