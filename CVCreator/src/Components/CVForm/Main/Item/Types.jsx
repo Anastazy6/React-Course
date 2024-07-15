@@ -188,6 +188,7 @@ function LongText ({ name="description", value, onChange, label="Description" })
         name      ={ name     }
         onChange  ={ onChange }
         value     ={ value    }
+        rows      ="6"
       />
     </label>
   );

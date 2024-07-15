@@ -25,12 +25,17 @@ export default function GDPRClause ({ }) {
     <ToggleableFieldset
         legend='GDPR Clause'
     >
-      <textarea
-        onChange={ handleChange }
-        value   ={ value }
-        name    ='GDPR-clause-input'
+      <label
+        className="textarea-label"
+      >
+        <textarea
+          onChange={ handleChange }
+          value   ={ value }
+          name    ='GDPR-clause-input'
+          rows="10"
 
-      />      
+        />
+      </label>
     </ToggleableFieldset>
   )
 }
