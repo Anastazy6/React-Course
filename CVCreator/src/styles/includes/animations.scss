@@ -1,0 +1,13 @@
+@keyframes test {
+  0% { 
+    height: 100%;
+  }
+
+  90% {
+    height: 0%;
+  }
+
+  100% {
+    display: contents;
+  }
+}

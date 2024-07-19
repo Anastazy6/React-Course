@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./animations.scss";
 
 #cv-form {
   min-width: 25rem;
@@ -24,9 +25,14 @@ fieldset {
   display: flex;
   flex-flow: column;
   background-color: $lleuad-20p;
-  border: 2px solid $lleuad-lawn;
+  border: 2px solid $lleuad;
   border-radius: 21.37px;
   margin-top: 2rem;
+  
+  &:hover {
+    border-color: $lleuad-lawn;
+  }
+  
   button {
     align-items: center;
   }
@@ -79,6 +85,8 @@ legend {
 }
 
 .toggleable-fieldset {
+  animation-name: test;
+  animation-duration: 2s;
 
   legend {
     cursor: pointer;
@@ -86,14 +94,23 @@ legend {
     &::after {
       content: '   ▲'
     }
+
+    &:hover {
+      background-color: $lleuad;
+    }
   }
-  transition: 300ms ease-in-out;
+
+  &:hover {
+   > legend {
+      border-color: $lleuad-lawn;
+    }
+  }
 }
 
 /* hides the fieldset except its legend */
 .closed-fieldset {
   display: contents;
-
+  transition: test;
   * {
     display: none;
   }
@@ -128,7 +145,6 @@ button {
   border: 2px solid $lleuad-lawn;
   background: $lleuad-newydd;
   color: $lleuad-lawn;
-  transition: 300ms ease-in-out;
   width: fit-content;
   display: inline-block;
   padding: 5px 10px;
@@ -179,10 +195,36 @@ input {
   }
 }
 
+.side-item-input-group {
+  flex-grow: 1; 
+  display: flex;
+  input {
+    flex: 1 1 0;
+  }
+}
+
+.side-item-links-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 10px;
+  border-left: 10px solid rgb(60, 100, 115);
+  border-radius: 30px;
+  padding-left: 20px;
+
+  &:hover {
+    border-color: $lleuad-lawn;
+  }
+}
+
 .main-panel-item {
   padding-top: 20px;
   margin-top: 20px;
   border-top: 1px solid $lleuad-lawn;
+
+  &:first-of-type {
+    border-top: none;
+  }
 }
 
 .textarea-label {
@@ -214,5 +256,30 @@ select, option {
   &:hover {
     color: $lleuad-newydd;
     background-color: $lleuad-lawn;
+  }
+}
+
+#storage-buttons.closed-fieldset {
+  display: contents;
+}
+
+.section-management {
+  padding-bottom: 2.5rem;
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  
+  h4 {
+    text-align: center;
+  }
+
+  .management-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    .simple-svg-wrapper {
+      margin: 0;
+    }
   }
 }

@@ -12,10 +12,14 @@ export function SectionManagemenent ({ children, title }) {
 
   return (
     <div
-      className="side-section-managemenent"
+      className="section-management"
     >
       <h4>Manage { title }</h4>
-      { children }
+      <div
+        className="management-buttons"
+      >
+        { children }
+      </div>
     </div>
   )
 }
@@ -53,6 +57,7 @@ export function ItemManagement ({
 
   return (
     <BasicManagement
+      className     ='item-management'
       label         ="item"
       handleMoveUp  ={ handleMoveUp   }
       handleMoveDown={ handleMoveDown }
@@ -63,13 +68,16 @@ export function ItemManagement ({
 
 
 function BasicManagement({
+  className,
   label,
   handleMoveUp,
   handleMoveDown,
   handleDelete
 }) {
   return (
-    <>
+    <div
+      className={ className }
+    >
       <Up
         onClick={ handleMoveUp }
         wrapper={ SVG_WRAPPER  }
@@ -85,6 +93,6 @@ function BasicManagement({
         wrapper={ SVG_WRAPPER  }
         title  ={`Delete ${ label }` }
       />
-    </>
+    </div>
   )
 }

@@ -70,11 +70,15 @@ export default function Item ({ item, section }) {
     <div
       className='side-item-form'  
     >
-      <Title 
-        value   ={ item.title }
-        onChange={ handleTitleChange } 
-      />
-      { secondaryInput }
+      <div
+        className={ `side-item-${ section.type ?? 'untyped'}-input side-item-input-group` }
+      >
+        <Title 
+          value   ={ item.title }
+          onChange={ handleTitleChange } 
+        />
+        { secondaryInput }
+      </div>
       <ItemManagement
         handleMoveUp  ={ handleMoveUp   }
         handleMoveDown={ handleMoveDown }
