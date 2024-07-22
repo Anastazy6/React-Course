@@ -1,0 +1,61 @@
+@import "../variables.scss";
+
+input[name="level"] {
+  width: 40px;
+}
+
+label {
+  margin-top: 0.5rem;
+  display: flex;
+  min-width: 35%;
+  input {
+    flex-shrink: 1;
+  }
+}
+
+input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $lleuad;
+  color: ghostwhite;
+  width: 65%;
+  &:invalid {
+    border-color: red;
+  }
+
+  &:hover, &:focus, &:active {
+    border-color: $lleuad-lawn;
+  }
+}
+
+.textarea-label {
+  display: flex;
+  flex-direction: column;
+
+
+  textarea {
+    color: ghostwhite;
+    padding: 10px;
+    background-color: $lleuad-newydd-30p;
+    height: max-content;
+    resize: none;
+    overflow: auto;
+    border: none;
+    border-radius: 21.37px;
+
+    &:invalid {
+      box-shadow: 0 0 10px -5px rgba(255, 0, 0, 0.25);
+    }
+  }
+}
+
+select, option {
+  background-color: $lleuad-newydd;
+  color: ghostwhite;
+  padding: 5px;
+
+  &:hover {
+    color: $lleuad-newydd;
+    background-color: $lleuad-lawn;
+  }
+}
