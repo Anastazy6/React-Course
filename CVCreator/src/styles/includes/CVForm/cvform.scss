@@ -2,7 +2,12 @@
 @import "./fieldset.scss";
 @import "./form-controls.scss";
 
+#cv-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
+}
 
 #user-input-zone {
   min-width: 25rem;
@@ -45,14 +50,6 @@
   }
 }
 
-
-.break-line-label {
-  white-space: pre-wrap;
-  max-width: 30rem;
-  display: flex;
-
-  align-items: end;
-}
 
 #storage-buttons {
   display: flex;
@@ -129,7 +126,6 @@ button {
 
 label {
   margin-top: 0.5rem;
-  display: flex;
   min-width: 35%;
   input {
     flex-shrink: 1;
@@ -142,8 +138,10 @@ label {
 }
 
 .section-management {
-  padding-bottom: 2.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
+  border-bottom: 1px solid $lleuad;
   align-self: center;
   flex-direction: column;
   
@@ -153,6 +151,7 @@ label {
 }
 
 .management-buttons {
+  align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: row;

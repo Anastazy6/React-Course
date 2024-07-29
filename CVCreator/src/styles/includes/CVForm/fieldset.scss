@@ -1,29 +1,6 @@
 @import '../variables.scss';
 
-.fieldset-wrapper {
-  display: flex;
-  flex-flow: column;
-  background-color: $lleuad-20p;
-  border: 2px solid $lleuad;
-  border-radius: 21.37px;
-  margin-top: 2rem;
-  width: 100%;  
-  &:hover {
-    border-color: $lleuad-lawn;
-  }
-  
-  > button {
-    align-items: center;
-    width: 100%;
-  }
 
-  .fieldset-toggle {
-
-    &::after {
-      content: '   ▲';
-    }
-  }
-}
 
 legend {
   display: block;
@@ -33,25 +10,9 @@ legend {
   width: 100%;
   text-align: center;
   padding: 5px 10px;
-  margin-top: 1rem;
+  margin: inherit;
 }
 
-// fieldset {
-//   width: 100%;
-//   border: none;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   margin-bottom: 1rem;
-//   padding: 0.5rem;
-  
-//   label {
-//     display: flex;
-//     flex-flow: row;
-//     justify-content: space-between;
-//     margin-top: rem;
-//   }
-// }
 
 fieldset {
   display: flex;
@@ -59,8 +20,10 @@ fieldset {
   background-color: $lleuad-20p;
   border: 2px solid $lleuad;
   border-radius: 21.37px;
-  margin-top: 2rem;
-  
+  margin: 0.75rem 0;
+  padding: 0.5rem;
+  transition: margin 0ms;
+
   &:hover {
     border-color: $lleuad-lawn;
   }
@@ -76,6 +39,7 @@ fieldset {
     margin-top: rem;
   }
 }
+
 
 .closed-fieldset {
  
@@ -119,13 +83,16 @@ fieldset {
 /* hides the fieldset except its legend */
 .closed-fieldset {
   display: contents;
-  transition: test;
+  transition: margin-top 0ms;  
   * {
-    display: none;
+    display: none !important; // !important is required to actually fully hide the
+                              // elements AND not show any extra empty space
   }
 
+
   legend {
-    display: block;
+    display: block !important; // the !important above hides the legend as well,
+                               //   so this one is needed to override it
 
     &::after {
       content: '   ▼'
@@ -139,8 +106,11 @@ fieldset {
 
 .break-line-label {
   white-space: pre-wrap;
-  max-width: 30rem;
   display: flex;
-
+  flex: 0 0 70%;
   align-items: end;
+
+  input {
+    flex: 0 0 30%;
+  }
 }
