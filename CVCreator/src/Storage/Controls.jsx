@@ -7,8 +7,9 @@ export default function StorageControls () {
 
   return (
     <ToggleableFieldset
-      legend="Data Storage"
-      id    ="storage-buttons"
+      legend   ="Data Storage"
+      id       ="storage-buttons"
+      collapsed={ false }
     >
       <Buttons.LogDataButton />
       <Buttons.SaveButton />

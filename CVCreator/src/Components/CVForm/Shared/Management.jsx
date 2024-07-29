@@ -32,18 +32,21 @@ export default function StandardSectionManagemenent ({
     <SectionManagemenent
       title={ title }
     >
-      <Add
-        onClick={ handleAddItem }
-        wrapper={ SVG_WRAPPER   }
-        title  ="Add item"
-      />
-      <BasicManagement
-        label="section"
-        handleMoveUp  ={ handleMoveUp        }
-        handleMoveDown={ handleMoveDown      }
-        handleDelete  ={ handleDeleteSection }
-      />
-
+      <div
+        className='section-management management-buttons'
+      >
+        <Add
+          onClick={ handleAddItem }
+          wrapper={ SVG_WRAPPER   }
+          title  ="Add item"
+        />
+        <BasicManagement
+          label="section"
+          handleMoveUp  ={ handleMoveUp        }
+          handleMoveDown={ handleMoveDown      }
+          handleDelete  ={ handleDeleteSection }
+        />
+      </div>
     </SectionManagemenent>
   );
 }
@@ -52,32 +55,32 @@ export default function StandardSectionManagemenent ({
 export function ItemManagement ({
   handleMoveDown,
   handleMoveUp,
-  handleDelete
+  handleDelete,
 }) {
 
   return (
-    <BasicManagement
-      className     ='item-management'
-      label         ="item"
-      handleMoveUp  ={ handleMoveUp   }
-      handleMoveDown={ handleMoveDown }
-      handleDelete  ={ handleDelete   }
-    />
+    <div
+      className='item-management management-buttons'
+    >
+      <BasicManagement
+        label         ="item"
+        handleMoveUp  ={ handleMoveUp   }
+        handleMoveDown={ handleMoveDown }
+        handleDelete  ={ handleDelete   }
+      />
+    </div>
   );
 }
 
 
 function BasicManagement({
-  className,
   label,
   handleMoveUp,
   handleMoveDown,
   handleDelete
 }) {
   return (
-    <div
-      className={ className }
-    >
+    <>
       <Up
         onClick={ handleMoveUp }
         wrapper={ SVG_WRAPPER  }
@@ -93,6 +96,6 @@ function BasicManagement({
         wrapper={ SVG_WRAPPER  }
         title  ={`Delete ${ label }` }
       />
-    </div>
+    </>
   )
 }

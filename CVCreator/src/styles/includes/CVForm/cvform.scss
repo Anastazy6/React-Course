@@ -1,20 +1,24 @@
 @import "../variables.scss";
-//@import "../animations.scss";
 @import "./fieldset.scss";
 @import "./form-controls.scss";
 
 
 #cv-form {
-//  min-width: 25rem;
-  width: clamp(25rem, 100%, 35rem);
-  //border: 1px solid $lleuad-lawn;
+  width: 100%;
+  //min-width: 20rem;
+  display: flex;
+  flex-grow: 1;
+
 }
 
 #user-input-zone {
+  min-width: 15rem;
+  max-width: 35rem;
+  flex-grow: 1;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 .side-item-form {
@@ -47,18 +51,6 @@
     }
   }
 }
-
-
-// legend {
-//   display: block;
-//   background-color: $lleuad-newydd;
-//   border-radius: 100px;
-//   border: 2px solid $lleuad;
-//   width: 100%;
-//   text-align: center;
-//   padding: 5px 10px;
-//   margin-top: 1rem;
-// }
 
 
 .break-line-label {
@@ -154,13 +146,16 @@ button {
     text-align: center;
   }
 
-  .management-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
 
-    .simple-svg-wrapper {
-      margin: 0;
-    }
+}
+
+.management-buttons {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
+
+  .simple-svg-wrapper {
+    margin: 0;
   }
 }
