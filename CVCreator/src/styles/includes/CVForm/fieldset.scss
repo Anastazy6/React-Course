@@ -26,18 +26,49 @@
 }
 
 legend {
+  display: block;
+  background-color: $lleuad-newydd;
+  border-radius: 100px;
+  border: 2px solid $lleuad;
   width: 100%;
+  text-align: center;
+  padding: 5px 10px;
+  margin-top: 1rem;
 }
 
-fieldset {
-  width: 100%;
-  border: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
+// fieldset {
+//   width: 100%;
+//   border: none;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   margin-bottom: 1rem;
+//   padding: 0.5rem;
   
+//   label {
+//     display: flex;
+//     flex-flow: row;
+//     justify-content: space-between;
+//     margin-top: rem;
+//   }
+// }
+
+fieldset {
+  display: flex;
+  flex-flow: column;
+  background-color: $lleuad-20p;
+  border: 2px solid $lleuad;
+  border-radius: 21.37px;
+  margin-top: 2rem;
+  
+  &:hover {
+    border-color: $lleuad-lawn;
+  }
+  
+  button {
+    align-items: center;
+  }
+
   label {
     display: flex;
     flex-flow: row;
@@ -65,3 +96,51 @@ fieldset {
   }
 }
 
+.toggleable-fieldset {
+  legend {
+    cursor: pointer;
+
+    &::after {
+      content: '   ▲'
+    }
+
+    &:hover {
+      background-color: $lleuad;
+    }
+  }
+
+  &:hover {
+   > legend {
+      border-color: $lleuad-lawn;
+    }
+  }
+}
+
+/* hides the fieldset except its legend */
+.closed-fieldset {
+  display: contents;
+  transition: test;
+  * {
+    display: none;
+  }
+
+  legend {
+    display: block;
+
+    &::after {
+      content: '   ▼'
+    }
+  };
+
+  .break-line-label {
+    display: none;
+  }
+}
+
+.break-line-label {
+  white-space: pre-wrap;
+  max-width: 30rem;
+  display: flex;
+
+  align-items: end;
+}

@@ -33,7 +33,7 @@ export default function StandardSectionManagemenent ({
       title={ title }
     >
       <div
-        className='section-management management-buttons'
+        className='management-buttons'
       >
         <Add
           onClick={ handleAddItem }
