@@ -1,17 +1,17 @@
 @import "./variables.scss";
-@import "./animations.scss";
 
 #cv-form {
-  min-width: 25rem;
-
   //border: 1px solid $lleuad-lawn;
 }
 
 #user-input-zone {
+  min-width: 25rem;
+  max-width: 35rem;
   display: flex;
+  flex-grow: 1;
   justify-content: flex-start;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
 }
 
 .side-item-form {
