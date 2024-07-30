@@ -20,10 +20,10 @@ export function LogDataButton () {
 
 export function ClearDataButton () {
   function handleClick () {
-    const confirmed = confirm("Are you sure? This operation is about to clear all your CV data.");
+    const confirmed = confirm("Are you sure? This operation is about to clear all your CV data from local storage.");
     if (confirmed) { 
       localStorage.clear();
-      alert("CV data cleared!")
+      alert("CV data cleared! Refresh to apply changes.");
     } else {
       alert("Operation aborted, CV data remains intact.");
     }
