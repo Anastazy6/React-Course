@@ -115,6 +115,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
           name    ='title'
           value   ={ title }
           onChange={ handleChangeSectionProperty }
+          placeholder="Section title"
         />
       </label>
       

@@ -96,7 +96,7 @@ export default function Section ({ props }) {
         onChange={ handleChange }
       />
       <Type
-        value   ={ props.type ?? 'Employment' }
+        value   ={ props.type   }
         onChange={ handleChange }
       />
     
@@ -122,7 +122,9 @@ function Title ({ value, onChange }) {
       <input
         name     ='title'
         value   ={ value    }
-        onChange={ onChange }
+        onChange={ onChange } 
+        
+        placeholder = "Section title"
       />
     </label>
   );

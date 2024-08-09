@@ -75,7 +75,7 @@ export default function Item ({ item, section }) {
       >
         <Title 
           value   ={ item.title }
-          onChange={ handleTitleChange } 
+          onChange={ handleTitleChange }
         />
         { secondaryInput }
       </div>
@@ -97,6 +97,7 @@ function Title ({ value, onChange }) {
       value   ={ value }
       onChange={ onChange }
       required
+      placeholder="Title"
     />
   )
 }
@@ -158,6 +159,7 @@ function Link ({ value, onChange }) {
       value   ={ value }
       onChange={ onChange }
       required
+      placeholder="URL"
     />
   )
 }
@@ -194,7 +196,14 @@ function selectSecondaryInput (section, item, onChange) {
       );
     }
     case 'object': {
-
+      return (
+        <input
+          type  ='text'
+          value ={ item.secValue } 
+          onChange={ onChange}
+          placeholder="Secondary value"
+        />
+      );
     }
     case 'links': {
       return (
@@ -205,7 +214,7 @@ function selectSecondaryInput (section, item, onChange) {
       );
     }
     default: {
-      // console.warn(`No secondary input for Section Type: ${section.type}.`);
+      console.warn(`No secondary input for Section Type: ${section.type}.`);
       return null;
     }
   }

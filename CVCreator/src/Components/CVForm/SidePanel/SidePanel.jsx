@@ -8,25 +8,25 @@ import ToggleableFieldset from "../ToggleableFieldset";
 
 
 export default function SidePanel () {
-  const data = useSidePanel();  
+  const data     = useSidePanel();  
   const dispatch = useSidePanelDispatch();
-
+  
   
   const sections = data.sections && data.sections.map(ss => (
     <Section
-      key      ={ ss.id                 }
-      id       ={ ss.id                 }
-      title    ={ ss.title    ?? ''     }
-      type     ={ ss.type     ?? 'flat' }
-      maxLevel ={ ss.maxLevel ?? 7      }
-      itemsIDs ={ ss.itemsIDs ?? []     }
+      key      ={ ss.id       }
+      id       ={ ss.id       }
+      title    ={ ss.title    }
+      maxLevel ={ ss.maxLevel }
+      itemsIDs ={ ss.itemsIDs }
+      type     ={ ss.type     }
     />
   ));
   
 
   function handleAddSectionForm () {
     dispatch({
-      type: 'added_side_section',
+      type       : 'added_side_section',
     });
   }
 

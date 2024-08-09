@@ -10,6 +10,9 @@ import { moveItem } from "../../Util/Util";
 const MainPanelContext         = createContext(null);
 const MainPanelDispatchContext = createContext(null);
 
+const DEFAULT_TITLE = "New Section";
+const DEFAULT_TYPE  = "Employment";
+
 
 export default function MainPanelProvider ({ children }) {
   const [mainPanel, dispatch] = useReducer(
@@ -72,10 +75,11 @@ function mainPanelReducer (data, action) {
       const newSection = {
         id       : id,
         itemsIDs : [],
-        title    : '',
         location : '',
         startDate: '',
-        endDate  : ''
+        endDate  : '',
+        title    : DEFAULT_TITLE,
+        type     : DEFAULT_TYPE
       }
 
       const newSections = data.sections && data.sections.length > 0
