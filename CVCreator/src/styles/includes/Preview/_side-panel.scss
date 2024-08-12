@@ -6,10 +6,12 @@ $side-panel-h3-size: 1.4rem;
   grid-area: side-panel;
 
   width: 100%;
+  max-width: $side-panel-width;
   display: flex;
   justify-content: space-between;
   flex-flow: row;
   background-color: $cv-theme-primary-brighter;
+  word-break: break-word;
 
 }
   .panel-separator {
@@ -19,7 +21,8 @@ $side-panel-h3-size: 1.4rem;
   }
 
 #side-panel-preview {
- // flex : 1 0 auto;
+ 
+  width: $side-panel-width;
   color: ghostwhite;
 
   h3 {

@@ -43,7 +43,7 @@
 
   display: grid;
 
-  grid-template-columns: 7fr 15fr;
+  grid-template-columns: $side-panel-width $main-panel-width;
   grid-template-rows   : min-content 1fr;
   grid-template-areas  :
     'top-panel  top-panel'
@@ -67,13 +67,22 @@ a {
   margin-top: 10px;
   margin-bottom: 10px;
   
+
+
+
+}
+
+.linethrough-header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &::before,
   &::after {
     content: '';
     flex: 1;
     border-bottom: 2px solid $moonlight-II-yellow;
   }
-
   &:not(:empty)::before {
     margin-right: 0.55rem;
   }
@@ -82,7 +91,6 @@ a {
     margin-left: 0.55rem;
   }
 }
-
 
 
 @import './main-panel';

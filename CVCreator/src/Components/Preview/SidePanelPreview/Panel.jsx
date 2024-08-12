@@ -57,11 +57,15 @@ function Section ({ title, type, itemsIDs, maxLevel }) {
       <div
         className="side-section-title"
       >
-        <h3
-          className="linethrough-header"
+        <div
+          className="linethrough-header-wrapper"
         >
-          { title }
-        </h3>
+          <h3
+            className="linethrough-header"
+          >
+            { title }
+          </h3>
+        </div>
 
       </div>
         { renderedItems }
