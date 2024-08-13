@@ -64,11 +64,16 @@ function Section ({ props }) {
       <div
         className="main-section-preview-title"
       >
-        <h3
-          className="linethrough-header"
+        <div 
+          className="linethrough-header-wrapper"
         >
-          { props.title }
-        </h3>
+          <hr className="linethrough-hr" />
+          <h3
+            className="linethrough-header"
+          >
+            { props.title }
+          </h3>
+        </div>
       </div>
 
 

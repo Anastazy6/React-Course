@@ -60,6 +60,7 @@ function Section ({ title, type, itemsIDs, maxLevel }) {
         <div
           className="linethrough-header-wrapper"
         >
+          <hr className="linethrough-hr" />
           <h3
             className="linethrough-header"
           >

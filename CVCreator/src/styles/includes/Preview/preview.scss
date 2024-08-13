@@ -60,36 +60,44 @@ a {
 
 .linethrough-header {
   display: flex;
+  position: relative;
+  z-index: 1;
   align-items: center;
   text-align: center;
-
+  background-color: $cv-theme-primary-brighter;
+  max-width: 100%;
+  padding: 0 5px;
   line-height: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
-  
+  word-break: break-word;
+}
 
-
-
+.linethrough-hr {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  border: 2px solid $moonlight-II-yellow;
 }
 
 .linethrough-header-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  // &::before,
+  // &::after {
+  //   content: '';
+  //   flex: 1;
+  //   border-bottom: 2px solid $moonlight-II-yellow;
+  // }
+  // &:not(:empty)::before {
+  //   margin-right: 0.55rem;
+  // }
 
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    border-bottom: 2px solid $moonlight-II-yellow;
-  }
-  &:not(:empty)::before {
-    margin-right: 0.55rem;
-  }
-
-  &:not(:empty)::after {
-    margin-left: 0.55rem;
-  }
+  // &:not(:empty)::after {
+  //   margin-left: 0.55rem;
+  // }
 }
 
 

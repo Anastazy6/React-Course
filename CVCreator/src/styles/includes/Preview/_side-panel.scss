@@ -1,6 +1,5 @@
 @import "../variables.scss";
 
-$side-panel-h3-size: 1.4rem;
 
 #side-panel-preview-wrapper {
   grid-area: side-panel;
@@ -11,7 +10,6 @@ $side-panel-h3-size: 1.4rem;
   justify-content: space-between;
   flex-flow: row;
   background-color: $cv-theme-primary-brighter;
-  word-break: break-word;
 
 }
   .panel-separator {
