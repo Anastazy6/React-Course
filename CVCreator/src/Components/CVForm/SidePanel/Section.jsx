@@ -67,7 +67,7 @@ export default function Section ({ title, id, type, maxLevel, itemsIDs }) {
   function handleMoveDown () {
     dispatchPanel({
       type     : 'moved_section',
-      section  : id,
+      id       : id,
       direction: 'down'
     });
   }

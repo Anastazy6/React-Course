@@ -164,17 +164,6 @@ function Link ({ value, onChange }) {
   )
 }
 
-// Looks unused, marked for removal if it's truly without use
-// function Button ({ name, onClick }) {
-//   return (
-//     <button
-//       role   ='btn'
-//       onClick={ onClick }
-//     >
-//       { name }
-//     </button>
-//   )
-// }
 
 function selectSecondaryInput (section, item, onChange) {
   switch (section.type) {
@@ -214,7 +203,6 @@ function selectSecondaryInput (section, item, onChange) {
       );
     }
     default: {
-      console.warn(`No secondary input for Section Type: ${section.type}.`);
       return null;
     }
   }

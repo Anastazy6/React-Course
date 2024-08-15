@@ -63,6 +63,7 @@ function sidePanelReducer (sidePanel, action) {
 
 
     case 'updated_side_section': {
+      console.log(action);
       const updatedSections = sidePanel.sections.map(s => {
         if (s.id === action.id) {
           const updatedSection = { ...s };
