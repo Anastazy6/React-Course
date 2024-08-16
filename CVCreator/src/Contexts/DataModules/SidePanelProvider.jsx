@@ -68,7 +68,7 @@ function sidePanelReducer (sidePanel, action) {
       const updatedSections = sidePanel.sections.map(s => {
         if (s.id === action.id) {
           const updatedSection = { ...s };
-          s[action.property] = action.value;
+          updatedSection[action.property] = action.value;
           
           return updatedSection;
         }
