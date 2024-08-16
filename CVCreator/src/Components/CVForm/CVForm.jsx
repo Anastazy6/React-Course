@@ -53,15 +53,23 @@ function PrintHeightAdjuster () {
 
   function setHeightForPrint () {
     const stuffToPrint = document.querySelector(".print-content");
+    
     const PRINT_PAGE_HEIGHT = parseInt(getComputedStyle(stuffToPrint).minHeight);
-    //console.log(PRINT_PAGE_HEIGHT);
     const currentHeight = parseInt(getComputedStyle(stuffToPrint).height);
-    //console.log(currentHeight);
     stuffToPrint.style.height = PRINT_PAGE_HEIGHT // reset current height
-    const pages = Math.floor(currentHeight / PRINT_PAGE_HEIGHT) + 1;
-  //  console.log("Pages: " + pages);
+    const pages = currentHeight % PRINT_PAGE_HEIGHT === 0
+      ? currentHeight / PRINT_PAGE_HEIGHT
+      : Math.floor(currentHeight / PRINT_PAGE_HEIGHT) + 1;
+    const totalHeight = pages * PRINT_PAGE_HEIGHT;
 
-    stuffToPrint.style.height = `${ pages * PRINT_PAGE_HEIGHT }px`;
+    stuffToPrint.style.height = `${ totalHeight }px`;
+
+    console.log(`
+      Page height   : ${ PRINT_PAGE_HEIGHT }px
+      Current height: ${ currentHeight     }px
+      Pages         : ${ pages             }
+      Total height  : ${ totalHeight       }px
+    `)
   }
 
   function handleClick () {

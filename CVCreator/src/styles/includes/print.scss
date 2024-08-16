@@ -15,8 +15,15 @@
     display: none;
   }
 
-  .cv-preview-wrapper button {
-    display: none;
+   
+  
+  #cv-preview-wrapper{
+    margin: 0;
+    box-shadow: none;
+
+    button {
+      display: none;
+    }
   }
 
 
